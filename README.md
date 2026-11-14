@@ -1,6 +1,6 @@
 # Objeto Virtual de Aprendizaje (OVA): Autopoiesis y Sistemas Vivos
 ### Humberto Maturana y Francisco Varela · Tema 22
-**Universidad Simón Bolívar** · Facultad de Ingenierías · Ingeniería de Sistemas  
+**Ingeniería de Sistemas** · Proyecto final OVA (individual)  
 **Asignatura:** Teoría General de Sistemas (TGS) · Periodo 2026-2  
 **Estudiante Responsable:** ROMERO HERRERA JULIAN ESTEBAN  
 
@@ -26,7 +26,7 @@ Diseñar e implementar un Objeto Virtual de Aprendizaje (OVA) funcional, accesib
    - **Juego 1 (Bio-Lab Simulador):** Simulación física en Canvas 2D de una célula autopoiética con membrana elástica deformable, metabolitos y degradación entrópica en tiempo real.
    - **Juego 2 (Desafío Ontológico):** Juego de clasificación rápida de sistemas autopoiéticos vs. alopoiéticos con retroalimentación inmediata.
    - **Juego 3 (Aventura de Acoplamiento Estructural):** Simulador de toma de decisiones frente a perturbaciones del medio basadas en determinismo estructural.
-4. **Evaluar el aprendizaje** a través de un quiz automatizado de 10 reactivos y la emisión en vivo de un certificado de suficiencia académica oficial emitido por la Universidad Simón Bolívar.
+4. **Evaluar el aprendizaje** a través de un quiz automatizado de 10 reactivos y la emisión en vivo de un constancia de culminación descargable en PDF.
 5. **Documentar y publicar la OVA** en plataformas públicas (GitHub Pages, Netlify o Vercel), facilitando la integración con la OVA final (Tema 24).
 
 ---
@@ -41,8 +41,8 @@ Diseñar e implementar un Objeto Virtual de Aprendizaje (OVA) funcional, accesib
 | **04** | Ejemplos en Casos Reales | Célula biológica, clústeres de Kubernetes (*Self-healing*), sistemas sociales según Niklas Luhmann. |
 | **05** | Ejercicios con Retroalimentación | 3 casos de análisis crítico con retroalimentación inmediata y explicaciones pedagógicas. |
 | **06** | Gamificación y Laboratorio | 3 juegos interactivos: Simulador en Canvas Bio-Lab, Desafío Ontológico y Aventura de Acoplamiento. |
-| **07** | Videoteca Curada | Conferencias curadas de Maturana, Varela y explicaciones audiovisuales de la TGS con guías de observación. |
-| **08** | Evaluación y Certificado | Quiz interactivo de 10 preguntas con puntaje automático y generador de certificado descargable/imprimible en PDF. |
+| **07** | Videoteca Curada | Entrevistas a Maturana y Varela («La belleza de pensar») y conferencia de J. C. Letelier, enlazadas a YouTube con pautas de observación. |
+| **08** | Evaluación y Constancia | Quiz interactivo de 10 preguntas con puntaje automático y constancia de culminación imprimible en PDF. |
 | **09** | Ficha Técnica Oficial | Modal emergente con opción de descarga directa en PDF para entrega académica. |
 | **10** | Créditos y Bibliografía | Créditos autorales, declaración ética de uso de IA y referencias completas en formato APA 7ma edición. |
 
@@ -60,22 +60,39 @@ Diseñar e implementar un Objeto Virtual de Aprendizaje (OVA) funcional, accesib
 
 ---
 
-## 🚀 5. Instrucciones de Despliegue y Ejecución Local
+## 🚀 5. Enlaces, despliegue y ejecución
 
-### Ejecución Local Rápida
+- 🌐 **OVA publicada (GitHub Pages):** https://julianromero171.github.io/OVA/
+- 📦 **Repositorio:** https://github.com/julianromero171/OVA
+- 📄 **Ficha técnica (PDF):** [`docs/Ficha_Tecnica_OVA_Autopoiesis.pdf`](docs/Ficha_Tecnica_OVA_Autopoiesis.pdf)
+
+### Ejecución local
 1. Clonar el repositorio o descomprimir el archivo `.zip`:
    ```bash
-   git clone https://github.com/usuario/ova-autopoiesis.git
-   cd ova-autopoiesis
+   git clone https://github.com/julianromero171/OVA.git
+   cd OVA
    ```
-2. Abrir directamente el archivo `index.html` en cualquier navegador web moderno (Google Chrome, Mozilla Firefox, Microsoft Edge, Safari o Brave). No requiere instalación de servidores pesados ni bases de datos.
+2. Abrir `index.html` en Google Chrome (o cualquier navegador moderno). No requiere servidor ni base de datos.
 
-### Despliegue en GitHub Pages
-1. Subir los archivos al repositorio en la rama `main`.
-2. Ir a **Settings ➔ Pages**.
-3. En **Branch**, seleccionar `main` y la carpeta `/ (root)`. Guardar.
-4. En cuestión de minutos la OVA estará publicada en:  
-   `https://<tu-usuario>.github.io/<nombre-del-repo>/`
+### Publicación en GitHub Pages
+1. En el repositorio ir a **Settings ➔ Pages**.
+2. En **Source** elegir *Deploy from a branch*, rama `main`, carpeta `/ (root)` y guardar.
+3. En uno o dos minutos la OVA queda disponible en https://julianromero171.github.io/OVA/
+
+### Estructura de archivos
+```
+OVA/
+├── index.html                 # Página principal del OVA
+├── css/styles.css             # Estilos e identidad visual
+├── js/app.js                  # Navegación, tema, accesibilidad, ejercicios
+├── js/simulator.js            # Juego 1: simulador Bio-Lab (Canvas)
+├── js/games.js                # Juegos 2 y 3
+├── js/quiz.js                 # Quiz y constancia
+├── docs/ficha_tecnica.html    # Fuente de la ficha técnica
+├── docs/Ficha_Tecnica_OVA_Autopoiesis.pdf
+├── FICHA_TECNICA.md
+└── README.md
+```
 
 ---
 
@@ -88,7 +105,7 @@ Para defender exitosamente el proyecto ante el docente y compañeros:
 4. **Demostración en Vivo:**
    - Abrir el simulador **Bio-Lab**, inyectar sustrato y aumentar la entropía para mostrar cómo la membrana lucha por auto-repararse antes de la lisis.
    - Mostrar el ejercicio interactivo y explicar el concepto de **Determinismo Estructural**.
-   - Completar el quiz y generar el certificado oficial en vivo.
+   - Completar el quiz y generar la constancia en vivo.
 
 ---
 

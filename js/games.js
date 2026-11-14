@@ -2,7 +2,7 @@
  * JUEGOS DIDÁCTICOS INTERACTIVOS DE AUTOPOIESIS (TGS)
  * Juego 2: Desafío Ontológico (Autopoiético vs Alopoiético)
  * Juego 3: Simulador de Decisiones de Acoplamiento Estructural
- * Universidad Simón Bolívar - Romero Herrera Julian Esteban
+ * TGS 2026-2 - Romero Herrera Julian Esteban
  */
 
 // ==========================================

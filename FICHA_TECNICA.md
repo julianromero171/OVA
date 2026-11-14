@@ -1,12 +1,10 @@
 # FICHA TÉCNICA OFICIAL DEL PROYECTO OVA
-### Teoría General de Sistemas (TGS) · Universidad Simón Bolívar · Periodo 2026-2
+### Teoría General de Sistemas (TGS) · Ingeniería de Sistemas · Periodo 2026-2
 
 ---
 
 ## 1. Datos Generales de Identificación
 
-- **Institución Educativa:** Universidad Simón Bolívar (Barranquilla / Cúcuta, Colombia)
-- **Facultad:** Facultad de Ingenierías
 - **Programa Académico:** Ingeniería de Sistemas
 - **Asignatura:** Teoría General de Sistemas (TGS)
 - **Periodo Académico:** 2026-2
@@ -30,7 +28,7 @@ Diseñar e implementar un Objeto Virtual de Aprendizaje (OVA) funcional, accesib
    - **Desafío Ontológico:** Clasificación interactiva de sistemas biológicos y mecánicos (Autopoiéticos vs. Alopoiéticos).
    - **Aventura de Acoplamiento Estructural:** Simulador de resolución de perturbaciones basado en la cibernética de segundo orden.
 4. Integrar ejercicios de análisis de casos reales con retroalimentación explicativa inmediata.
-5. Evaluar las competencias adquiridas a través de un quiz automatizado de 10 reactivos con emisión de un certificado institucional imprimible en PDF.
+5. Evaluar las competencias adquiridas a través de un quiz automatizado de 10 reactivos con emisión de una constancia de culminación imprimible en PDF.
 
 ---
 
@@ -48,7 +46,7 @@ Diseñar e implementar un Objeto Virtual de Aprendizaje (OVA) funcional, accesib
 
 ---
 
-## 4. Matriz de Contenidos y Cumplimiento de la Rúbrica USB
+## 4. Matriz de Contenidos y Cumplimiento de la Rúbrica del Proyecto
 
 | Criterio Evaluativo | Peso | Mecanismo de Cumplimiento en el OVA |
 | :--- | :---: | :--- |
@@ -63,7 +61,7 @@ Diseñar e implementar un Objeto Virtual de Aprendizaje (OVA) funcional, accesib
 
 ## 5. Declaración Ética de Uso de Herramientas de IA
 
-En cumplimiento con los lineamientos de la Universidad Simón Bolívar (numeral 8 del documento institucional), se declara que el desarrollo del código base, la formulación de los algoritmos de física de partículas para el simulador y la estructuración del diseño web contaron con la asistencia de **Google Antigravity** y modelos de lenguaje de DeepMind, bajo la dirección, diseño instruccional, validación conceptual y curaduría del estudiante responsable.
+En cumplimiento del numeral 8 (Observaciones y compromisos) del documento del proyecto, se declara que el desarrollo del código base, la formulación de los algoritmos de física de partículas para el simulador y la estructuración del diseño web contaron con la asistencia de **Google Antigravity**, bajo la dirección, diseño instruccional, validación conceptual y curaduría del estudiante responsable.
 
 ---
 

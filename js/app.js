@@ -1,7 +1,7 @@
 /**
  * OVA: AUTOPOIESIS Y SISTEMAS VIVOS
  * Controlador Principal de la Aplicación Web
- * Autor: Romero Herrera Julian Esteban - Universidad Simón Bolívar
+ * Autor: Romero Herrera Julian Esteban - TGS 2026-2
  */
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -106,7 +106,7 @@ document.addEventListener('DOMContentLoaded', () => {
         isSpeaking = false;
         btnTextToSpeech.innerHTML = '🗣️ Voz: OFF';
       } else {
-        const textToRead = "Bienvenido al Objeto Virtual de Aprendizaje sobre Autopoiesis y sistemas vivos, basado en las investigaciones de Humberto Maturana y Francisco Varela para la Universidad Simón Bolívar. Esta OVA explora la clausura operacional, el acoplamiento estructural y su aplicación en la teoría general de sistemas.";
+        const textToRead = "Bienvenido al Objeto Virtual de Aprendizaje sobre Autopoiesis y sistemas vivos, basado en las investigaciones de Humberto Maturana y Francisco Varela, tema veintidós del curso de Teoría General de Sistemas. Esta OVA explora la clausura operacional, el acoplamiento estructural y su aplicación en la teoría general de sistemas.";
         const utterance = new SpeechSynthesisUtterance(textToRead);
         utterance.lang = 'es-ES';
         utterance.rate = 1.0;

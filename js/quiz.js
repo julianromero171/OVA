@@ -1,6 +1,6 @@
 /**
  * SISTEMA DE EVALUACIÓN Y CERTIFICACIÓN ACADÉMICA INTERACTIVA
- * Asignatura: Teoría General de Sistemas (TGS) - Universidad Simón Bolívar
+ * Asignatura: Teoría General de Sistemas (TGS) - TGS 2026-2
  * Autor: Romero Herrera Julian Esteban
  */
 

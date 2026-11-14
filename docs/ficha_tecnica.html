@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Ficha Técnica - OVA Autopoiesis y Sistemas Vivos</title>
+<style>
+  @page { size: Letter; margin: 18mm 16mm; }
+  body { font-family: "Segoe UI", Arial, sans-serif; color: #0f172a; font-size: 10.5pt; line-height: 1.5; }
+  .head { border-bottom: 4px solid #10b981; padding-bottom: 10px; margin-bottom: 16px; }
+  .kicker { font-family: Consolas, monospace; color: #047857; font-size: 9pt; letter-spacing: .08em; }
+  h1 { font-size: 20pt; margin: 4px 0 2px; }
+  h2 { font-size: 12.5pt; color: #047857; border-left: 4px solid #06b6d4; padding-left: 8px; margin: 18px 0 8px; }
+  table { width: 100%; border-collapse: collapse; margin: 6px 0; }
+  td, th { border: 1px solid #cbd5e1; padding: 6px 8px; vertical-align: top; text-align: left; }
+  th { background: #ecfdf5; color: #065f46; }
+  td.k { width: 30%; background: #f8fafc; font-weight: 600; }
+  ul { margin: 4px 0 4px 18px; padding: 0; }
+  li { margin-bottom: 3px; }
+  .refs li { font-size: 9.5pt; }
+  .note { background: #f0fdfa; border: 1px dashed #14b8a6; padding: 8px 10px; border-radius: 6px; font-size: 9.5pt; }
+</style>
+</head>
+<body>
+  <div class="head">
+    <div class="kicker">PROYECTO FINAL · OBJETOS VIRTUALES DE APRENDIZAJE (OVA)</div>
+    <h1>Ficha técnica · Autopoiesis y sistemas vivos (Maturana y Varela)</h1>
+    <div>Teoría General de Sistemas (TGS) · Ingeniería de Sistemas · Periodo 2026-2</div>
+  </div>
+
+  <h2>1. Identificación</h2>
+  <table>
+    <tr><td class="k">Tema asignado</td><td>N° 22 · Autopoiesis y sistemas vivos (Maturana y Varela)</td></tr>
+    <tr><td class="k">Autor</td><td>Romero Herrera Julián Esteban</td></tr>
+    <tr><td class="k">Asignatura</td><td>Teoría General de Sistemas (TGS)</td></tr>
+    <tr><td class="k">Modalidad</td><td>Individual</td></tr>
+    <tr><td class="k">OVA publicada</td><td>https://julianromero171.github.io/OVA/</td></tr>
+    <tr><td class="k">Repositorio</td><td>https://github.com/julianromero171/OVA</td></tr>
+  </table>
+
+  <h2>2. Objetivos</h2>
+  <p><strong>General.</strong> Diseñar e implementar un OVA funcional, accesible y didáctico que permita comprender y enseñar la teoría de la autopoiesis de Humberto Maturana y Francisco Varela dentro de la Teoría General de Sistemas.</p>
+  <p><strong>Específicos.</strong></p>
+  <ul>
+    <li>Investigar y sintetizar el marco conceptual (autopoiesis, clausura operacional, acoplamiento estructural, determinismo estructural, autopoiesis vs. alopoiesis) desde fuentes académicas.</li>
+    <li>Aplicar principios de diseño instruccional y experiencia de usuario: navegación por módulos, diseño responsive, modo claro/oscuro, tamaño de letra ajustable y lectura en voz alta.</li>
+    <li>Desarrollar contenidos interactivos: 3 juegos, 3 ejercicios con retroalimentación y un quiz de 10 preguntas con puntaje automático.</li>
+    <li>Publicar el OVA en GitHub Pages y socializarlo con el estudiante integrador (tema 24).</li>
+  </ul>
+
+  <h2>3. Contenido del OVA (lineamientos 01–10)</h2>
+  <table>
+    <tr><th>Lineamiento</th><th>Implementación</th></tr>
+    <tr><td>01 Contextualización</td><td>Origen de la teoría (Chile, década de 1970), crítica a las definiciones de vida por listas de propiedades, pertinencia en ingeniería.</td></tr>
+    <tr><td>02 Explicación teórica</td><td>Autores, clausura operacional, membrana como límite autoproducido, acoplamiento y determinismo estructural, órdenes de autopoiesis (1°, 2° y 3° según Luhmann), con referencias.</td></tr>
+    <tr><td>03 Ejemplos reales</td><td>La célula, Kubernetes y los sistemas <em>self-healing</em>, las organizaciones como sistemas de comunicación (Luhmann). Tabla autopoiesis vs. alopoiesis.</td></tr>
+    <tr><td>04 Ejercicios</td><td>3 casos de análisis con retroalimentación inmediata para cada opción.</td></tr>
+    <tr><td>05 Juegos (3)</td><td>Bio-Lab: simulador de célula en Canvas · Desafío ontológico: clasificar sistemas · Aventura de acoplamiento: decisiones ante perturbaciones.</td></tr>
+    <tr><td>06 Videos</td><td>Videos curados: entrevistas a Maturana y a Varela en «La belleza de pensar» y una conferencia de J. C. Letelier, con pautas de observación.</td></tr>
+    <tr><td>07 Quiz</td><td>10 preguntas, nota automática de 0.0 a 5.0, justificación de cada respuesta y constancia imprimible.</td></tr>
+    <tr><td>08 Diseño</td><td>Identidad visual propia «bio-cibernética» (verde esmeralda/cian), animaciones, gráfico SVG de la célula.</td></tr>
+    <tr><td>09 Navegación</td><td>Menú fijo, barra de progreso de lectura, menú móvil, diseño responsive.</td></tr>
+    <tr><td>10 Créditos</td><td>Autoría, declaración de uso de IA y referencias en formato APA 7.</td></tr>
+  </table>
+
+  <h2>4. Herramientas utilizadas</h2>
+  <ul>
+    <li>HTML5, CSS3 y JavaScript (ES6), sin frameworks.</li>
+    <li>APIs del navegador: Canvas 2D (simulador), Web Audio (sonidos), Web Speech (lectura en voz alta).</li>
+    <li>Google Fonts (Plus Jakarta Sans, JetBrains Mono).</li>
+    <li>Git, GitHub y GitHub Pages (control de versiones y publicación).</li>
+    <li>Google Antigravity (asistente de IA) para apoyar la generación de código y contenido.</li>
+  </ul>
+  <div class="note"><strong>Declaración de uso de IA:</strong> se usó Google Antigravity como apoyo para generar código y redactar contenido. El autor revisó el material y debe poder explicarlo en la sustentación, como pide el numeral 8 del proyecto.</div>
+
+  <h2>5. Referencias</h2>
+  <ul class="refs">
+    <li>Luhmann, N. (1998). <em>Sistemas sociales: Lineamientos para una teoría general</em>. Anthropos; Universidad Iberoamericana.</li>
+    <li>Maturana, H. R. (1997). <em>La objetividad: Un argumento para obligar</em>. Dolmen.</li>
+    <li>Maturana, H. R., &amp; Varela, F. J. (1973). <em>De máquinas y seres vivos: Una teoría sobre la organización biológica</em>. Editorial Universitaria.</li>
+    <li>Maturana, H. R., &amp; Varela, F. J. (1980). <em>Autopoiesis and cognition: The realization of the living</em>. D. Reidel.</li>
+    <li>Maturana, H. R., &amp; Varela, F. J. (1984). <em>El árbol del conocimiento: Las bases biológicas del entendimiento humano</em>. Editorial Universitaria.</li>
+    <li>Varela, F. J. (1979). <em>Principles of biological autonomy</em>. North Holland.</li>
+    <li>Von Bertalanffy, L. (1968). <em>General system theory: Foundations, development, applications</em>. George Braziller.</li>
+  </ul>
+</body>
+</html>

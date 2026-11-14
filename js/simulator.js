@@ -1,6 +1,6 @@
 /**
  * SIMULADOR BIO-LAB: CÉLULA AUTOPOIÉTICA (MATURANA & VARELA)
- * Asignatura: Teoría General de Sistemas - Universidad Simón Bolívar
+ * Asignatura: Teoría General de Sistemas - TGS 2026-2
  * Autor: Julian Esteban Romero Herrera
  * Modela: Clausura Operacional, Metabolismo Interno, Membrana Dinámica y Entropía
  */
