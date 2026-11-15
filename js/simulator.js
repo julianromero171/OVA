@@ -415,7 +415,7 @@ class AutopoieticCellSimulator {
     this.ctx.font = 'bold 10px Montserrat, sans-serif';
     this.ctx.fillStyle = '#dfe2ff';
     this.ctx.textAlign = 'center';
-    this.ctx.fillText('REDE-CAT', this.center.x, this.center.y + 4);
+    this.ctx.fillText('RED CATALÍTICA', this.center.x, this.center.y + 4);
   }
 
   animate(timestamp) {
