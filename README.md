@@ -7,7 +7,7 @@ Autor: **Romero Herrera Julián Esteban** · Modalidad individual
 
 | Recurso | Enlace |
 | :-- | :-- |
-| OVA publicada (GitHub Pages) | https://julianromero171.github.io/OVA/ |
+| OVA publicada (GitHub Pages) | https://julianromero171.github.io/OVA |
 | Repositorio |(https://github.com/julianromero171/OVA.git) |
 | Ficha técnica (PDF) | [`docs/Ficha_Tecnica_OVA_Autopoiesis.pdf`](docs/Ficha_Tecnica_OVA_Autopoiesis.pdf) |
 | Ficha técnica (Markdown) | [`FICHA_TECNICA.md`](FICHA_TECNICA.md) |
