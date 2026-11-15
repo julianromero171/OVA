@@ -2,85 +2,354 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<title>Ficha Técnica - OVA Autopoiesis y Sistemas Vivos</title>
+<title>Ficha técnica · Autopoiesis y sistemas vivos (Maturana y Varela)</title>
+<meta name="author" content="Romero Herrera Julián Esteban">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800;900&family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
-  @page { size: Letter; margin: 18mm 16mm; }
-  body { font-family: "Segoe UI", Arial, sans-serif; color: #0f172a; font-size: 10.5pt; line-height: 1.5; }
-  .head { border-bottom: 4px solid #10b981; padding-bottom: 10px; margin-bottom: 16px; }
-  .kicker { font-family: Consolas, monospace; color: #047857; font-size: 9pt; letter-spacing: .08em; }
-  h1 { font-size: 20pt; margin: 4px 0 2px; }
-  h2 { font-size: 12.5pt; color: #047857; border-left: 4px solid #06b6d4; padding-left: 8px; margin: 18px 0 8px; }
-  table { width: 100%; border-collapse: collapse; margin: 6px 0; }
-  td, th { border: 1px solid #cbd5e1; padding: 6px 8px; vertical-align: top; text-align: left; }
-  th { background: #ecfdf5; color: #065f46; }
-  td.k { width: 30%; background: #f8fafc; font-weight: 600; }
-  ul { margin: 4px 0 4px 18px; padding: 0; }
-  li { margin-bottom: 3px; }
-  .refs li { font-size: 9.5pt; }
-  .note { background: #f0fdfa; border: 1px dashed #14b8a6; padding: 8px 10px; border-radius: 6px; font-size: 9.5pt; }
+  @page { size: Letter; margin: 0; }
+  :root {
+    --navy-1: #0d0b4a; --navy-2: #050423; --ink: #14124a; --ink-soft: #3b3a6b;
+    --blue: #3b45b8; --blue-2: #2b3392; --teal: #5fbfb9; --teal-2: #49a9a3; --white: #ffffff;
+  }
+  * { box-sizing: border-box; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  html, body { margin: 0; padding: 0; background: var(--navy-2); }
+  body { font-family: "Outfit", "Segoe UI", Arial, sans-serif; color: var(--ink); font-size: 10.4pt; line-height: 1.42; }
+
+  .page {
+    position: relative; width: 8.5in; height: 11in; overflow: hidden;
+    background: linear-gradient(180deg, var(--navy-1) 0%, #08073a 45%, var(--navy-2) 100%);
+    padding: 0.62in 0.7in 0.55in; page-break-after: always; break-after: page;
+  }
+  .page:last-child { page-break-after: auto; break-after: auto; }
+  .blob { position: absolute; z-index: 0; pointer-events: none; }
+  .content { position: relative; z-index: 2; height: 100%; display: flex; flex-direction: column; }
+
+  /* Encabezado de página */
+  .runhead { display: flex; justify-content: space-between; color: rgba(255,255,255,.62); font-size: 8pt; letter-spacing: .14em; text-transform: uppercase; font-weight: 600; margin-bottom: 18px; }
+  .runhead b { color: var(--teal); font-weight: 700; }
+  .folio { position: absolute; bottom: -0.25in; right: 0; color: rgba(255,255,255,.55); font-size: 8pt; letter-spacing: .12em; }
+
+  /* Títulos estilo Canva: muy pesados, blancos, en mayúsculas, montados sobre la tarjeta */
+  .h-xl, .h-lg, .h-md { font-family: "Montserrat", Arial Black, sans-serif; font-weight: 900; color: var(--white); text-transform: uppercase; margin: 0; line-height: .92; letter-spacing: .01em; position: relative; z-index: 1; }
+  .h-lg { font-size: 40pt; text-align: center; margin-bottom: -7px; }
+  .h-md { font-size: 22pt; margin-bottom: -5px; padding-left: 18px; }
+  .h-md.center { text-align: center; padding-left: 0; }
+
+  .card { position: relative; z-index: 2; background: var(--white); border-radius: 12px; padding: 18px 22px; box-shadow: 0 10px 30px rgba(0,0,0,.35); }
+  .card + .h-md, .card + .h-lg { margin-top: 20px; }
+  .card p { margin: 0 0 7px; }
+  .card p:last-child { margin-bottom: 0; }
+  .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .stack > * + * { margin-top: 14px; }
+
+  /* Viñetas: puntos turquesa */
+  ul.dots { list-style: none; margin: 0; padding: 0; }
+  ul.dots > li { position: relative; padding-left: 26px; margin-bottom: 8px; }
+  ul.dots > li:last-child { margin-bottom: 0; }
+  ul.dots > li::before { content: ""; position: absolute; left: 0; top: .18em; width: 15px; height: 15px; border-radius: 50%; background: var(--teal); }
+  ul.dots.sm > li { padding-left: 20px; margin-bottom: 5px; }
+  ul.dots.sm > li::before { width: 11px; height: 11px; top: .26em; }
+  .lbl { display: block; font-weight: 700; color: var(--ink); font-size: 10.8pt; line-height: 1.2; }
+  .muted { color: var(--ink-soft); }
+  a { color: var(--blue-2); text-decoration: none; word-break: break-all; }
+
+  /* PORTADA */
+  .cover { padding: 0.75in 0.7in 0.6in 2.35in; }
+  .cover .kicker { color: var(--teal); font-weight: 700; letter-spacing: .22em; font-size: 9.5pt; text-transform: uppercase; }
+  .cover .h-xl { font-size: 58pt; margin-top: 10px; }
+  .cover .h-xl span { display: block; }
+  .cover .title { margin-top: 18px; color: var(--white); font-family: "Montserrat", sans-serif; font-weight: 800; font-size: 20pt; line-height: 1.12; }
+  .cover .title em { font-style: normal; color: var(--teal); }
+  .cover .sub { color: rgba(255,255,255,.78); font-size: 11.5pt; margin-top: 8px; }
+  .cover .card { margin-top: 26px; }
+  .meta { display: grid; grid-template-columns: 1fr 1fr; gap: 12px 22px; }
+  .meta .lbl { font-size: 8.4pt; letter-spacing: .12em; text-transform: uppercase; color: var(--teal-2); }
+  .meta .val { font-size: 11pt; font-weight: 600; color: var(--ink); }
+  .links { margin-top: 18px; }
+  .links .row { display: flex; gap: 10px; align-items: baseline; padding: 6px 0; border-top: 1px solid #e7e7f3; }
+  .links .row:first-child { border-top: 0; }
+  .links .k { min-width: 120px; font-weight: 700; font-size: 9.6pt; }
+  .dates { margin-top: auto; display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+  .date { background: rgba(255,255,255,.08); border: 1.5px solid rgba(95,191,185,.55); border-radius: 12px; padding: 10px 12px; color: var(--white); }
+  .date b { display: block; font-family: "Montserrat", sans-serif; font-weight: 900; font-size: 15pt; color: var(--teal); }
+  .date span { font-size: 8.8pt; color: rgba(255,255,255,.82); line-height: 1.25; display: block; }
+
+  /* Tabla de lineamientos */
+  table.lin { width: 100%; border-collapse: collapse; font-size: 9.5pt; }
+  table.lin td { padding: 6px 6px; vertical-align: top; border-top: 1px solid #e7e7f3; }
+  table.lin tr:first-child td { border-top: 0; }
+  table.lin td.n { width: 34px; }
+  table.lin td.n span { display: inline-flex; width: 26px; height: 26px; border-radius: 50%; background: var(--teal); color: #fff; font-weight: 700; font-size: 8.8pt; align-items: center; justify-content: center; }
+  table.lin td.t { width: 132px; font-weight: 700; }
+  table.rub { width: 100%; border-collapse: collapse; font-size: 9.3pt; }
+  table.rub th { text-align: left; font-size: 8pt; letter-spacing: .1em; text-transform: uppercase; color: var(--teal-2); padding: 0 6px 5px; }
+  table.rub td { padding: 5px 6px; border-top: 1px solid #e7e7f3; vertical-align: top; }
+  table.rub td.w { font-weight: 800; color: var(--blue-2); text-align: right; width: 48px; }
+
+  .tools { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .tool { background: var(--white); border-radius: 12px; padding: 12px 16px; box-shadow: 0 8px 22px rgba(0,0,0,.3); }
+  .tool h4 { margin: 0 0 6px; font-family: "Montserrat", sans-serif; font-weight: 800; font-size: 9pt; letter-spacing: .1em; text-transform: uppercase; color: var(--blue-2); }
+  .tool ul.dots.sm li { font-size: 9.4pt; }
+
+  .note { background: #eef8f7; border-left: 5px solid var(--teal); border-radius: 8px; padding: 9px 12px; font-size: 9.4pt; }
+
+  /* Referencias APA 7: orden alfabético y sangría francesa */
+  .refs p { margin: 0 0 7px; padding-left: 0.5in; text-indent: -0.5in; font-size: 9.5pt; line-height: 1.38; }
+  .refs p:last-child { margin-bottom: 0; }
+  .refs a { color: var(--blue-2); word-break: break-all; }
 </style>
 </head>
 <body>
-  <div class="head">
-    <div class="kicker">PROYECTO FINAL · OBJETOS VIRTUALES DE APRENDIZAJE (OVA)</div>
-    <h1>Ficha técnica · Autopoiesis y sistemas vivos (Maturana y Varela)</h1>
-    <div>Teoría General de Sistemas (TGS) · Ingeniería de Sistemas · Periodo 2026-2</div>
+
+<!-- Definiciones SVG compartidas: degradados y textura granulada de las formas onduladas -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <linearGradient id="gBlue" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#4a54cc"/><stop offset="1" stop-color="#2a2f8f"/>
+    </linearGradient>
+    <linearGradient id="gTeal" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#3fa7a3"/><stop offset=".5" stop-color="#6fd1c9"/><stop offset="1" stop-color="#3b8f9a"/>
+    </linearGradient>
+    <filter id="grain" x="0" y="0" width="100%" height="100%">
+      <feTurbulence type="fractalNoise" baseFrequency="1.15" numOctaves="1" seed="7" result="noise"/>
+      <feColorMatrix in="noise" type="matrix" values="0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  3.2 0 0 0 -1.75" result="speck"/>
+      <feComposite in="speck" in2="SourceGraphic" operator="in" result="speckIn"/>
+      <feComponentTransfer in="speckIn" result="speckSoft"><feFuncA type="linear" slope=".42"/></feComponentTransfer>
+      <feMerge><feMergeNode in="SourceGraphic"/><feMergeNode in="speckSoft"/></feMerge>
+    </filter>
+    <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="9"/>
+    </filter>
+    <!-- Cinta ondulada vertical (portada / borde izquierdo) -->
+    <symbol id="ribbon" viewBox="0 0 300 1000" preserveAspectRatio="none">
+      <path d="M0,0 L120,0 C175,70 150,150 120,205 C90,265 255,300 262,430 C270,565 70,590 78,712 C86,830 175,880 132,1000 L0,1000 Z" fill="#3b45b8" opacity=".35" filter="url(#glow)"/>
+      <path d="M0,0 L120,0 C175,70 150,150 120,205 C90,265 255,300 262,430 C270,565 70,590 78,712 C86,830 175,880 132,1000 L0,1000 Z" fill="url(#gBlue)" filter="url(#grain)"/>
+      <path d="M38,0 C112,70 52,165 95,240 C135,310 215,350 196,455 C178,560 40,585 42,705 C44,815 102,895 66,1000" fill="none" stroke="url(#gTeal)" stroke-width="44" stroke-linecap="round" filter="url(#grain)"/>
+      <path d="M0,0 C40,60 20,140 40,190 C70,250 120,300 110,440 C100,560 0,600 0,700 L0,1000 L0,0 Z" fill="#0b0a44" opacity=".85"/>
+      <path d="M212,340 C238,370 246,410 240,450" fill="none" stroke="#8d96ff" stroke-width="7" stroke-linecap="round" opacity=".55"/>
+      <path d="M135,30 C150,55 150,85 140,110" fill="none" stroke="#8d96ff" stroke-width="6" stroke-linecap="round" opacity=".5"/>
+      <path d="M100,860 C112,885 112,915 104,940" fill="none" stroke="#8d96ff" stroke-width="6" stroke-linecap="round" opacity=".45"/>
+    </symbol>
+    <!-- Forma orgánica de esquina -->
+    <symbol id="corner" viewBox="0 0 400 400">
+      <path d="M120,0 L400,0 L400,330 C350,370 300,300 310,240 C320,170 250,170 190,180 C110,195 60,140 90,90 C110,55 95,25 120,0 Z" fill="url(#gBlue)" filter="url(#grain)"/>
+      <path d="M180,0 C150,40 165,80 215,95 C275,112 300,150 300,200 C300,250 345,270 400,250 L400,0 Z" fill="url(#gTeal)" filter="url(#grain)" opacity=".95"/>
+      <path d="M250,40 C280,60 300,90 300,120" fill="none" stroke="#ffffff" stroke-width="6" stroke-linecap="round" opacity=".35"/>
+    </symbol>
+    <!-- Ola inferior -->
+    <symbol id="wave" viewBox="0 0 400 600">
+      <path d="M400,0 C330,20 300,90 340,160 C380,230 250,260 240,350 C230,440 330,470 300,600 L400,600 Z" fill="url(#gBlue)" filter="url(#grain)"/>
+      <path d="M352,40 C320,90 345,140 360,170" fill="none" stroke="#8d96ff" stroke-width="7" stroke-linecap="round" opacity=".45"/>
+      <path d="M268,380 C262,430 280,470 290,500" fill="none" stroke="#8d96ff" stroke-width="7" stroke-linecap="round" opacity=".4"/>
+    </symbol>
+  </defs>
+</svg>
+
+<!-- ============ PÁGINA 1 · PORTADA ============ -->
+<section class="page cover">
+  <svg class="blob" style="left:0;top:0;width:2.15in;height:11in"><use href="#ribbon"/></svg>
+  <svg class="blob" style="right:-0.35in;bottom:-0.2in;width:2.3in;height:3.4in;opacity:.85"><use href="#wave"/></svg>
+  <div class="content">
+    <div class="kicker">Proyecto final · Objeto Virtual de Aprendizaje (OVA)</div>
+    <h1 class="h-xl"><span>Ficha</span><span>técnica</span></h1>
+    <div class="title">Tema N° 22 · <em>Autopoiesis y sistemas vivos (Maturana y Varela)</em></div>
+    <div class="sub">Teoría General de Sistemas (TGS) · Ingeniería de Sistemas · Periodo 2026-2</div>
+
+    <div class="card">
+      <div class="meta">
+        <div><span class="lbl">Autor</span><div class="val">Romero Herrera Julián Esteban</div></div>
+        <div><span class="lbl">Modalidad</span><div class="val">Individual</div></div>
+        <div><span class="lbl">Asignatura</span><div class="val">Teoría General de Sistemas (TGS)</div></div>
+        <div><span class="lbl">Programa</span><div class="val">Ingeniería de Sistemas</div></div>
+        <div><span class="lbl">Entregable</span><div class="val">OVA web publicada + sustentación</div></div>
+        <div><span class="lbl">Integrador (tema 24)</span><div class="val">Acosta Contreras Elibardo</div></div>
+      </div>
+      <div class="links">
+        <div class="row"><span class="k">OVA publicada</span><a href="https://julianromero171.github.io/OVA/">https://julianromero171.github.io/OVA/</a></div>
+        <div class="row"><span class="k">Repositorio</span><a href="https://github.com/julianromero171/OVA">https://github.com/julianromero171/OVA</a></div>
+        <div class="row"><span class="k">Este documento</span><a href="https://github.com/julianromero171/OVA/blob/main/docs/Ficha_Tecnica_OVA_Autopoiesis.pdf">docs/Ficha_Tecnica_OVA_Autopoiesis.pdf</a></div>
+      </div>
+    </div>
+
+    <div class="dates">
+      <div class="date"><b>17/11/2026</b><span>Envío del enlace al estudiante integrador (tema 24)</span></div>
+      <div class="date"><b>17/11/2026</b><span>Entrega final por la plataforma institucional</span></div>
+      <div class="date"><b>24/11/2026</b><span>Sustentación oral</span></div>
+    </div>
   </div>
+</section>
 
-  <h2>1. Identificación</h2>
-  <table>
-    <tr><td class="k">Tema asignado</td><td>N° 22 · Autopoiesis y sistemas vivos (Maturana y Varela)</td></tr>
-    <tr><td class="k">Autor</td><td>Romero Herrera Julián Esteban</td></tr>
-    <tr><td class="k">Asignatura</td><td>Teoría General de Sistemas (TGS)</td></tr>
-    <tr><td class="k">Modalidad</td><td>Individual</td></tr>
-    <tr><td class="k">OVA publicada</td><td>https://julianromero171.github.io/OVA/</td></tr>
-    <tr><td class="k">Repositorio</td><td>https://github.com/julianromero171/OVA</td></tr>
-  </table>
+<!-- ============ PÁGINA 2 · TEMA, AUTOR Y OBJETIVOS ============ -->
+<section class="page">
+  <svg class="blob" style="right:-0.2in;top:-0.15in;width:3in;height:3in"><use href="#corner"/></svg>
+  <div class="content">
+    <div class="runhead"><span><b>Ficha técnica</b> · OVA Tema 22 · Romero Herrera J. E.</span></div>
 
-  <h2>2. Objetivos</h2>
-  <p><strong>General.</strong> Diseñar e implementar un OVA funcional, accesible y didáctico que permita comprender y enseñar la teoría de la autopoiesis de Humberto Maturana y Francisco Varela dentro de la Teoría General de Sistemas.</p>
-  <p><strong>Específicos.</strong></p>
-  <ul>
-    <li>Investigar y sintetizar el marco conceptual (autopoiesis, clausura operacional, acoplamiento estructural, determinismo estructural, autopoiesis vs. alopoiesis) desde fuentes académicas.</li>
-    <li>Aplicar principios de diseño instruccional y experiencia de usuario: navegación por módulos, diseño responsive, modo claro/oscuro, tamaño de letra ajustable y lectura en voz alta.</li>
-    <li>Desarrollar contenidos interactivos: 3 juegos, 3 ejercicios con retroalimentación y un quiz de 10 preguntas con puntaje automático.</li>
-    <li>Publicar el OVA en GitHub Pages y socializarlo con el estudiante integrador (tema 24).</li>
-  </ul>
+    <h2 class="h-md">Tema y autor</h2>
+    <div class="card">
+      <ul class="dots">
+        <li><span class="lbl">Tema asignado</span>N° 22 · Autopoiesis y sistemas vivos (Maturana y Varela).</li>
+        <li><span class="lbl">Autor</span>Romero Herrera Julián Esteban · estudiante de Ingeniería de Sistemas, asignatura Teoría General de Sistemas (TGS), periodo 2026-2.</li>
+        <li><span class="lbl">Descripción breve</span>Sitio web educativo (HTML, CSS y JavaScript) que explica qué distingue a un sistema vivo según Humberto Maturana y Francisco Varela: la autopoiesis, es decir, la organización de una red que produce los mismos componentes que la constituyen y que delimita su propia frontera. El OVA relaciona el concepto con la TGS y con ejemplos de la ingeniería de sistemas, y lo pone en práctica con ejercicios, juegos, videos y un quiz con puntaje automático.</li>
+      </ul>
+    </div>
 
-  <h2>3. Contenido del OVA (lineamientos 01–10)</h2>
-  <table>
-    <tr><th>Lineamiento</th><th>Implementación</th></tr>
-    <tr><td>01 Contextualización</td><td>Origen de la teoría (Chile, década de 1970), crítica a las definiciones de vida por listas de propiedades, pertinencia en ingeniería.</td></tr>
-    <tr><td>02 Explicación teórica</td><td>Autores, clausura operacional, membrana como límite autoproducido, acoplamiento y determinismo estructural, órdenes de autopoiesis (1°, 2° y 3° según Luhmann), con referencias.</td></tr>
-    <tr><td>03 Ejemplos reales</td><td>La célula, Kubernetes y los sistemas <em>self-healing</em>, las organizaciones como sistemas de comunicación (Luhmann). Tabla autopoiesis vs. alopoiesis.</td></tr>
-    <tr><td>04 Ejercicios</td><td>3 casos de análisis con retroalimentación inmediata para cada opción.</td></tr>
-    <tr><td>05 Juegos (3)</td><td>Bio-Lab: simulador de célula en Canvas · Desafío ontológico: clasificar sistemas · Aventura de acoplamiento: decisiones ante perturbaciones.</td></tr>
-    <tr><td>06 Videos</td><td>Videos curados: entrevistas a Maturana y a Varela en «La belleza de pensar» y una conferencia de J. C. Letelier, con pautas de observación.</td></tr>
-    <tr><td>07 Quiz</td><td>10 preguntas, nota automática de 0.0 a 5.0, justificación de cada respuesta y constancia imprimible.</td></tr>
-    <tr><td>08 Diseño</td><td>Identidad visual propia «bio-cibernética» (verde esmeralda/cian), animaciones, gráfico SVG de la célula.</td></tr>
-    <tr><td>09 Navegación</td><td>Menú fijo, barra de progreso de lectura, menú móvil, diseño responsive.</td></tr>
-    <tr><td>10 Créditos</td><td>Autoría, declaración de uso de IA y referencias en formato APA 7.</td></tr>
-  </table>
+    <h2 class="h-md">Objetivo general</h2>
+    <div class="card">
+      <p>Diseñar e implementar un Objeto Virtual de Aprendizaje (OVA) funcional, accesible y didáctico que permita comprender y enseñar la teoría de la autopoiesis y los sistemas vivos de Maturana y Varela como tema específico de la Teoría General de Sistemas.</p>
+    </div>
 
-  <h2>4. Herramientas utilizadas</h2>
-  <ul>
-    <li>HTML5, CSS3 y JavaScript (ES6), sin frameworks.</li>
-    <li>APIs del navegador: Canvas 2D (simulador), Web Audio (sonidos), Web Speech (lectura en voz alta).</li>
-    <li>Google Fonts (Plus Jakarta Sans, JetBrains Mono).</li>
-    <li>Git, GitHub y GitHub Pages (control de versiones y publicación).</li>
-    <li>Google Antigravity (asistente de IA) para apoyar la generación de código y contenido.</li>
-  </ul>
-  <div class="note"><strong>Declaración de uso de IA:</strong> se usó Google Antigravity como apoyo para generar código y redactar contenido. El autor revisó el material y debe poder explicarlo en la sustentación, como pide el numeral 8 del proyecto.</div>
+    <h2 class="h-md">Objetivos específicos</h2>
+    <div class="card">
+      <ul class="dots">
+        <li><span class="lbl">Investigar</span>Sintetizar el marco conceptual (autopoiesis, organización y estructura, clausura operacional, acoplamiento estructural, determinismo estructural, autopoiesis frente a alopoiesis) a partir de fuentes académicas confiables, citadas en APA 7.</li>
+        <li><span class="lbl">Diseñar</span>Aplicar principios de diseño instruccional y de experiencia de usuario: secuencia por módulos, identidad visual propia, navegación clara y diseño adaptable a móviles.</li>
+        <li><span class="lbl">Desarrollar</span>Construir contenidos interactivos que fomenten el aprendizaje activo: ejercicios con retroalimentación, cinco juegos y un quiz con puntaje automático.</li>
+        <li><span class="lbl">Publicar</span>Publicar y socializar el OVA en una plataforma web pública (GitHub Pages) y compartir el enlace con el estudiante integrador del tema 24.</li>
+        <li><span class="lbl">Sustentar</span>Sustentar oralmente el proyecto, demostrando dominio del tema y del código desarrollado.</li>
+      </ul>
+    </div>
+    <div class="folio">02</div>
+  </div>
+</section>
 
-  <h2>5. Referencias</h2>
-  <ul class="refs">
-    <li>Luhmann, N. (1998). <em>Sistemas sociales: Lineamientos para una teoría general</em>. Anthropos; Universidad Iberoamericana.</li>
-    <li>Maturana, H. R. (1997). <em>La objetividad: Un argumento para obligar</em>. Dolmen.</li>
-    <li>Maturana, H. R., &amp; Varela, F. J. (1973). <em>De máquinas y seres vivos: Una teoría sobre la organización biológica</em>. Editorial Universitaria.</li>
-    <li>Maturana, H. R., &amp; Varela, F. J. (1980). <em>Autopoiesis and cognition: The realization of the living</em>. D. Reidel.</li>
-    <li>Maturana, H. R., &amp; Varela, F. J. (1984). <em>El árbol del conocimiento: Las bases biológicas del entendimiento humano</em>. Editorial Universitaria.</li>
-    <li>Varela, F. J. (1979). <em>Principles of biological autonomy</em>. North Holland.</li>
-    <li>Von Bertalanffy, L. (1968). <em>General system theory: Foundations, development, applications</em>. George Braziller.</li>
-  </ul>
+<!-- ============ PÁGINA 3 · LINEAMIENTOS ============ -->
+<section class="page">
+  <svg class="blob" style="left:0;top:0;width:1.1in;height:11in"><use href="#ribbon"/></svg>
+  <div class="content" style="padding-left:0.55in">
+    <div class="runhead"><span><b>Ficha técnica</b> · OVA Tema 22 · Romero Herrera J. E.</span></div>
+    <h2 class="h-lg">Contenido del OVA</h2>
+    <div class="card">
+      <p class="muted" style="font-size:9.4pt;margin-bottom:8px">Cumplimiento de los diez elementos obligatorios del numeral 4 de las orientaciones del proyecto:</p>
+      <table class="lin">
+        <tr><td class="n"><span>01</span></td><td class="t">Contextualización</td><td>Origen de la teoría en Chile a comienzos de la década de 1970, problema de definir lo vivo y justificación de su importancia para la TGS y la ingeniería de sistemas.</td></tr>
+        <tr><td class="n"><span>02</span></td><td class="t">Explicación teórica</td><td>Autores, autopoiesis, organización y estructura, membrana como frontera autoproducida, clausura operacional, acoplamiento y determinismo estructural, con citas APA 7.</td></tr>
+        <tr><td class="n"><span>03</span></td><td class="t">Ejemplos reales</td><td>La célula como caso paradigmático; sistemas informáticos de autorreparación presentados como analogía; los sistemas sociales según Luhmann. Tabla autopoiesis vs. alopoiesis.</td></tr>
+        <tr><td class="n"><span>04</span></td><td class="t">Ejercicios</td><td>Casos de análisis con retroalimentación inmediata y explicada para cada opción.</td></tr>
+        <tr><td class="n"><span>05</span></td><td class="t">Juegos (5)</td><td>Bio-Lab (simulador de célula en Canvas) · Desafío ontológico · Aventura de acoplamiento · actividad en Wordwall · actividad en Educaplay.</td></tr>
+        <tr><td class="n"><span>06</span></td><td class="t">Videos</td><td>Tres videos curados e incrustados de YouTube (entrevistas a Maturana y a Varela del programa «La belleza de pensar» y la conferencia «Seres vivos como máquinas» de Juan Carlos Letelier), con preguntas guía.</td></tr>
+        <tr><td class="n"><span>07</span></td><td class="t">Quiz</td><td>Diez preguntas con calificación automática de 0.0 a 5.0 y justificación de cada respuesta.</td></tr>
+        <tr><td class="n"><span>08</span></td><td class="t">Diseño</td><td>Identidad visual propia diseñada por el autor en Canva: fondo azul marino, formas onduladas granuladas en azul y turquesa, tarjetas blancas y titulares en mayúscula; animaciones de entrada y simulaciones.</td></tr>
+        <tr><td class="n"><span>09</span></td><td class="t">Navegación</td><td>Menú fijo con enlaces a cada módulo, menú móvil, barra de progreso y diseño responsive.</td></tr>
+        <tr><td class="n"><span>10</span></td><td class="t">Créditos</td><td>Autoría, herramientas utilizadas, declaración de uso de IA y referencias bibliográficas en APA 7.</td></tr>
+      </table>
+    </div>
+    <div class="folio">03</div>
+  </div>
+</section>
+
+<!-- ============ PÁGINA 4 · HERRAMIENTAS Y METODOLOGÍA ============ -->
+<section class="page">
+  <svg class="blob" style="right:-0.3in;bottom:-0.25in;width:2.2in;height:3.3in"><use href="#wave"/></svg>
+  <div class="content">
+    <div class="runhead"><span><b>Ficha técnica</b> · OVA Tema 22 · Romero Herrera J. E.</span></div>
+    <h2 class="h-lg">Herramientas usadas</h2>
+    <div class="tools" style="margin-top:22px">
+      <div class="tool"><h4>Desarrollo web</h4><ul class="dots sm">
+        <li>HTML5 semántico, CSS3 (variables, animaciones, <em>media queries</em>) y JavaScript ES6, sin <em>frameworks</em>.</li>
+        <li>Canvas 2D API: simulador Bio-Lab.</li>
+        <li>Web Audio API: sonidos generados en el navegador.</li>
+        <li>Web Speech API: lectura en voz alta.</li></ul></div>
+      <div class="tool"><h4>Diseño visual</h4><ul class="dots sm">
+        <li>Canva: diseño de la identidad visual (diapositivas del autor usadas como guía de estilo).</li>
+        <li>Google Fonts: Montserrat (titulares) y Outfit (texto).</li>
+        <li>Formas y texturas dibujadas en SVG/CSS propios.</li></ul></div>
+      <div class="tool"><h4>Juegos y multimedia</h4><ul class="dots sm">
+        <li>Juegos propios en JavaScript (3).</li>
+        <li>Wordwall y Educaplay: actividades externas incrustadas.</li>
+        <li>YouTube: videos curados incrustados.</li></ul></div>
+      <div class="tool"><h4>Publicación y gestión</h4><ul class="dots sm">
+        <li>Git y GitHub: control de versiones.</li>
+        <li>GitHub Pages: alojamiento del OVA.</li>
+        <li>Normas APA 7 y recomendaciones de Varón Castañeda (2017) sobre gestores bibliográficos (Zotero, Mendeley) para organizar las referencias.</li>
+        <li>Google Antigravity: asistente de IA (ver declaración).</li></ul></div>
+    </div>
+
+    <h2 class="h-md" style="margin-top:24px">Metodología</h2>
+    <div class="card">
+      <ul class="dots sm">
+        <li><b>Análisis:</b> lectura de las orientaciones del proyecto, revisión de fuentes primarias de Maturana y Varela y de fuentes secundarias académicas; organización de las referencias en APA 7 con criterios de gestión bibliográfica.</li>
+        <li><b>Diseño instruccional:</b> secuencia de lo general a lo aplicado (contexto → teoría → comparación → casos → práctica → evaluación), con retroalimentación inmediata en cada actividad.</li>
+        <li><b>Diseño visual:</b> guía de estilo creada por el autor en Canva y trasladada a CSS propio.</li>
+        <li><b>Desarrollo:</b> código modular por responsabilidad (navegación, juegos, quiz, actividades externas); pruebas en escritorio y móvil.</li>
+        <li><b>Publicación y evaluación:</b> despliegue en GitHub Pages, verificación de enlaces y videos, socialización con el integrador y sustentación oral.</li>
+      </ul>
+    </div>
+    <div class="folio">04</div>
+  </div>
+</section>
+
+<!-- ============ PÁGINA 5 · EVALUACIÓN, IA Y CRÉDITOS ============ -->
+<section class="page">
+  <svg class="blob" style="right:-0.2in;top:-0.15in;width:2.6in;height:2.6in"><use href="#corner"/></svg>
+  <div class="content">
+    <div class="runhead"><span><b>Ficha técnica</b> · OVA Tema 22 · Romero Herrera J. E.</span></div>
+    <h2 class="h-md">Criterios de evaluación</h2>
+    <div class="card">
+      <table class="rub">
+        <tr><th>Criterio</th><th>Evidencia en el OVA</th><th style="text-align:right">Peso</th></tr>
+        <tr><td><b>Profundidad conceptual</b></td><td>Módulos de contexto, teoría y comparación con citas APA 7.</td><td class="w">25 %</td></tr>
+        <tr><td><b>Interactividad</b></td><td>5 juegos, ejercicios con retroalimentación y quiz con puntaje automático.</td><td class="w">20 %</td></tr>
+        <tr><td><b>Diseño visual y creatividad</b></td><td>Identidad propia basada en el diseño del autor en Canva; animaciones.</td><td class="w">15 %</td></tr>
+        <tr><td><b>Funcionalidad y navegación</b></td><td>Publicado en GitHub Pages, menú fijo y móvil, diseño responsive.</td><td class="w">15 %</td></tr>
+        <tr><td><b>Documentación</b></td><td>README.md, esta ficha técnica en PDF, créditos y referencias.</td><td class="w">5 %</td></tr>
+        <tr><td><b>Sustentación oral</b></td><td>Exposición del tema y del código el 24/11/2026.</td><td class="w">20 %</td></tr>
+      </table>
+    </div>
+
+    <h2 class="h-md">Declaración de uso de IA</h2>
+    <div class="card">
+      <p>De acuerdo con el numeral 8 de las orientaciones del proyecto, se declara que se utilizó <b>Google Antigravity</b> (Google, 2026), un entorno de desarrollo con agentes de inteligencia artificial, como apoyo para generar y depurar código, proponer redacciones y revisar el formato de las referencias.</p>
+      <p>El diseño visual parte de una guía de estilo creada por el autor en Canva. Todo el contenido fue revisado, contrastado con las fuentes citadas y ajustado por el autor, quien asume la responsabilidad de su exactitud y está en capacidad de explicarlo y defenderlo en la sustentación.</p>
+    </div>
+
+    <h2 class="h-md">Créditos</h2>
+    <div class="card">
+      <ul class="dots sm">
+        <li><b>Autoría, contenido y diseño:</b> Romero Herrera Julián Esteban.</li>
+        <li><b>Teoría:</b> Humberto Maturana y Francisco Varela; demás autores citados en las referencias.</li>
+        <li><b>Videos:</b> pertenecen a sus canales y autores; se incrustan desde YouTube con fines educativos, sin modificación.</li>
+        <li><b>Recursos:</b> fuentes tipográficas de Google Fonts (licencia SIL Open Font License); actividades externas creadas por el autor en Wordwall y Educaplay.</li>
+      </ul>
+      <div class="note" style="margin-top:10px">Las citas y referencias siguen las normas APA 7.ª edición y se organizaron siguiendo las recomendaciones de Varón Castañeda (2017) sobre gestores bibliográficos: un único estilo de citación, datos verificados (DOI o URL) y términos adaptados al español.</div>
+    </div>
+    <div class="folio">05</div>
+  </div>
+</section>
+
+<!-- ============ PÁGINA 6 · REFERENCIAS ============ -->
+<section class="page">
+  <svg class="blob" style="left:0;top:0;width:1.05in;height:11in"><use href="#ribbon"/></svg>
+  <div class="content" style="padding-left:0.45in">
+    <div class="runhead"><span><b>Ficha técnica</b> · OVA Tema 22 · Romero Herrera J. E.</span></div>
+    <h2 class="h-lg">Referencias</h2>
+    <div class="card refs">
+<!--REFS-->
+      <p>Bertalanffy, L. von. (1968). <em>General system theory: Foundations, development, applications</em>. George Braziller.</p>
+      <p>Canal13C. (2025, 9 de enero). <em>La entrevista al académico Humberto Maturana que inspiró a Mon Laferte | La Belleza de Pensar</em> [Video]. YouTube. <a href="https://www.youtube.com/watch?v=19uV8wKpkZw">https://www.youtube.com/watch?v=19uV8wKpkZw</a></p>
+      <p>Google. (2026). <em>Google Antigravity</em> [Plataforma de desarrollo de software con agentes de inteligencia artificial]. <a href="https://antigravity.google/">https://antigravity.google/</a></p>
+      <p>humanista. (2010, 10 de julio). <em>Francisco Varela (Neurobiologo) - La Belleza-Del-Pensar-2001</em> [Video]. YouTube. <a href="https://www.youtube.com/watch?v=3-VydyPdhhg">https://www.youtube.com/watch?v=3-VydyPdhhg</a></p>
+      <p>Kubernetes Authors. (s. f.). <em>Controllers</em>. Kubernetes Documentation. Recuperado el 15 de noviembre de 2026, de <a href="https://kubernetes.io/docs/concepts/architecture/controller/">https://kubernetes.io/docs/concepts/architecture/controller/</a></p>
+      <p>Lettvin, J. Y., Maturana, H. R., McCulloch, W. S., y Pitts, W. H. (1959). What the frog's eye tells the frog's brain. <em>Proceedings of the IRE, 47</em>(11), 1940–1951. <a href="https://doi.org/10.1109/JRPROC.1959.287207">https://doi.org/10.1109/JRPROC.1959.287207</a></p>
+      <p>Luhmann, N. (1998). <em>Sistemas sociales: Lineamientos para una teoría general</em> (S. Pappe y B. Erker, Trads.; 2.ª ed.). Anthropos; Universidad Iberoamericana; CEJA. (Trabajo original publicado en 1984)</p>
+      <p>Maturana, H. (1997). <em>La objetividad: Un argumento para obligar</em>. Dolmen.</p>
+      <p>Maturana, H. R., y Varela, F. J. (1973). <em>De máquinas y seres vivos: Una teoría sobre la organización biológica</em>. Editorial Universitaria.</p>
+      <p>Maturana, H. R., y Varela, F. J. (1980). <em>Autopoiesis and cognition: The realization of the living</em> (Boston Studies in the Philosophy of Science, Vol. 42). D. Reidel. <a href="https://doi.org/10.1007/978-94-009-8947-4">https://doi.org/10.1007/978-94-009-8947-4</a></p>
+      <p>Maturana, H. R., y Varela, F. J. (1984). <em>El árbol del conocimiento: Las bases biológicas del entendimiento humano</em>. Editorial Universitaria.</p>
+      <p>McAdoo, T. (2023, 7 de abril). <em>How to cite ChatGPT</em>. APA Style Blog. <a href="https://apastyle.apa.org/blog/how-to-cite-chatgpt">https://apastyle.apa.org/blog/how-to-cite-chatgpt</a></p>
+      <p>Mingers, J. (2002). Can social systems be autopoietic? Assessing Luhmann's social theory. <em>The Sociological Review, 50</em>(2), 278–299. <a href="https://doi.org/10.1111/1467-954X.00367">https://doi.org/10.1111/1467-954X.00367</a></p>
+      <p>Puerto de Ideas. (2023, 29 de noviembre). <em>Seres vivos como máquinas. Maturana, Varela y el impacto de la autopoiesis - Juan Carlos Letelier</em> [Video]. YouTube. <a href="https://www.youtube.com/watch?v=8TbqdtgmNZc">https://www.youtube.com/watch?v=8TbqdtgmNZc</a></p>
+      <p>Varela, F. J. (1979). <em>Principles of biological autonomy</em>. North Holland.</p>
+      <p>Varela, F. G., Maturana, H. R., y Uribe, R. (1974). Autopoiesis: The organization of living systems, its characterization and a model. <em>BioSystems, 5</em>(4), 187–196. <a href="https://doi.org/10.1016/0303-2647(74)90031-8">https://doi.org/10.1016/0303-2647(74)90031-8</a></p>
+      <p>Varela, F. J., Thompson, E., y Rosch, E. (1991). <em>The embodied mind: Cognitive science and human experience</em>. MIT Press. <a href="https://doi.org/10.7551/mitpress/6730.001.0001">https://doi.org/10.7551/mitpress/6730.001.0001</a></p>
+      <p>Varón Castañeda, C. M. (2017). <em>Gestores bibliográficos: Recomendaciones para su aprovechamiento en la academia</em>. Journals &amp; Authors. <a href="https://doi.org/10.25012/isbn.9789585623309">https://doi.org/10.25012/isbn.9789585623309</a></p>
+<!--/REFS-->
+    </div>
+    <div class="folio">06</div>
+  </div>
+</section>
+
 </body>
 </html>
