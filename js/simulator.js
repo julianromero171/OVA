@@ -1,4 +1,4 @@
-/**
+﻿/**
  * SIMULADOR BIO-LAB: CÉLULA AUTOPOIÉTICA (MATURANA & VARELA)
  * Asignatura: Teoría General de Sistemas - TGS 2026-2
  * Autor: Julian Esteban Romero Herrera
@@ -280,8 +280,8 @@ class AutopoieticCellSimulator {
         this.center.x, this.center.y, 10,
         this.center.x, this.center.y, this.cellRadius * 1.5
       );
-      gradient.addColorStop(0, 'rgba(16, 185, 129, 0.18)');
-      gradient.addColorStop(0.6, 'rgba(6, 182, 212, 0.06)');
+      gradient.addColorStop(0, 'rgba(94, 200, 192, 0.20)');
+      gradient.addColorStop(0.6, 'rgba(58, 69, 181, 0.12)');
       gradient.addColorStop(1, 'rgba(0, 0, 0, 0)');
 
       this.ctx.fillStyle = gradient;
@@ -295,12 +295,12 @@ class AutopoieticCellSimulator {
       this.ctx.beginPath();
       this.ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
       if (p.type === 'substrate') {
-        this.ctx.fillStyle = '#34d399'; // Verde menta: sustrato
-        this.ctx.shadowColor = '#34d399';
+        this.ctx.fillStyle = '#5ec8c0'; // Aguamarina: sustrato
+        this.ctx.shadowColor = '#5ec8c0';
         this.ctx.shadowBlur = 6;
       } else if (p.type === 'protein') {
-        this.ctx.fillStyle = '#06b6d4'; // Cian: proteína/componente interno
-        this.ctx.shadowColor = '#06b6d4';
+        this.ctx.fillStyle = '#8e98ff'; // Lavanda: proteína/componente interno
+        this.ctx.shadowColor = '#8e98ff';
         this.ctx.shadowBlur = 8;
       } else {
         this.ctx.fillStyle = '#f59e0b'; // Ámbar
@@ -318,7 +318,7 @@ class AutopoieticCellSimulator {
   }
 
   drawGrid() {
-    this.ctx.strokeStyle = 'rgba(30, 41, 59, 0.4)';
+    this.ctx.strokeStyle = 'rgba(120, 132, 240, 0.10)';
     this.ctx.lineWidth = 1;
     const step = 40;
     for (let x = 0; x < this.canvas.width; x += step) {
@@ -357,7 +357,7 @@ class AutopoieticCellSimulator {
 
     // Relleno citoplasmático
     if (this.isAlive) {
-      this.ctx.fillStyle = 'rgba(16, 185, 129, 0.08)';
+      this.ctx.fillStyle = 'rgba(94, 200, 192, 0.10)';
     } else {
       this.ctx.fillStyle = 'rgba(239, 68, 68, 0.06)';
     }
@@ -365,9 +365,9 @@ class AutopoieticCellSimulator {
 
     // Borde de la Bicapa Lipídica / Membrana Autopoiética
     if (this.isAlive) {
-      this.ctx.strokeStyle = `rgba(52, 211, 153, ${Math.max(0.3, this.membraneIntegrity / 100)})`;
+      this.ctx.strokeStyle = `rgba(94, 200, 192, ${Math.max(0.3, this.membraneIntegrity / 100)})`;
       this.ctx.lineWidth = Math.max(2, (this.membraneIntegrity / 100) * 6);
-      this.ctx.shadowColor = '#10b981';
+      this.ctx.shadowColor = '#5ec8c0';
       this.ctx.shadowBlur = 15;
     } else {
       this.ctx.strokeStyle = 'rgba(239, 68, 68, 0.4)';
@@ -384,7 +384,7 @@ class AutopoieticCellSimulator {
       const coords = this.getNodeCoords(i);
       this.ctx.beginPath();
       this.ctx.arc(coords.x, coords.y, this.isAlive ? 4.5 : 2.5, 0, Math.PI * 2);
-      this.ctx.fillStyle = this.isAlive ? '#a7f3d0' : '#f87171';
+      this.ctx.fillStyle = this.isAlive ? '#e2fbf8' : '#f87171';
       this.ctx.fill();
     });
   }
@@ -404,16 +404,16 @@ class AutopoieticCellSimulator {
     const corePulse = Math.sin(performance.now() * 0.005) * 5;
     this.ctx.beginPath();
     this.ctx.arc(this.center.x, this.center.y, 22 + corePulse, 0, Math.PI * 2);
-    this.ctx.fillStyle = 'rgba(6, 182, 212, 0.25)';
+    this.ctx.fillStyle = 'rgba(142, 152, 255, 0.28)';
     this.ctx.fill();
 
-    this.ctx.strokeStyle = '#06b6d4';
+    this.ctx.strokeStyle = '#8e98ff';
     this.ctx.lineWidth = 2;
     this.ctx.stroke();
 
     // Texto central
-    this.ctx.font = '10px "JetBrains Mono", monospace';
-    this.ctx.fillStyle = '#67e8f9';
+    this.ctx.font = 'bold 10px Montserrat, sans-serif';
+    this.ctx.fillStyle = '#dfe2ff';
     this.ctx.textAlign = 'center';
     this.ctx.fillText('REDE-CAT', this.center.x, this.center.y + 4);
   }
@@ -440,7 +440,7 @@ class AutopoieticCellSimulator {
     
     if (statusEl) {
       if (this.isAlive) {
-        statusEl.innerHTML = '<span style="color: #34d399;">● VIVO (Autopoiético)</span>';
+        statusEl.innerHTML = '<span style="color: #5ec8c0;">● VIVO (Autopoiético)</span>';
       } else {
         statusEl.innerHTML = '<span style="color: #f87171;">✖ COLAPSO (Lisis/Entropía)</span>';
       }
@@ -448,7 +448,7 @@ class AutopoieticCellSimulator {
 
     if (closureEl) {
       if (this.isAlive && this.membraneIntegrity > 30) {
-        closureEl.innerHTML = '<span style="color: #34d399;">Mantenida</span>';
+        closureEl.innerHTML = '<span style="color: #5ec8c0;">Mantenida</span>';
       } else if (this.isAlive) {
         closureEl.innerHTML = '<span style="color: #f59e0b;">Crítica</span>';
       } else {

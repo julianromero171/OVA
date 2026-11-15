@@ -1,41 +1,118 @@
-<!DOCTYPE html>
-<html lang="es" data-theme="dark">
+﻿<!DOCTYPE html>
+<html lang="es">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>OVA: Autopoiesis y Sistemas Vivos | Humberto Maturana y Francisco Varela | TGS 2026-2</title>
-  
-  <!-- Metadatos Educativos y Académicos -->
-  <meta name="description" content="Objeto Virtual de Aprendizaje (OVA) interactivo sobre la teoría de la Autopoiesis y los Sistemas Vivos de Humberto Maturana y Francisco Varela. Teoría General de Sistemas (TGS) 2026-2.">
-  <meta name="author" content="Julian Esteban Romero Herrera">
-  <meta name="keywords" content="Autopoiesis, Maturana, Varela, Sistemas Vivos, Clausura Operacional, Acoplamiento Estructural, TGS, Teoría General de Sistemas">
+  <title>Autopoiesis y sistemas vivos (Maturana y Varela)</title>
 
-  <!-- Fuentes Tipográficas Google Fonts -->
+  <!-- Metadatos educativos -->
+  <meta name="description" content="Autopoiesis y sistemas vivos (Maturana y Varela): Objeto Virtual de Aprendizaje (OVA) interactivo para Teoría General de Sistemas (TGS), periodo 2026-2.">
+  <meta name="author" content="Julián Esteban Romero Herrera">
+  <meta name="keywords" content="Autopoiesis, Maturana, Varela, sistemas vivos, clausura operacional, acoplamiento estructural, TGS, Teoría General de Sistemas">
+  <meta name="theme-color" content="#100c4f">
+
+  <!-- Tipografías: Montserrat (titulares) + Outfit (texto) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800;900&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
-  <!-- Hojas de Estilo -->
   <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
+  <a class="skip-link" href="#contenido">Saltar al contenido</a>
 
-  <!-- Barra de Progreso de Lectura Superior -->
-  <div id="scroll-progress" role="progressbar" aria-label="Progreso de lectura"></div>
+  <!-- =====================================================================
+       SPRITE SVG: formas orgánicas ("blobs") con textura granulada.
+       Diseño propio inspirado en las diapositivas del autor (Canva).
+       ===================================================================== -->
+  <svg class="svg-sprite" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <!-- Grano + brillo exterior -->
+      <filter id="grain" x="-15%" y="-15%" width="130%" height="130%" color-interpolation-filters="sRGB">
+        <feTurbulence type="fractalNoise" baseFrequency="0.95" numOctaves="2" seed="11" result="noise"/>
+        <feColorMatrix in="noise" type="matrix" values="0 0 0 0 0.85  0 0 0 0 0.95  0 0 0 0 1  1.9 0 0 0 -0.92" result="lights"/>
+        <feComposite in="lights" in2="SourceAlpha" operator="in" result="lightsIn"/>
+        <feColorMatrix in="noise" type="matrix" values="0 0 0 0 0.03  0 0 0 0 0.02  0 0 0 0 0.2  0 2.2 0 0 -1.05" result="darks"/>
+        <feComposite in="darks" in2="SourceAlpha" operator="in" result="darksIn"/>
+        <feGaussianBlur in="SourceAlpha" stdDeviation="9" result="blurA"/>
+        <feFlood flood-color="#4a56d6" flood-opacity="0.55"/>
+        <feComposite in2="blurA" operator="in" result="glow"/>
+        <feMerge>
+          <feMergeNode in="glow"/>
+          <feMergeNode in="SourceGraphic"/>
+          <feMergeNode in="darksIn"/>
+          <feMergeNode in="lightsIn"/>
+        </feMerge>
+      </filter>
+      <linearGradient id="royalGrad" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0" stop-color="#3f4bc0"/>
+        <stop offset="1" stop-color="#2c3596"/>
+      </linearGradient>
+      <linearGradient id="tealGrad" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0" stop-color="#6fd6cd"/>
+        <stop offset="1" stop-color="#3fa9a8"/>
+      </linearGradient>
 
-  <!-- Barra de Navegación Principal -->
+      <!-- Onda vertical (borde izquierdo) -->
+      <symbol id="blob-wave" viewBox="0 0 300 600">
+        <g filter="url(#grain)">
+          <path fill="url(#royalGrad)" d="M0,8 C52,-6 122,12 128,90 C132,140 150,175 210,195 C275,215 290,290 240,320 C190,350 120,345 85,390 C50,435 105,480 95,530 C88,578 38,602 0,592 Z"/>
+          <path fill="none" stroke="url(#tealGrad)" stroke-width="34" stroke-linecap="round" d="M-6,40 C58,40 82,72 77,112 C72,160 120,195 170,215 C220,235 225,280 185,300 C140,322 70,330 40,375 C15,415 55,470 40,520 C33,550 16,566 -6,568"/>
+          <path fill="#0b0838" d="M0,64 C36,70 48,92 46,120 C42,172 95,210 140,232 C172,248 170,272 146,284 C108,302 38,318 12,362 C-6,398 22,462 12,520 C9,536 5,544 0,546 Z"/>
+        </g>
+        <g fill="none" stroke="#c9d0ff" stroke-linecap="round">
+          <path stroke-width="7" opacity="0.55" d="M232,214 C258,230 268,262 254,290"/>
+          <path stroke-width="5" opacity="0.45" d="M98,22 C110,38 115,56 114,72"/>
+          <path stroke-width="5" opacity="0.35" d="M80,470 C88,500 86,530 76,556"/>
+        </g>
+        <circle cx="240" cy="304" r="3.5" fill="#c9d0ff" opacity="0.6"/>
+      </symbol>
+
+      <!-- Esquina (superior derecha) -->
+      <symbol id="blob-corner" viewBox="0 0 400 400">
+        <g filter="url(#grain)">
+          <path fill="url(#royalGrad)" d="M400,28 C340,4 268,-2 218,28 C168,58 118,92 140,152 C160,206 230,190 262,215 C292,240 282,286 310,313 C340,341 376,346 400,336 Z"/>
+          <path fill="url(#tealGrad)" d="M332,38 C292,26 240,38 224,70 C208,102 250,124 286,112 C322,100 352,70 332,38 Z"/>
+          <path fill="none" stroke="url(#tealGrad)" stroke-width="30" stroke-linecap="round" d="M410,118 C352,128 330,170 345,210 C358,246 392,262 410,262"/>
+          <path fill="#0d0a45" opacity="0.85" d="M252,128 C278,118 306,134 301,160 C296,186 262,192 246,172 C235,157 238,136 252,128 Z"/>
+        </g>
+        <g fill="none" stroke="#c9d0ff" stroke-linecap="round">
+          <path stroke-width="6" opacity="0.5" d="M170,70 C152,94 150,122 162,146"/>
+          <path stroke-width="5" opacity="0.4" d="M328,318 C348,330 370,333 392,329"/>
+        </g>
+      </symbol>
+
+      <!-- Cinta ondulada (inferior derecha) -->
+      <symbol id="blob-ribbon" viewBox="0 0 260 520">
+        <g filter="url(#grain)">
+          <path fill="none" stroke="url(#royalGrad)" stroke-width="74" stroke-linecap="round" d="M290,40 C210,20 160,60 180,112 C200,166 232,202 190,252 C150,300 100,332 130,402 C150,452 200,472 240,540"/>
+        </g>
+        <g fill="none" stroke="#c9d0ff" stroke-linecap="round">
+          <path stroke-width="6" opacity="0.5" d="M152,96 C150,130 170,160 186,186"/>
+          <path stroke-width="5" opacity="0.4" d="M100,380 C104,420 122,446 150,470"/>
+        </g>
+      </symbol>
+    </defs>
+  </svg>
+
+  <div id="scroll-progress" role="progressbar" aria-label="Progreso de lectura" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"></div>
+
+  <!-- ===================== NAVEGACIÓN ===================== -->
   <header class="navbar" id="main-navbar">
     <div class="container navbar-inner">
-      <a href="#inicio" class="brand">
-        <div class="brand-icon">🧬</div>
-        <div>
-          <span style="font-weight: 800; letter-spacing: -0.02em;">AUTOPOIESIS</span>
-          <span style="display: block; font-size: 0.68rem; font-family: var(--font-mono); color: var(--accent-bio-light);">TGS · ING. SISTEMAS 2026-2</span>
-        </div>
+      <a href="#inicio" class="brand" aria-label="Inicio: Autopoiesis y sistemas vivos (Maturana y Varela)">
+        <svg class="brand-mark" viewBox="0 0 48 48" aria-hidden="true">
+          <path fill="#3a45b5" d="M24 3c9 0 14 6 18 12s4 15-2 21-14 9-21 7S5 36 4 27 9 9 16 5c2.6-1.4 5.3-2 8-2z"/>
+          <path fill="none" stroke="#5ec8c0" stroke-width="4" stroke-linecap="round" d="M15 30c-3-6 0-14 8-15s12 6 9 12-10 7-13 3"/>
+          <path fill="none" stroke="#dfe3ff" stroke-width="2" stroke-linecap="round" opacity=".7" d="M35 10c3 2 5 5 5 8"/>
+        </svg>
+        <span class="brand-text">
+          <span class="brand-title">Autopoiesis y sistemas vivos</span>
+          <span class="brand-sub">(Maturana y Varela) · TGS 2026-2</span>
+        </span>
       </a>
 
-      <!-- Enlaces de Secciones -->
-      <nav>
+      <nav aria-label="Secciones del OVA">
         <ul class="nav-links" id="nav-links">
           <li><a href="#contexto" class="nav-link">Contexto</a></li>
           <li><a href="#teoria" class="nav-link">Teoría</a></li>
@@ -43,922 +120,764 @@
           <li><a href="#casos" class="nav-link">Casos</a></li>
           <li><a href="#ejercicios" class="nav-link">Ejercicios</a></li>
           <li><a href="#laboratorio" class="nav-link">Juegos</a></li>
-          <li><a href="#videoteca" class="nav-link">Videoteca</a></li>
+          <li><a href="#videoteca" class="nav-link">Videos</a></li>
           <li><a href="#evaluacion" class="nav-link">Evaluación</a></li>
           <li><a href="#creditos" class="nav-link">Créditos</a></li>
+          <li class="nav-only-mobile"><a href="docs/Ficha_Tecnica_OVA_Autopoiesis.pdf" class="nav-link" target="_blank" rel="noopener">Ficha técnica (PDF)</a></li>
         </ul>
       </nav>
 
-      <!-- Herramientas de Interfaz y Accesibilidad -->
       <div class="nav-actions">
-        <button class="btn-icon" id="theme-toggle-btn" title="Cambiar Tema (Oscuro/Claro)">🌙</button>
-        <button class="btn-icon" id="btn-font-decrease" title="Reducir tamaño de letra">A-</button>
-        <button class="btn-icon" id="btn-font-increase" title="Aumentar tamaño de letra">A+</button>
-        <button class="btn-icon" id="btn-tts-toggle" title="Lectura en voz alta">🗣️</button>
-        <button class="btn btn-outline" id="btn-open-ficha" style="padding: 0.4rem 0.8rem; font-size: 0.82rem; font-family: var(--font-mono);">📄 Ficha Técnica</button>
-        <button class="btn-icon btn-mobile-menu" id="btn-mobile-menu" title="Menú de Navegación">☰</button>
+        <button class="btn-icon" id="btn-font-decrease" type="button" title="Reducir tamaño de letra" aria-label="Reducir tamaño de letra">A−</button>
+        <button class="btn-icon" id="btn-font-increase" type="button" title="Aumentar tamaño de letra" aria-label="Aumentar tamaño de letra">A+</button>
+        <button class="btn-icon" id="btn-tts-toggle" type="button" title="Lectura en voz alta" aria-label="Lectura en voz alta" aria-pressed="false">
+          <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path fill="currentColor" d="M3 9v6h4l5 4V5L7 9H3zm13.5 3a4.5 4.5 0 0 0-2.5-4v8a4.5 4.5 0 0 0 2.5-4zM14 3.2v2.1a7 7 0 0 1 0 13.4v2.1a9 9 0 0 0 0-17.6z"/></svg>
+        </button>
+        <a class="btn btn-teal btn-sm" id="btn-open-ficha" href="docs/Ficha_Tecnica_OVA_Autopoiesis.pdf" target="_blank" rel="noopener">Ficha técnica</a>
+        <button class="btn-icon btn-mobile-menu" id="btn-mobile-menu" type="button" aria-label="Abrir menú de navegación" aria-expanded="false" aria-controls="nav-links">
+          <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path fill="currentColor" d="M3 6h18v2.2H3zm0 4.9h18v2.2H3zm0 4.9h18V18H3z"/></svg>
+        </button>
       </div>
     </div>
   </header>
 
-  <!-- =========================================================================
-       HERO / PORTADA DEL OVA
-       ========================================================================= -->
+  <main id="contenido">
+
+  <!-- ===================== PORTADA ===================== -->
   <section class="hero" id="inicio">
+    <div class="blob-deco blob-hero-left" aria-hidden="true"><svg><use href="#blob-wave"/></svg></div>
+    <div class="blob-deco blob-hero-corner" aria-hidden="true"><svg><use href="#blob-corner"/></svg></div>
+
     <div class="container hero-grid">
       <div class="hero-content">
-        <div class="hero-subtitle">
-          <span>●</span> OBJETO VIRTUAL DE APRENDIZAJE · TEMA 22
+        <span class="pill-tag"><span class="dot"></span> Objeto Virtual de Aprendizaje · Tema 22</span>
+        <h1 class="hero-title">Autopoiesis y sistemas vivos <span class="hero-title-sub">(Maturana y Varela)</span></h1>
+
+        <div class="paper hero-card">
+          <p class="hero-description">
+            ¿Qué distingue a un ser vivo de una máquina inerte? Descubre la teoría formulada por <strong>Humberto Maturana</strong> y <strong>Francisco Varela</strong>, según la cual la vida se define no por sus partes, sino por la capacidad de una red de procesos de producirse a sí misma y delimitar su propia existencia.
+          </p>
+          <ul class="dot-list dot-list-grid">
+            <li><strong>Asignatura</strong><span>Teoría General de Sistemas</span></li>
+            <li><strong>Programa</strong><span>Ingeniería de Sistemas</span></li>
+            <li><strong>Autor</strong><span>Romero Herrera Julián Esteban</span></li>
+            <li><strong>Periodo académico</strong><span>2026-2</span></li>
+          </ul>
         </div>
-        <h1 class="hero-title">
-          Autopoiesis y <span class="text-gradient">Sistemas Vivos</span>
-        </h1>
-        <p class="hero-description">
-          ¿Qué distingue ontológicamente a un ser vivo de una máquina inerte? Descubre la revolucionaria teoría formulada por <strong>Humberto Maturana</strong> y <strong>Francisco Varela</strong>, donde la vida se define no por sus partes, sino por la capacidad recursiva de auto-producirse y delimitar su propia existencia.
-        </p>
 
         <div class="hero-buttons">
-          <a href="#laboratorio" class="btn btn-primary">
-            <span>🔬 Explorar Bio-Lab & Juegos</span>
-          </a>
-          <a href="#teoria" class="btn btn-outline">
-            <span>📖 Iniciar Ruta Conceptual</span>
-          </a>
-          <a href="#evaluacion" class="btn btn-outline">
-            <span>🎯 Quiz & Certificación</span>
-          </a>
-        </div>
-
-        <div class="hero-meta-badges">
-          <div class="meta-item">
-            <span class="meta-label">Asignatura</span>
-            <span class="meta-val">Teoría General de Sistemas</span>
-          </div>
-          <div class="meta-item">
-            <span class="meta-label">Programa</span>
-            <span class="meta-val">Ingeniería de Sistemas</span>
-          </div>
-          <div class="meta-item">
-            <span class="meta-label">Autor Estudiante</span>
-            <span class="meta-val">Romero Herrera Julian Esteban</span>
-          </div>
-          <div class="meta-item">
-            <span class="meta-label">Periodo Académico</span>
-            <span class="meta-val">2026-2</span>
-          </div>
+          <a href="#teoria" class="btn btn-teal">Iniciar ruta conceptual</a>
+          <a href="#laboratorio" class="btn btn-outline">Juegos y laboratorio</a>
+          <a href="#evaluacion" class="btn btn-outline">Evaluación</a>
         </div>
       </div>
 
-      <!-- Ilustración Bio-Cibernética SVG Interactiva -->
+      <!-- Ilustración en máscara orgánica -->
       <div class="hero-visual">
-        <svg class="autopoiesis-interactive-graphic" viewBox="0 0 400 400" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <!-- Círculos concéntricos de perturbación y flujo metabólico -->
-          <circle cx="200" cy="200" r="180" stroke="rgba(16, 185, 129, 0.15)" stroke-width="2" stroke-dasharray="8 8" />
-          <circle cx="200" cy="200" r="140" stroke="rgba(6, 182, 212, 0.25)" stroke-width="1.5" />
-          
-          <!-- Membrana celular ondulante -->
-          <path d="M 200,60 C 270,65 330,120 335,190 C 340,265 280,330 205,335 C 130,340 65,280 65,200 C 65,125 125,55 200,60 Z" 
-                fill="url(#bioGrad)" stroke="#10b981" stroke-width="4" filter="url(#glowFilter)" />
-          
-          <!-- Núcleo metabólico / Clausura operacional recursiva -->
-          <circle cx="200" cy="200" r="65" fill="rgba(6, 182, 212, 0.15)" stroke="#06b6d4" stroke-width="2" />
-          
-          <!-- Flechas circulares de retroalimentación metabólica -->
-          <path d="M 170,165 A 45,45 0 0,1 235,170" stroke="#34d399" stroke-width="3" stroke-linecap="round" marker-end="url(#arrow)" />
-          <path d="M 235,230 A 45,45 0 0,1 165,225" stroke="#34d399" stroke-width="3" stroke-linecap="round" marker-end="url(#arrow)" />
-          
-          <!-- Gradientes y Filtros -->
-          <defs>
-            <radialGradient id="bioGrad" cx="0.5" cy="0.5" r="0.5">
-              <stop offset="0%" stop-color="rgba(16, 185, 129, 0.25)" />
-              <stop offset="70%" stop-color="rgba(6, 182, 212, 0.12)" />
-              <stop offset="100%" stop-color="rgba(10, 15, 29, 0.4)" />
-            </radialGradient>
-            <filter id="glowFilter" x="-20%" y="-20%" width="140%" height="140%">
-              <feGaussianBlur stdDeviation="6" result="blur" />
-              <feComposite in="SourceGraphic" in2="blur" operator="over" />
-            </filter>
-            <marker id="arrow" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
-              <path d="M 0 0 L 10 5 L 0 10 z" fill="#34d399" />
-            </marker>
-          </defs>
-
-          <!-- Textos explicativos en SVG -->
-          <text x="200" y="195" text-anchor="middle" fill="#67e8f9" font-family="'JetBrains Mono', monospace" font-size="11" font-weight="700">RED DE SÍNTESIS</text>
-          <text x="200" y="212" text-anchor="middle" fill="#a7f3d0" font-family="'JetBrains Mono', monospace" font-size="9">METABOLISMO INTERNO</text>
-          <text x="200" y="365" text-anchor="middle" fill="#94a3b8" font-family="'JetBrains Mono', monospace" font-size="10">MEMBRANA DINÁMICA (AUTO-GENERADA)</text>
-        </svg>
+        <div class="blob-frame">
+          <svg class="cell-graphic" viewBox="0 0 400 400" role="img" aria-labelledby="cell-title">
+            <title id="cell-title">Esquema de una unidad autopoiética: red metabólica rodeada por la membrana que ella misma produce</title>
+            <defs>
+              <radialGradient id="cellFill" cx="0.5" cy="0.45" r="0.6">
+                <stop offset="0" stop-color="#e6f7f5"/>
+                <stop offset="1" stop-color="#c9ccf2"/>
+              </radialGradient>
+              <marker id="arrowTeal" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                <path d="M0 0 L10 5 L0 10 z" fill="#2f9d95"/>
+              </marker>
+            </defs>
+            <rect width="400" height="400" fill="#f3f4fd"/>
+            <path class="cell-membrane" d="M200,62 C272,64 334,120 336,192 C339,266 280,330 205,334 C130,338 66,280 66,200 C66,126 128,60 200,62 Z" fill="url(#cellFill)" stroke="#3a45b5" stroke-width="9" stroke-dasharray="2 14" stroke-linecap="round"/>
+            <path d="M200,74 C264,76 322,126 324,192 C326,258 274,318 205,322 C136,326 78,274 78,200 C78,134 134,72 200,74 Z" fill="none" stroke="#3a45b5" stroke-width="2.5" opacity=".55"/>
+            <circle cx="200" cy="200" r="64" fill="#ffffff" stroke="#5ec8c0" stroke-width="4"/>
+            <path d="M168,166 A46,46 0 0,1 236,170" fill="none" stroke="#2f9d95" stroke-width="4" stroke-linecap="round" marker-end="url(#arrowTeal)"/>
+            <path d="M234,232 A46,46 0 0,1 164,228" fill="none" stroke="#2f9d95" stroke-width="4" stroke-linecap="round" marker-end="url(#arrowTeal)"/>
+            <g class="cell-particles" fill="#3a45b5">
+              <circle cx="120" cy="150" r="6"/><circle cx="290" cy="170" r="5"/><circle cx="270" cy="275" r="7" fill="#5ec8c0"/>
+              <circle cx="132" cy="262" r="5" fill="#5ec8c0"/><circle cx="210" cy="112" r="4"/><circle cx="196" cy="292" r="4"/>
+            </g>
+            <text x="200" y="196" text-anchor="middle" fill="#16125a" font-family="Montserrat, sans-serif" font-size="13" font-weight="900">RED DE</text>
+            <text x="200" y="213" text-anchor="middle" fill="#16125a" font-family="Montserrat, sans-serif" font-size="13" font-weight="900">PRODUCCIÓN</text>
+            <text x="200" y="372" text-anchor="middle" fill="#3a45b5" font-family="Montserrat, sans-serif" font-size="12" font-weight="800">MEMBRANA AUTOPRODUCIDA</text>
+          </svg>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- =========================================================================
-       01. CONTEXTUALIZACIÓN Y JUSTIFICACIÓN
-       ========================================================================= -->
+  <!-- ===================== 01. CONTEXTO ===================== -->
   <section class="section" id="contexto">
+    <div class="blob-deco blob-right blob-ribbon-pos" aria-hidden="true"><svg><use href="#blob-ribbon"/></svg></div>
     <div class="container">
-      <div class="section-header">
-        <span class="section-tag">01 · INTRODUCCIÓN Y PERTINENCIA</span>
-        <h2 class="section-title">Contextualización y Justificación</h2>
-        <p class="section-description">
-          Comprender cómo la Teoría General de Sistemas superó el reduccionismo mecanicista para descifrar la esencia organizativa de los seres vivos y su impacto en la ingeniería moderna.
-        </p>
-      </div>
+      <header class="slide-head">
+        <span class="slide-word" aria-hidden="true">Contexto</span>
+        <div class="paper slide-card">
+          <span class="section-tag">01 · Introducción y pertinencia</span>
+          <h2 class="section-title">Contextualización y justificación</h2>
+          <p class="section-description">
+            Comprender cómo la Teoría General de Sistemas superó el reduccionismo mecanicista para describir la organización de los seres vivos, y por qué esa mirada es útil en la ingeniería actual.
+          </p>
+        </div>
+      </header>
 
       <div class="context-grid">
-        <div class="glass-card feature-box">
-          <div class="feature-icon-wrapper">🌱</div>
+        <article class="paper feature-box">
+          <span class="icon-blob" aria-hidden="true">01</span>
           <div class="feature-content">
-            <h4>El Enigma Histórico de la Vida</h4>
+            <h3>El enigma histórico de la vida</h3>
             <p>
-              Durante siglos, la biología intentó definir la vida a través de catálogos de propiedades funcionales: reproducción, motilidad, irritabilidad o evolución. Sin embargo, en la década de 1970, los biólogos chilenos <strong>Humberto Maturana Romesín</strong> y <strong>Francisco Varela García</strong> desafiaron este paradigma: una mula no se reproduce y sigue viva; un cristal crece y no tiene vida. La vida es ante todo una <em>organización relacional</em>.
+              Durante siglos, la biología intentó definir la vida a través de listas de propiedades: reproducción, movimiento, irritabilidad o evolución. En la década de 1970, los biólogos chilenos <strong>Humberto Maturana Romesín</strong> y <strong>Francisco Varela García</strong> desafiaron este enfoque: una mula no se reproduce y sigue viva; un cristal crece y no tiene vida. La vida es ante todo una <em>organización relacional</em>.
             </p>
           </div>
-        </div>
+        </article>
 
-        <div class="glass-card feature-box">
-          <div class="feature-icon-wrapper">⚙️</div>
+        <article class="paper feature-box">
+          <span class="icon-blob" aria-hidden="true">02</span>
           <div class="feature-content">
-            <h4>Superación del Mecanicismo Lineal</h4>
+            <h3>Superación del mecanicismo lineal</h3>
             <p>
-              La TGS tradicional de Ludwig von Bertalanffy concebía a los sistemas abiertos mediante la relación entrada ➔ proceso ➔ salida. La autopoiesis da un salto cualitativo al demostrar la <strong>recursividad autorreferencial</strong>: en los seres vivos, el producto de los procesos no es un bien para el exterior, sino la continua reconstrucción de la propia máquina celular.
+              La TGS de Ludwig von Bertalanffy describió los sistemas abiertos mediante la relación entrada → proceso → salida. La autopoiesis da un salto cualitativo al mostrar la <strong>recursividad autorreferencial</strong>: en los seres vivos, el producto de los procesos no es un bien para el exterior, sino la continua reconstrucción del propio sistema.
             </p>
           </div>
-        </div>
+        </article>
 
-        <div class="glass-card feature-box">
-          <div class="feature-icon-wrapper">💻</div>
+        <article class="paper feature-box">
+          <span class="icon-blob" aria-hidden="true">03</span>
           <div class="feature-content">
-            <h4>Pertinencia en Ingeniería de Sistemas</h4>
+            <h3>Pertinencia en Ingeniería de Sistemas</h3>
             <p>
-              En el siglo XXI, la autopoiesis inspira la vanguardia tecnológica: arquitecturas de microservicios autorreparables (<em>Self-healing Systems</em>), ciberseguridad inmunológica adaptativa, computación biológica y sistemas multiagente autónomos que mantienen su estabilidad funcional en entornos caóticos.
+              Hoy la autopoiesis sirve como analogía para pensar sistemas autorreparables (<em>self-healing systems</em>), ciberseguridad adaptativa y sistemas multiagente autónomos que mantienen su estabilidad funcional en entornos cambiantes.
             </p>
           </div>
-        </div>
+        </article>
       </div>
     </div>
   </section>
 
-  <!-- =========================================================================
-       02. EXPLICACIÓN CONCEPTUAL Y TEÓRICA
-       ========================================================================= -->
-  <section class="section" id="teoria" style="background: rgba(15, 23, 42, 0.4);">
+  <!-- ===================== 02. TEORÍA ===================== -->
+  <section class="section" id="teoria">
+    <div class="blob-deco blob-left blob-wave-pos" aria-hidden="true"><svg><use href="#blob-wave"/></svg></div>
     <div class="container">
-      <div class="section-header">
-        <span class="section-tag">02 · MARCO TEÓRICO Y EPISTEMOLOGÍA</span>
-        <h2 class="section-title">Fundamentos Conceptuales de la Autopoiesis</h2>
-        <p class="section-description">
-          Etimología: del griego <em>αὐτο- (auto = a sí mismo)</em> y <em>ποίησις (poiesis = creación o producción)</em>. Un sistema autopoiético se regenera y especifica recursivamente sus propios límites.
-        </p>
-      </div>
+      <header class="slide-head">
+        <span class="slide-word" aria-hidden="true">Teoría</span>
+        <div class="paper slide-card">
+          <span class="section-tag">02 · Marco teórico y epistemología</span>
+          <h2 class="section-title">Fundamentos conceptuales de la autopoiesis</h2>
+          <p class="section-description">
+            Etimología: del griego <em>αὐτο- (auto = a sí mismo)</em> y <em>ποίησις (poiesis = creación o producción)</em>. Un sistema autopoiético se regenera y especifica recursivamente sus propios límites.
+          </p>
+        </div>
+      </header>
 
-      <!-- Ficha de los Autores -->
       <div class="theorist-card-grid">
-        <div class="theorist-card">
-          <div style="font-size: 3.5rem;">👨‍🏫</div>
+        <article class="paper theorist-card">
+          <div class="theorist-avatar" aria-hidden="true">HM</div>
           <div class="theorist-info">
             <h3>Humberto Maturana Romesín (1928–2021)</h3>
-            <div class="theorist-title">Biólogo, Neurobiólogo y Filósofo · Premio Nacional de Ciencias de Chile</div>
+            <div class="theorist-title">Biólogo, neurobiólogo y filósofo · Premio Nacional de Ciencias Naturales de Chile</div>
             <p>
-              Pionero en la epistemología constructivista y la cibernética de segundo orden. Propuso que todo conocer es un hacer biológico condicionado por la estructura orgánica del observador: <em>"Todo lo dicho es dicho por un observador a otro observador que puede ser él mismo"</em>.
+              Pionero de la epistemología constructivista y de la cibernética de segundo orden. Propuso que todo conocer es un hacer biológico condicionado por la estructura del observador: <em>"Todo lo dicho es dicho por un observador"</em>.
             </p>
           </div>
-        </div>
+        </article>
 
-        <div class="theorist-card">
-          <div style="font-size: 3.5rem;">🧠</div>
+        <article class="paper theorist-card">
+          <div class="theorist-avatar alt" aria-hidden="true">FV</div>
           <div class="theorist-info">
             <h3>Francisco Varela García (1946–2001)</h3>
-            <div class="theorist-title">Biólogo, Neurocientífico y Epistemólogo · Director CNRS (Francia)</div>
+            <div class="theorist-title">Biólogo, neurocientífico y epistemólogo · Investigador del CNRS (Francia)</div>
             <p>
-              Cofundador de la teoría autopoiética y creador del enfoque de la <strong>cognición encarnada (enacción)</strong>. Formalizó los modelos matemáticos y de simulación computacional de la clausura operacional y la autogeneración de fronteras.
+              Cofundador de la teoría autopoiética y creador del enfoque de la <strong>cognición encarnada (enacción)</strong>. Desarrolló modelos formales y de simulación computacional de la clausura operacional y la autogeneración de fronteras.
             </p>
           </div>
-        </div>
+        </article>
       </div>
 
-      <!-- Cuadrícula de Conceptos Clave -->
       <div class="concept-grid">
-        <!-- 1. Clausura Operacional -->
-        <div class="glass-card concept-card">
-          <h4>
-            <span>Clausura Operacional</span>
-            <span class="badge">Núcleo</span>
-          </h4>
+        <article class="paper concept-card">
+          <h3><span>Clausura operacional</span><span class="badge">Núcleo</span></h3>
           <p>
-            El sistema vivo está cerrado organizacionalmente: las operaciones moleculares del sistema no son gobernadas por comandos externos, sino que producen componentes que participan recursivamente en la misma red de producciones que los generó.
+            El sistema vivo está cerrado organizacionalmente: sus operaciones no son gobernadas por comandos externos, sino que producen componentes que participan recursivamente en la misma red de producciones que los generó.
           </p>
-          <div class="academic-citation">
-            Ref: Maturana & Varela (1973), "De Máquinas y Seres Vivos", p. 68.
-          </div>
-        </div>
+          <div class="academic-citation">Maturana y Varela (1973)</div>
+        </article>
 
-        <!-- 2. La Membrana Dinámica -->
-        <div class="glass-card concept-card cyan-edge">
-          <h4>
-            <span>Límite Dinámico / Membrana</span>
-            <span class="badge badge-cyan">Espacialidad</span>
-          </h4>
+        <article class="paper concept-card">
+          <h3><span>Límite dinámico / membrana</span><span class="badge badge-blue">Espacialidad</span></h3>
           <p>
-            A diferencia de un edificio cuyo muro es construido desde afuera por albañiles, la membrana celular es sintetizada desde adentro por las enzimas celulares, al mismo tiempo que encierra físicamente a las enzimas para que no se disipen en el caldo exterior.
+            A diferencia de un edificio cuyo muro es construido desde afuera, la membrana celular es sintetizada desde adentro por la propia red metabólica, al mismo tiempo que encierra a los componentes para que no se dispersen en el medio.
           </p>
-          <div class="academic-citation">
-            Ref: Varela, F. J. (1979), "Principles of Biological Autonomy", p. 33.
-          </div>
-        </div>
+          <div class="academic-citation">Varela (1979)</div>
+        </article>
 
-        <!-- 3. Acoplamiento Estructural -->
-        <div class="glass-card concept-card purple-edge">
-          <h4>
-            <span>Acoplamiento Estructural</span>
-            <span class="badge badge-purple">Interacción</span>
-          </h4>
+        <article class="paper concept-card">
+          <h3><span>Acoplamiento estructural</span><span class="badge badge-violet">Interacción</span></h3>
           <p>
-            La interacción continua entre el sistema y su entorno. El sistema no absorbe información objetiva instructiva; el entorno actúa únicamente como una <strong>fuente de perturbaciones</strong> que gatillan cambios de estado permitidos por la arquitectura del sistema.
+            Es la historia de interacciones recurrentes entre el sistema y su entorno. El sistema no absorbe información instructiva; el entorno actúa como una <strong>fuente de perturbaciones</strong> que gatillan cambios de estado permitidos por la estructura del sistema.
           </p>
-          <div class="academic-citation">
-            Ref: Maturana & Varela (1984), "El Árbol del Conocimiento", Cap. 5.
-          </div>
-        </div>
+          <div class="academic-citation">Maturana y Varela (1984)</div>
+        </article>
 
-        <!-- 4. Determinismo Estructural -->
-        <div class="glass-card concept-card amber-edge">
-          <h4>
-            <span>Determinismo Estructural</span>
-            <span class="badge" style="background: rgba(245, 158, 11, 0.15); color: #f59e0b; border-color: rgba(245, 158, 11, 0.3);">Causalidad</span>
-          </h4>
+        <article class="paper concept-card">
+          <h3><span>Determinismo estructural</span><span class="badge badge-amber">Causalidad</span></h3>
           <p>
-            Nada de lo que le ocurre a un sistema vivo proviene dictado desde el medio ambiente. Lo que le acontece está determinado en todo momento por su estructura actual. Si un perro escucha una voz humana, su reacción física obedece a su neuroanatomía canina, no a las ondas sonoras en sí.
+            Lo que le ocurre a un sistema vivo no es dictado por el medio: está determinado en cada momento por su estructura actual. Si un perro escucha una voz humana, su reacción obedece a su organización neurológica, no a las ondas sonoras en sí.
           </p>
-          <div class="academic-citation">
-            Ref: Maturana, H. (1997), "La objetividad: Un argumento para obligar".
-          </div>
-        </div>
+          <div class="academic-citation">Maturana (1997)</div>
+        </article>
       </div>
 
-      <!-- Niveles de Autopoiesis -->
-      <div style="margin-top: 3.5rem;">
-        <h3 style="font-size: 1.5rem; text-align: center; margin-bottom: 2rem;">Órdenes Sistémicos de la Autopoiesis</h3>
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem;">
-          <div class="glass-card" style="border-top: 4px solid var(--accent-bio);">
-            <div style="font-size: 2rem; margin-bottom: 0.5rem;">🧪</div>
-            <h4 style="color: var(--accent-bio-light); margin-bottom: 0.5rem;">1er Orden: Célula Unicelular</h4>
-            <p style="font-size: 0.92rem; color: var(--text-secondary);">
-              El prototipo molecular canónico. Bacterias, arqueas y protozoos. Clausura operacional en el espacio físico-químico molecular directo.
-            </p>
+      <!-- Órdenes de autopoiesis: estilo "palabra grande sobre tarjeta" -->
+      <h3 class="sub-heading">Órdenes sistémicos de la autopoiesis</h3>
+      <div class="stack-grid">
+        <div class="stack-item">
+          <span class="stack-word" aria-hidden="true">1er orden</span>
+          <div class="paper stack-card">
+            <h4>Célula</h4>
+            <p>El prototipo molecular: bacterias, arqueas y protozoos. La clausura operacional ocurre directamente en el espacio físico-químico molecular.</p>
           </div>
-
-          <div class="glass-card" style="border-top: 4px solid var(--accent-cyan);">
-            <div style="font-size: 2rem; margin-bottom: 0.5rem;">🐬</div>
-            <h4 style="color: var(--accent-cyan); margin-bottom: 0.5rem;">2do Orden: Organismos Metazoarios</h4>
-            <p style="font-size: 0.92rem; color: var(--text-secondary);">
-              Organismos pluricelulares (animales, plantas, hongos). Sistemas compuestos integrados por subsistemas autopoiéticos de 1er orden acoplados entre sí.
-            </p>
+        </div>
+        <div class="stack-item">
+          <span class="stack-word" aria-hidden="true">2do orden</span>
+          <div class="paper stack-card">
+            <h4>Organismos multicelulares</h4>
+            <p>Animales, plantas y hongos: sistemas compuestos por unidades autopoiéticas de primer orden acopladas entre sí.</p>
           </div>
-
-          <div class="glass-card" style="border-top: 4px solid var(--accent-purple);">
-            <div style="font-size: 2rem; margin-bottom: 0.5rem;">🌐</div>
-            <h4 style="color: var(--accent-purple); margin-bottom: 0.5rem;">3er Orden: Sistemas Sociales (Luhmann)</h4>
-            <p style="font-size: 0.92rem; color: var(--text-secondary);">
-              Redes de comunicación recursivas. Para el sociólogo Niklas Luhmann, las instituciones y sociedades son autopoiéticas porque las comunicaciones producen recursivamente nuevas comunicaciones.
-            </p>
+        </div>
+        <div class="stack-item">
+          <span class="stack-word" aria-hidden="true">3er orden</span>
+          <div class="paper stack-card">
+            <h4>Sistemas sociales (Luhmann)</h4>
+            <p>Redes de comunicación recursivas. Para Niklas Luhmann, las sociedades y organizaciones son autopoiéticas porque las comunicaciones producen nuevas comunicaciones.</p>
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- =========================================================================
-       03. COMPARATIVA SISTÉMICA: AUTOPOIESIS VS ALOPOIESIS
-       ========================================================================= -->
+  <!-- ===================== 03. COMPARATIVA ===================== -->
   <section class="section" id="comparativa">
+    <div class="blob-deco blob-right blob-corner-pos" aria-hidden="true"><svg><use href="#blob-corner"/></svg></div>
     <div class="container">
-      <div class="section-header">
-        <span class="section-tag">03 · MODELADO SISTÉMICO</span>
-        <h2 class="section-title">Autopoiesis vs Alopoiesis</h2>
-        <p class="section-description">
-          La gran distinción de la TGS entre las máquinas que existen para auto-mantenerse y las máquinas fabricadas para producir fines externos.
-        </p>
-      </div>
+      <header class="slide-head">
+        <span class="slide-word" aria-hidden="true">Comparativa</span>
+        <div class="paper slide-card">
+          <span class="section-tag">03 · Modelado sistémico</span>
+          <h2 class="section-title">Autopoiesis vs. alopoiesis</h2>
+          <p class="section-description">
+            La gran distinción entre los sistemas que existen produciéndose a sí mismos y las máquinas fabricadas para producir algo distinto de sí.
+          </p>
+        </div>
+      </header>
 
-      <div class="comparison-container">
-        <div class="comparison-table-wrapper">
-          <table class="comparison-table">
-            <thead>
-              <tr>
-                <th>Criterio Sistémico</th>
-                <th>Sistema Autopoiético (Seres Vivos)</th>
-                <th>Sistema Alopoiético (Máquinas / Fábricas)</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td><strong>Finalidad / Propósito</strong></td>
-                <td><span style="color: #34d399;">Autorreferencial:</span> Su producto es su propia organización y conservación vital en el tiempo.</td>
-                <td><span style="color: #67e8f9;">Heterorreferencial:</span> Su producto es externo a su propia estructura física (bienes, servicios).</td>
-              </tr>
-              <tr>
-                <td><strong>Origen de sus Límites</strong></td>
-                <td>Generados continuamente desde su propio metabolismo interior (membrana celular).</td>
-                <td>Fijados externamente por el diseñador o ensamblador (carcasa, chasis).</td>
-              </tr>
-              <tr>
-                <td><strong>Respuesta a Perturbaciones</strong></td>
-                <td>Regeneración interna activa guiada por determinismo estructural (homeostasis ontológica).</td>
-                <td>Degradación pasiva; requiere mantenimiento, reparación y repuestos externos.</td>
-              </tr>
-              <tr>
-                <td><strong>Clausura Organizativa</strong></td>
-                <td>Totalmente cerrada en su red de operaciones productivas.</td>
-                <td>Abierta a instrucciones operativas que rigen su ensamblaje externo.</td>
-              </tr>
-              <tr>
-                <td><strong>Ejemplos Clave</strong></td>
-                <td>Células, árboles de Guayacán, enjambres biológicos, el ser humano.</td>
-                <td>Líneas de ensamblaje automotriz, servidores HTTP, relojes, microprocesadores.</td>
-              </tr>
-            </tbody>
-          </table>
+      <div class="paper comparison-table-wrapper">
+        <table class="comparison-table">
+          <caption class="sr-only">Comparación entre sistemas autopoiéticos y alopoiéticos</caption>
+          <thead>
+            <tr>
+              <th scope="col">Criterio sistémico</th>
+              <th scope="col">Sistema autopoiético (seres vivos)</th>
+              <th scope="col">Sistema alopoiético (máquinas / fábricas)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">Finalidad / producto</th>
+              <td><span class="hl-teal">Autorreferencial:</span> su producto es su propia organización y conservación en el tiempo.</td>
+              <td><span class="hl-blue">Heterorreferencial:</span> su producto es externo a su propia estructura (bienes, servicios).</td>
+            </tr>
+            <tr>
+              <th scope="row">Origen de sus límites</th>
+              <td>Generados continuamente por su propio metabolismo (membrana celular).</td>
+              <td>Fijados externamente por el diseñador o ensamblador (carcasa, chasis).</td>
+            </tr>
+            <tr>
+              <th scope="row">Respuesta a perturbaciones</th>
+              <td>Compensación interna activa, especificada por su estructura.</td>
+              <td>Degradación pasiva; requiere mantenimiento, reparación y repuestos externos.</td>
+            </tr>
+            <tr>
+              <th scope="row">Clausura organizativa</th>
+              <td>Cerrada en su red de operaciones productivas.</td>
+              <td>Abierta a instrucciones que rigen su ensamblaje y funcionamiento.</td>
+            </tr>
+            <tr>
+              <th scope="row">Ejemplos</th>
+              <td>Células, árboles, el ser humano.</td>
+              <td>Líneas de ensamblaje, servidores HTTP, relojes, microprocesadores.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== 04. CASOS ===================== -->
+  <section class="section" id="casos">
+    <div class="blob-deco blob-left blob-ribbon-pos" aria-hidden="true"><svg><use href="#blob-ribbon"/></svg></div>
+    <div class="container">
+      <header class="slide-head">
+        <span class="slide-word" aria-hidden="true">Casos</span>
+        <div class="paper slide-card">
+          <span class="section-tag">04 · Casos reales</span>
+          <h2 class="section-title">Aplicaciones prácticas en el mundo real</h2>
+          <p class="section-description">
+            Cómo se manifiesta la autopoiesis desde el nivel celular hasta las analogías en arquitecturas distribuidas y en las organizaciones sociales.
+          </p>
+        </div>
+      </header>
+
+      <div class="stack-grid case-grid">
+        <div class="stack-item">
+          <span class="stack-word" aria-hidden="true">Célula</span>
+          <article class="paper stack-card case-card">
+            <span class="badge">Biología fundamental</span>
+            <h3>La célula biológica</h3>
+            <p>
+              Una célula incorpora moléculas del medio y, mediante su metabolismo, produce los mismos lípidos y proteínas que reparan su membrana. Si se interrumpe esa síntesis, la membrana se rompe y la unidad deja de existir.
+            </p>
+            <span class="case-foot">Prototipo de primer orden</span>
+          </article>
+        </div>
+
+        <div class="stack-item">
+          <span class="stack-word" aria-hidden="true">Software</span>
+          <article class="paper stack-card case-card">
+            <span class="badge badge-violet">Ingeniería de software</span>
+            <h3>Kubernetes y <em>self-healing</em></h3>
+            <p>
+              Los orquestadores como Kubernetes usan <strong>bucles de reconciliación</strong>: si un contenedor falla, el controlador detecta la diferencia entre el estado deseado y el actual y crea una nueva instancia. Es una <em>analogía</em> útil con la autopoiesis, aunque el sistema sigue siendo alopoiético.
+            </p>
+            <span class="case-foot">Analogía en computación</span>
+          </article>
+        </div>
+
+        <div class="stack-item">
+          <span class="stack-word" aria-hidden="true">Sociedad</span>
+          <article class="paper stack-card case-card">
+            <span class="badge badge-blue">Sociología y cibernética</span>
+            <h3>Organizaciones e instituciones</h3>
+            <p>
+              Niklas Luhmann sostuvo que sistemas como el derecho o la economía son redes autopoiéticas de comunicación: un fallo judicial genera una apelación, que genera una sentencia, que produce jurisprudencia. Las comunicaciones reproducen comunicaciones.
+            </p>
+            <span class="case-foot">Autopoiesis de tercer orden</span>
+          </article>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- =========================================================================
-       04. CASOS REALES Y APLICACIONES EN INGENIERÍA DE SISTEMAS
-       ========================================================================= -->
-  <section class="section" id="casos" style="background: rgba(15, 23, 42, 0.4);">
-    <div class="container">
-      <div class="section-header">
-        <span class="section-tag">04 · CASOS REALES</span>
-        <h2 class="section-title">Aplicaciones Prácticas en el Mundo Real</h2>
-        <p class="section-description">
-          Cómo se materializa la autopoiesis desde el nivel celular microbiológico hasta las arquitecturas distribuidas de nube y las redes sociotécnicas.
-        </p>
-      </div>
-
-      <div class="case-study-grid">
-        <!-- Caso 1: Célula Viva -->
-        <div class="glass-card case-card">
-          <div class="case-header">
-            <div class="case-icon">🧫</div>
-            <div>
-              <h4 style="font-size: 1.15rem;">La Célula Biológica</h4>
-              <span class="badge">Biología Fundamental</span>
-            </div>
-          </div>
-          <div class="case-body">
-            <p>
-              Una célula eucariota incorpora moléculas de glucosa del medio acuoso. A través del ciclo de Krebs y la síntesis de fosfolípidos, produce los mismos lípidos que reparan su membrana celular semipermeable. Si se interrumpe la síntesis, la membrana se lisa por gradiente osmótico y la célula cesa ontológicamente de existir.
-            </p>
-          </div>
-          <div class="case-footer">
-            <span style="font-family: var(--font-mono); font-size: 0.8rem; color: var(--accent-bio-light);">Prototipo Puro de 1er Orden</span>
-          </div>
-        </div>
-
-        <!-- Caso 2: Kubernetes y Self-Healing Systems -->
-        <div class="glass-card case-card">
-          <div class="case-header">
-            <div class="case-icon" style="background: rgba(139, 92, 246, 0.15); color: var(--accent-purple);">☸️</div>
-            <div>
-              <h4 style="font-size: 1.15rem;">Kubernetes & Self-Healing</h4>
-              <span class="badge badge-purple">Ingeniería de Software</span>
-            </div>
-          </div>
-          <div class="case-body">
-            <p>
-              En la ingeniería de sistemas contemporánea, los orquestadores como Kubernetes implementan <strong>bucles de reconciliación</strong> inspirados en la autopoiesis. Si un contenedor muere (perturbación entrópica), el controlador del cluster detecta la discrepancia entre el estado deseado y el actual, regenerando automáticamente la instancia para preservar la identidad del servicio sin intervención humana.
-            </p>
-          </div>
-          <div class="case-footer">
-            <span style="font-family: var(--font-mono); font-size: 0.8rem; color: var(--accent-purple);">Acoplamiento en Computación</span>
-          </div>
-        </div>
-
-        <!-- Caso 3: Sistemas Sociales de Niklas Luhmann -->
-        <div class="glass-card case-card">
-          <div class="case-header">
-            <div class="case-icon">🏢</div>
-            <div>
-              <h4 style="font-size: 1.15rem;">Organizaciones e Instituciones</h4>
-              <span class="badge badge-cyan">Sociología y Cibernética</span>
-            </div>
-          </div>
-          <div class="case-body">
-            <p>
-              El sociólogo Niklas Luhmann argumentó que sistemas como el derecho, la economía o una universidad son redes autopoiéticas de comunicación. Un fallo judicial engendra una apelación, que genera una sentencia, que produce jurisprudencia. Las comunicaciones reproducen comunicaciones, manteniendo la frontera funcional de la institución respecto al ruido del entorno.
-            </p>
-          </div>
-          <div class="case-footer">
-            <span style="font-family: var(--font-mono); font-size: 0.8rem; color: var(--accent-cyan);">Autopoiesis de 3er Orden</span>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- =========================================================================
-       05. EJERCICIOS PLANTEADOS CON RETROALIMENTACIÓN INMEDIATA
-       ========================================================================= -->
+  <!-- ===================== 05. EJERCICIOS ===================== -->
   <section class="section" id="ejercicios">
-    <div class="container">
-      <div class="section-header">
-        <span class="section-tag">05 · APRENDIZAJE ACTIVO</span>
-        <h2 class="section-title">Ejercicios de Análisis Sistémico con Retroalimentación</h2>
-        <p class="section-description">
-          Pon a prueba tu pensamiento sistémico evaluando dilemas ontológicos reales. Haz clic en la opción que consideres correcta y recibe retroalimentación inmediata.
-        </p>
-      </div>
+    <div class="blob-deco blob-right blob-wave-pos" aria-hidden="true"><svg><use href="#blob-wave"/></svg></div>
+    <div class="container narrow">
+      <header class="slide-head">
+        <span class="slide-word" aria-hidden="true">Ejercicios</span>
+        <div class="paper slide-card">
+          <span class="section-tag">05 · Aprendizaje activo</span>
+          <h2 class="section-title">Ejercicios de análisis sistémico con retroalimentación</h2>
+          <p class="section-description">
+            Evalúa dilemas reales con pensamiento sistémico. Haz clic en la opción que consideres correcta y recibe retroalimentación inmediata.
+          </p>
+        </div>
+      </header>
 
-      <!-- Ejercicio 1 -->
-      <div class="glass-card exercise-card">
-        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.75rem;">
-          <span class="badge">Ejercicio 1</span>
-          <span style="font-family: var(--font-mono); font-size: 0.82rem; color: var(--text-muted);">Clasificación Ontológica</span>
-        </div>
-        <div class="exercise-question">
-          Un equipo de mecatrónica diseña un brazo robótico industrial que es capaz de tomar piezas de aluminio y soldar un segundo brazo robótico idéntico a sí mismo. Desde la perspectiva de Humberto Maturana y Francisco Varela, ¿este robot es un sistema autopoiético?
-        </div>
+      <article class="paper exercise-card">
+        <div class="exercise-head"><span class="badge">Ejercicio 1</span><span class="exercise-topic">Clasificación ontológica</span></div>
+        <p class="exercise-question">
+          Un equipo de mecatrónica diseña un brazo robótico industrial capaz de tomar piezas de aluminio y soldar un segundo brazo idéntico a sí mismo. Desde la perspectiva de Maturana y Varela, ¿este robot es un sistema autopoiético?
+        </p>
         <div class="exercise-options">
-          <button class="option-btn" data-correct="false" data-feedback="Error clásico: el robot no produce sus propios componentes a partir de su metabolismo interno; depende de materias primas prefabricadas externamente y no regenera su propio desgaste mientras ensambla otros robots.">
+          <button type="button" class="option-btn" data-correct="false" data-feedback="Error clásico: el robot no produce sus propios componentes a partir de su metabolismo; depende de materias primas prefabricadas y no regenera su propio desgaste mientras ensambla otros robots.">
             <span>A) Sí, porque es capaz de autorreplicarse y crear una copia funcional de su propia estructura.</span>
           </button>
-          <button class="option-btn" data-correct="true" data-feedback="¡Correcto! El robot es una máquina ALOPOIÉTICA. El producto de sus operaciones no es la regeneración de su propia membrana o componentes internos moleculares, sino un artefacto externo. Además, carece de clausura operacional intrínseca.">
-            <span>B) No, es una máquina alopoiética; produce un objeto distinto de sí mismo y no repara activamente su propia degradación interna continua.</span>
+          <button type="button" class="option-btn" data-correct="true" data-feedback="¡Correcto! El robot es una máquina ALOPOIÉTICA: el producto de sus operaciones es un artefacto externo, no la regeneración de sus propios componentes. Además, carece de clausura operacional.">
+            <span>B) No, es una máquina alopoiética: produce un objeto distinto de sí mismo y no repara su propia degradación interna.</span>
           </button>
-          <button class="option-btn" data-correct="false" data-feedback="Incorrecto. La presencia de software o sensores complejos no convierte a un sistema en autopoiético.">
+          <button type="button" class="option-btn" data-correct="false" data-feedback="Incorrecto. La presencia de software o sensores complejos no convierte a un sistema en autopoiético.">
             <span>C) Sí, siempre y cuando su microprocesador ejecute algoritmos genéticos de autoaprendizaje.</span>
           </button>
         </div>
-        <div class="exercise-feedback"></div>
-      </div>
+        <div class="exercise-feedback" aria-live="polite"></div>
+      </article>
 
-      <!-- Ejercicio 2 -->
-      <div class="glass-card exercise-card">
-        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.75rem;">
-          <span class="badge badge-purple">Ejercicio 2</span>
-          <span style="font-family: var(--font-mono); font-size: 0.82rem; color: var(--text-muted);">Acoplamiento y Perturbación</span>
-        </div>
-        <div class="exercise-question">
-          Un servidor web de comercio electrónico sufre una caída drástica de ancho de banda por el corte accidental de una troncal de fibra óptica submarina. El sistema activa un CDN de borde y comprime las imágenes para continuar operando. ¿Qué principio sistémico se evidencia?
-        </div>
+      <article class="paper exercise-card">
+        <div class="exercise-head"><span class="badge badge-violet">Ejercicio 2</span><span class="exercise-topic">Acoplamiento y perturbación</span></div>
+        <p class="exercise-question">
+          Un servidor de comercio electrónico sufre una caída de ancho de banda por el corte accidental de un cable de fibra óptica submarino. El sistema activa una CDN de borde y comprime las imágenes para seguir operando. ¿Qué principio sistémico se evidencia?
+        </p>
         <div class="exercise-options">
-          <button class="option-btn" data-correct="true" data-feedback="¡Exacto! El corte submarino actuó como una perturbación externa desencadenante (gatillo), pero fue la configuración y estructura programada del sistema de software la que especificó la respuesta de compensación interna.">
-            <span>A) Determinismo Estructural: el corte en la fibra sólo gatilló una perturbación, pero la estructura del software determinó los cambios para mantener su viabilidad.</span>
+          <button type="button" class="option-btn" data-correct="false" data-feedback="Falso. La fibra óptica no transmitió instrucciones para comprimir las imágenes; la compresión fue una regla interna del sistema ante la falta de flujo.">
+            <span>A) Instrucción del entorno: la fibra óptica rota le ordenó al servidor cómo debía comprimir las imágenes.</span>
           </button>
-          <button class="option-btn" data-correct="false" data-feedback="Falso. La fibra óptica no transmitió un paquete de instrucciones diciéndole al CDN que comprimiera las imágenes; la compresión fue una regla interna del sistema ante la falta de flujo.">
-            <span>B) Instrucción del Entorno: la fibra óptica rota le ordenó al servidor cómo debía comprimir las imágenes.</span>
+          <button type="button" class="option-btn" data-correct="false" data-feedback="Incorrecto. Aislarse rompería la interacción con los usuarios; el sistema continúa acoplado al medio adaptando su rendimiento.">
+            <span>B) Aislamiento total: el servidor se desconectó de su entorno físico.</span>
           </button>
-          <button class="option-btn" data-correct="false" data-feedback="Incorrecto. El aislamiento térmico rompería la interacción con los usuarios; el sistema continúa acoplado al medio adaptando su rendimiento.">
-            <span>C) Aislamiento Termodinámico Cerrado: el servidor se desconectó de la realidad física.</span>
+          <button type="button" class="option-btn" data-correct="true" data-feedback="¡Exacto! El corte actuó como una perturbación externa (gatillo), pero fue la estructura del sistema la que especificó la respuesta de compensación.">
+            <span>C) Determinismo estructural: el corte solo gatilló una perturbación; la estructura del software determinó los cambios para mantener su operación.</span>
           </button>
         </div>
-        <div class="exercise-feedback"></div>
-      </div>
+        <div class="exercise-feedback" aria-live="polite"></div>
+      </article>
 
-      <!-- Ejercicio 3 -->
-      <div class="glass-card exercise-card">
-        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.75rem;">
-          <span class="badge badge-cyan">Ejercicio 3</span>
-          <span style="font-family: var(--font-mono); font-size: 0.82rem; color: var(--text-muted);">Límites y Clausura</span>
-        </div>
-        <div class="exercise-question">
-          En un hospital universitario de alta complejidad, ¿cuál de los siguientes elementos representa mejor la frontera dinámica o 'membrana' de su clausura operacional como sistema social según la TGS?
-        </div>
+      <article class="paper exercise-card">
+        <div class="exercise-head"><span class="badge badge-blue">Ejercicio 3</span><span class="exercise-topic">Límites y clausura</span></div>
+        <p class="exercise-question">
+          En un hospital universitario, ¿cuál de los siguientes elementos representa mejor la frontera dinámica o "membrana" de su clausura operacional como sistema social?
+        </p>
         <div class="exercise-options">
-          <button class="option-btn" data-correct="false" data-feedback="Los muros de concreto son fronteras físicas estáticas, no la clausura de operaciones y comunicaciones del sistema hospitalario.">
-            <span>A) Las rejas de seguridad y las paredes de ladrillo del edificio médico.</span>
+          <button type="button" class="option-btn" data-correct="true" data-feedback="¡Muy bien! En los sistemas sociales la frontera no es de cemento sino de sentido: los protocolos y códigos de triaje deciden qué evento externo se procesa internamente como operación médica.">
+            <span>A) Los protocolos clínicos de admisión, triaje y los códigos deontológicos que determinan qué interacciones constituyen atención en salud.</span>
           </button>
-          <button class="option-btn" data-correct="true" data-feedback="¡Brillante! En sistemas sociales (autopoiesis de 3er orden), la frontera no es de cemento sino procedimental: los protocolos y códigos de triaje deciden qué evento externo se procesa internamente como operación médica válida.">
-            <span>B) Los protocolos clínicos de admisión, triaje y códigos deontológicos que determinan qué interacciones constituyen operaciones de atención en salud.</span>
+          <button type="button" class="option-btn" data-correct="false" data-feedback="Los muros son fronteras físicas estáticas, no la clausura de operaciones y comunicaciones del sistema hospitalario.">
+            <span>B) Las rejas de seguridad y las paredes de ladrillo del edificio.</span>
           </button>
-          <button class="option-btn" data-correct="false" data-feedback="Las ambulancias son canales de transporte (vectores de acoplamiento), no el límite operacional del sistema.">
-            <span>C) El parqueadero de las ambulancias en la entrada de urgencias.</span>
+          <button type="button" class="option-btn" data-correct="false" data-feedback="Las ambulancias son canales de transporte (vías de acoplamiento), no el límite operacional del sistema.">
+            <span>C) El parqueadero de ambulancias en la entrada de urgencias.</span>
           </button>
         </div>
-        <div class="exercise-feedback"></div>
-      </div>
+        <div class="exercise-feedback" aria-live="polite"></div>
+      </article>
     </div>
   </section>
 
-  <!-- =========================================================================
-       06. JUEGOS INTERACTIVOS (3 EXPERIENCIAS GAMIFICADAS)
-       ========================================================================= -->
+  <!-- ===================== 06. JUEGOS ===================== -->
   <section class="section" id="laboratorio">
+    <div class="blob-deco blob-left blob-corner-pos" aria-hidden="true"><svg><use href="#blob-corner"/></svg></div>
     <div class="container">
-      <div class="section-header">
-        <span class="section-tag">06 · GAMIFICACIÓN Y SIMULACIÓN</span>
-        <h2 class="section-title">Laboratorio Virtual de Aprendizaje Activo</h2>
-        <p class="section-description">
-          Experimenta directamente los principios de la autopoiesis a través de 3 juegos interactivos diseñados para consolidar competencias en TGS.
-        </p>
+      <header class="slide-head">
+        <span class="slide-word" aria-hidden="true">Juegos</span>
+        <div class="paper slide-card">
+          <span class="section-tag">06 · Gamificación y simulación</span>
+          <h2 class="section-title">Laboratorio virtual de aprendizaje activo</h2>
+          <p class="section-description">
+            Cinco experiencias para consolidar los conceptos: tres juegos propios del OVA y dos actividades en plataformas externas (Wordwall y Educaplay).
+          </p>
+        </div>
+      </header>
+
+      <div class="games-tab-nav" role="tablist" aria-label="Juegos del OVA">
+        <button type="button" class="tab-btn active" role="tab" data-target="game-biolab"><span class="tab-num">1</span> Bio-Lab simulador</button>
+        <button type="button" class="tab-btn" role="tab" data-target="game-ontologico"><span class="tab-num">2</span> Desafío ontológico</button>
+        <button type="button" class="tab-btn" role="tab" data-target="game-acoplamiento"><span class="tab-num">3</span> Aventura de acoplamiento</button>
+        <button type="button" class="tab-btn" role="tab" data-target="game-externos"><span class="tab-num">4·5</span> Actividades externas</button>
       </div>
 
-      <!-- Navegación entre Juegos -->
-      <div class="games-tab-nav">
-        <button class="tab-btn active" data-target="game-biolab">
-          <span>🔬 Juego 1: Bio-Lab Simulador</span>
-        </button>
-        <button class="tab-btn" data-target="game-ontologico">
-          <span>⚡ Juego 2: Desafío Ontológico</span>
-        </button>
-        <button class="tab-btn" data-target="game-acoplamiento">
-          <span>🧭 Juego 3: Aventura de Acoplamiento</span>
-        </button>
-      </div>
-
-      <!-- JUEGO 1: Simulador Bio-Lab (Canvas) -->
-      <div class="game-panel active" id="game-biolab">
-        <div class="biolab-layout">
+      <!-- JUEGO 1 -->
+      <div class="game-panel active" id="game-biolab" role="tabpanel">
+        <div class="paper biolab-layout">
           <div class="biolab-canvas-wrapper">
-            <canvas id="biolab-canvas"></canvas>
-            
-            <!-- Superposición de Métricas en Vivo -->
+            <canvas id="biolab-canvas" aria-label="Simulación de una célula autopoiética"></canvas>
             <div class="canvas-overlay-stats">
-              <div><strong>Estado Sistémico:</strong> <span id="stat-system-status"><span style="color: #34d399;">● VIVO (Autopoiético)</span></span></div>
-              <div><strong>Salud de Membrana:</strong> <span id="stat-membrane-health" style="color: #34d399;">100%</span></div>
-              <div><strong>Tasa Metabólica:</strong> <span id="stat-metabolic-rate" style="color: #67e8f9;">0 flux/s</span></div>
-              <div><strong>Clausura Operacional:</strong> <span id="stat-operational-closure" style="color: #34d399;">Mantenida</span></div>
+              <div><strong>Estado:</strong> <span id="stat-system-status"><span style="color: #5ec8c0;">● VIVO (Autopoiético)</span></span></div>
+              <div><strong>Membrana:</strong> <span id="stat-membrane-health">100%</span></div>
+              <div><strong>Tasa metabólica:</strong> <span id="stat-metabolic-rate">0 flux/s</span></div>
+              <div><strong>Clausura:</strong> <span id="stat-operational-closure">Mantenida</span></div>
             </div>
           </div>
 
-          <!-- Panel de Controles del Bio-Lab -->
           <div class="biolab-controls">
             <div class="control-group">
-              <h5>🎛️ Parámetros Ambientales</h5>
-              
+              <h4>Parámetros ambientales</h4>
               <div class="slider-container">
-                <label>
-                  <span>Flujo de Nutrientes (Sustrato)</span>
-                  <span id="val-substrate" style="color: var(--accent-bio-light); font-weight: 700;">35</span>
-                </label>
+                <label for="slider-substrate"><span>Flujo de nutrientes (sustrato)</span><span id="val-substrate" class="val">35</span></label>
                 <input type="range" id="slider-substrate" min="5" max="80" value="35">
               </div>
-
               <div class="slider-container">
-                <label>
-                  <span>Entropía / Degradación Externa</span>
-                  <span id="val-entropy" style="color: var(--accent-danger); font-weight: 700;">22</span>
-                </label>
+                <label for="slider-entropy"><span>Entropía / degradación externa</span><span id="val-entropy" class="val val-danger">22</span></label>
                 <input type="range" id="slider-entropy" min="5" max="65" value="22">
               </div>
-
               <div class="slider-container">
-                <label>
-                  <span>Permeabilidad de Membrana</span>
-                  <span id="val-permeability" style="color: var(--accent-cyan); font-weight: 700;">50</span>
-                </label>
+                <label for="slider-permeability"><span>Permeabilidad de membrana</span><span id="val-permeability" class="val val-blue">50</span></label>
                 <input type="range" id="slider-permeability" min="10" max="90" value="50">
               </div>
             </div>
 
             <div class="control-group">
-              <h5>🧪 Acciones del Operador</h5>
+              <h4>Acciones del operador</h4>
               <div class="biolab-actions">
-                <button class="btn-game" id="btn-inject-nutrient">💉 Inyectar Sustrato</button>
-                <button class="btn-game btn-game-danger" id="btn-perturb-cell">⚡ Perturbar Entorno</button>
-                <button class="btn-game" id="btn-reset-biolab">🔄 Reiniciar Célula</button>
-                <button class="btn-game" id="btn-sound-toggle">🔇 Sonido: OFF</button>
+                <button type="button" class="btn-game" id="btn-inject-nutrient">Inyectar sustrato</button>
+                <button type="button" class="btn-game btn-game-danger" id="btn-perturb-cell">Perturbar entorno</button>
+                <button type="button" class="btn-game" id="btn-reset-biolab">Reiniciar célula</button>
+                <button type="button" class="btn-game" id="btn-sound-toggle">🔇 Sonido: OFF</button>
               </div>
             </div>
 
-            <div style="background: rgba(16, 185, 129, 0.08); padding: 1rem; border-radius: var(--radius-md); border: 1px dashed var(--border-color); font-size: 0.85rem; color: var(--text-secondary);">
-              <strong>💡 Principio Observable:</strong> Observa cómo la membrana celular (en verde) se sintetiza y regenera continuamente a partir de las partículas internas. Si la entropía supera la tasa metabólica, ocurre <em>lisis</em> y la vida concluye.
+            <div class="tip-box">
+              <strong>Principio observable:</strong> la membrana (en aguamarina) se sintetiza y regenera continuamente a partir de las partículas internas. Si la entropía supera la tasa metabólica, ocurre <em>lisis</em> y la unidad se desintegra.
             </div>
           </div>
         </div>
       </div>
 
-      <!-- JUEGO 2: Desafío Ontológico -->
-      <div class="game-panel" id="game-ontologico">
-        <div class="card-game-container">
-          <div style="display: flex; justify-content: space-around; margin-bottom: 1.5rem; font-family: var(--font-mono); font-size: 0.95rem;">
-            <div>Puntaje: <span id="onto-score" style="color: var(--accent-bio-light); font-weight: 800;">0</span> pts</div>
-            <div>Racha de Aciertos: <span id="onto-streak" style="color: var(--accent-cyan); font-weight: 800;">0</span> 🔥</div>
+      <!-- JUEGO 2 -->
+      <div class="game-panel" id="game-ontologico" role="tabpanel">
+        <div class="paper card-game-container">
+          <div class="score-row">
+            <div>Puntaje: <span id="onto-score">0</span> pts</div>
+            <div>Racha: <span id="onto-streak">0</span> 🔥</div>
           </div>
-
-          <!-- Contenedor dinámico de tarjeta -->
           <div id="onto-card-target"></div>
-
-          <!-- Botones de Clasificación -->
           <div class="swipe-buttons">
-            <button class="btn-classify btn-classify-auto" onclick="window.ontologyGame.checkAnswer('autopoietic')">
-              🌱 Es Autopoiético
-            </button>
-            <button class="btn-classify btn-classify-alo" onclick="window.ontologyGame.checkAnswer('allopoietic')">
-              🏭 Es Alopoiético
-            </button>
+            <button type="button" class="btn-classify btn-classify-auto" onclick="window.ontologyGame.checkAnswer('autopoietic')">Es autopoiético</button>
+            <button type="button" class="btn-classify btn-classify-alo" onclick="window.ontologyGame.checkAnswer('allopoietic')">Es alopoiético</button>
           </div>
-
-          <div id="onto-feedback" class="exercise-feedback" style="margin-top: 1.5rem;"></div>
+          <div id="onto-feedback" class="exercise-feedback" aria-live="polite"></div>
         </div>
       </div>
 
-      <!-- JUEGO 3: Aventura de Acoplamiento Estructural -->
-      <div class="game-panel" id="game-acoplamiento">
+      <!-- JUEGO 3 -->
+      <div class="game-panel" id="game-acoplamiento" role="tabpanel">
         <div class="coupling-game-wrapper">
           <div id="coupling-game-target"></div>
         </div>
       </div>
+
+      <!-- JUEGOS 4 y 5: plataformas externas (configurar en js/external.js) -->
+      <div class="game-panel" id="game-externos" role="tabpanel">
+        <div class="external-grid">
+          <article class="paper external-card" data-platform="wordwall">
+            <div class="external-head">
+              <span class="badge">Juego 4 · Wordwall</span>
+              <h3>Unir parejas: concepto y definición</h3>
+              <p>Relaciona cada concepto de la teoría autopoiética con su definición correcta.</p>
+            </div>
+            <div class="external-embed" id="embed-wordwall"></div>
+            <div class="external-actions" id="actions-wordwall"></div>
+          </article>
+
+          <article class="paper external-card" data-platform="educaplay">
+            <div class="external-head">
+              <span class="badge badge-blue">Juego 5 · Educaplay</span>
+              <h3>Crucigrama de la autopoiesis</h3>
+              <p>Completa el crucigrama con los términos clave de Maturana y Varela.</p>
+            </div>
+            <div class="external-embed" id="embed-educaplay"></div>
+            <div class="external-actions" id="actions-educaplay"></div>
+          </article>
+        </div>
+      </div>
     </div>
   </section>
 
-  <!-- =========================================================================
-       07. VIDEOTECA CURADA CON GUÍAS DE ANÁLISIS
-       ========================================================================= -->
-  <section class="section" id="videoteca" style="background: rgba(15, 23, 42, 0.4);">
+  <!-- ===================== 07. VIDEOS ===================== -->
+  <section class="section" id="videoteca">
+    <div class="blob-deco blob-right blob-ribbon-pos" aria-hidden="true"><svg><use href="#blob-ribbon"/></svg></div>
     <div class="container">
-      <div class="section-header">
-        <span class="section-tag">07 · RECURSOS MULTIMEDIA</span>
-        <h2 class="section-title">Videoteca Académica Curada</h2>
-        <p class="section-description">
-          Conferencias de los autores originales y análisis pedagógicos para profundizar en la ontología del conocer y la cibernética biológica.
-        </p>
-      </div>
+      <header class="slide-head">
+        <span class="slide-word" aria-hidden="true">Videos</span>
+        <div class="paper slide-card">
+          <span class="section-tag">07 · Recursos multimedia</span>
+          <h2 class="section-title">Videoteca académica curada</h2>
+          <p class="section-description">
+            Entrevistas a los autores originales y una conferencia de divulgación para profundizar en la biología del conocer. Cada video incluye una guía de observación y su referencia en APA 7.
+          </p>
+        </div>
+      </header>
 
       <div class="videos-grid">
-        <!-- Los enlaces abren la búsqueda en YouTube del título exacto: nunca quedan rotos -->
-        <a class="video-card video-link-card" href="https://www.youtube.com/results?search_query=Humberto+Maturana+La+belleza+de+pensar+Cristian+Warnken" target="_blank" rel="noopener">
-          <div class="video-thumb" style="--thumb-a:#10b981; --thumb-b:#0e7490;">
-            <span class="video-play">▶</span>
-            <span class="video-thumb-label">Entrevista · Canal 13C (Chile)</span>
+        <article class="paper video-card">
+          <div class="video-frame">
+            <iframe src="https://www.youtube-nocookie.com/embed/19uV8wKpkZw" title="La belleza de pensar – Humberto Maturana" loading="lazy" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
           </div>
           <div class="video-info">
-            <h4>Humberto Maturana en «La belleza de pensar»</h4>
-            <p>
-              Entrevista con Cristián Warnken. Maturana explica la biología del conocer, el papel del observador y por qué define a los seres vivos como sistemas que se producen a sí mismos.
-            </p>
+            <span class="video-kicker">Entrevista · La belleza de pensar</span>
+            <h3>Humberto Maturana</h3>
+            <p>Maturana conversa sobre la biología del conocer, el papel del observador y por qué define a los seres vivos como sistemas que se producen a sí mismos.</p>
             <div class="video-guide">
-              <strong>🎯 Pauta de observación:</strong> ¿Por qué Maturana dice que la reproducción no define la vida, sino que es una consecuencia de que ya exista una unidad autopoiética?
+              <strong>Guía de observación</strong>
+              <ul class="dot-list dot-list-sm">
+                <li>¿Por qué la reproducción no define la vida, sino que presupone una unidad autopoiética ya existente?</li>
+                <li>¿Qué significa que "todo lo dicho es dicho por un observador"?</li>
+              </ul>
             </div>
+            <p class="apa-cite" data-video="19uV8wKpkZw">Warnken, C. (Entrevistador). (s. f.). <em>La belleza de pensar: Humberto Maturana</em> [Video]. YouTube. https://www.youtube.com/watch?v=19uV8wKpkZw</p>
+            <a class="btn btn-ink btn-sm" href="https://www.youtube.com/watch?v=19uV8wKpkZw" target="_blank" rel="noopener">Ver en YouTube ↗</a>
           </div>
-        </a>
+        </article>
 
-        <a class="video-card video-link-card" href="https://www.youtube.com/results?search_query=Francisco+Varela+La+belleza+de+pensar" target="_blank" rel="noopener">
-          <div class="video-thumb" style="--thumb-a:#8b5cf6; --thumb-b:#0e7490;">
-            <span class="video-play">▶</span>
-            <span class="video-thumb-label">Entrevista · Canal 13C (Chile)</span>
+        <article class="paper video-card">
+          <div class="video-frame">
+            <iframe src="https://www.youtube-nocookie.com/embed/3-VydyPdhhg" title="La belleza de pensar – Francisco Varela" loading="lazy" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
           </div>
           <div class="video-info">
-            <h4>Francisco Varela en «La belleza de pensar»</h4>
-            <p>
-              Varela habla de la autopoiesis, la mente encarnada (enacción) y la neurofenomenología, conectando la biología con la experiencia humana.
-            </p>
+            <span class="video-kicker">Entrevista · La belleza de pensar</span>
+            <h3>Francisco Varela</h3>
+            <p>Varela habla de la autopoiesis, la mente encarnada (enacción) y la neurofenomenología, conectando la biología con la experiencia humana.</p>
             <div class="video-guide">
-              <strong>🎯 Pauta de observación:</strong> Identifica cómo Varela distingue la <em>organización</em> (lo que se conserva) de la <em>estructura</em> (lo que cambia).
+              <strong>Guía de observación</strong>
+              <ul class="dot-list dot-list-sm">
+                <li>Identifica cómo distingue la <em>organización</em> (lo que se conserva) de la <em>estructura</em> (lo que cambia).</li>
+                <li>¿Qué relación plantea entre conocer y actuar (enacción)?</li>
+              </ul>
             </div>
+            <p class="apa-cite" data-video="3-VydyPdhhg">Warnken, C. (Entrevistador). (s. f.). <em>La belleza de pensar: Francisco Varela</em> [Video]. YouTube. https://www.youtube.com/watch?v=3-VydyPdhhg</p>
+            <a class="btn btn-ink btn-sm" href="https://www.youtube.com/watch?v=3-VydyPdhhg" target="_blank" rel="noopener">Ver en YouTube ↗</a>
           </div>
-        </a>
+        </article>
 
-        <a class="video-card video-link-card" href="https://www.youtube.com/results?search_query=Juan+Carlos+Letelier+Living+beings+as+machines+Maturana+Varela+autopoiesis+Puerto+de+Ideas" target="_blank" rel="noopener">
-          <div class="video-thumb" style="--thumb-a:#06b6d4; --thumb-b:#047857;">
-            <span class="video-play">▶</span>
-            <span class="video-thumb-label">Conferencia · Puerto de Ideas</span>
+        <article class="paper video-card">
+          <div class="video-frame">
+            <iframe src="https://www.youtube-nocookie.com/embed/8TbqdtgmNZc" title="Los seres vivos como máquinas" loading="lazy" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
           </div>
           <div class="video-info">
-            <h4>Juan Carlos Letelier: «Los seres vivos como máquinas»</h4>
-            <p>
-              Conferencia de un discípulo directo de Maturana sobre el origen histórico de la autopoiesis y su impacto en la cibernética y la ciencia de sistemas.
-            </p>
+            <span class="video-kicker">Conferencia de divulgación</span>
+            <h3>Los seres vivos como máquinas</h3>
+            <p>Conferencia sobre el origen histórico del concepto de autopoiesis y su impacto en la cibernética y en la ciencia de sistemas.</p>
             <div class="video-guide">
-              <strong>🎯 Pauta de observación:</strong> Compara el modelo entrada → proceso → salida con la circularidad productiva de la célula.
+              <strong>Guía de observación</strong>
+              <ul class="dot-list dot-list-sm">
+                <li>Compara el modelo entrada → proceso → salida con la circularidad productiva de la célula.</li>
+                <li>¿En qué sentido un ser vivo es una "máquina" y en qué se diferencia de una máquina alopoiética?</li>
+              </ul>
             </div>
+            <p class="apa-cite" data-video="8TbqdtgmNZc"><em>Los seres vivos como máquinas</em> [Video]. (s. f.). YouTube. https://www.youtube.com/watch?v=8TbqdtgmNZc</p>
+            <a class="btn btn-ink btn-sm" href="https://www.youtube.com/watch?v=8TbqdtgmNZc" target="_blank" rel="noopener">Ver en YouTube ↗</a>
           </div>
-        </a>
+        </article>
       </div>
     </div>
   </section>
 
-  <!-- =========================================================================
-       08. QUIZ EVALUATIVO Y CERTIFICADO OFICIAL
-       ========================================================================= -->
+  <!-- ===================== 08. EVALUACIÓN ===================== -->
   <section class="section" id="evaluacion">
-    <div class="container">
-      <div class="section-header">
-        <span class="section-tag">08 · EVALUACIÓN DEL APRENDIZAJE</span>
-        <h2 class="section-title">Evaluación Interactiva y Certificación</h2>
-        <p class="section-description">
-          Demuestra tu dominio conceptual sobre la teoría de Maturana y Varela respondiendo 10 reactivos académicos rigurosos con puntaje y constancia automática.
-        </p>
-      </div>
+    <div class="blob-deco blob-left blob-wave-pos" aria-hidden="true"><svg><use href="#blob-wave"/></svg></div>
+    <div class="container narrow">
+      <header class="slide-head">
+        <span class="slide-word" aria-hidden="true">Quiz</span>
+        <div class="paper slide-card">
+          <span class="section-tag">08 · Evaluación del aprendizaje</span>
+          <h2 class="section-title">Evaluación interactiva y constancia</h2>
+          <p class="section-description">
+            Demuestra tu dominio de la teoría de Maturana y Varela respondiendo 10 preguntas con puntaje automático y constancia de culminación.
+          </p>
+        </div>
+      </header>
 
       <div class="quiz-container">
-        <!-- Barra de Progreso del Quiz -->
-        <div class="quiz-header-bar">
-          <div>Progreso: <span id="quiz-progress-text">1 / 10</span></div>
-          <div>Teoría General de Sistemas · Periodo 2026-2</div>
-        </div>
-
-        <div class="quiz-progress-bar-bg">
-          <div class="quiz-progress-fill" id="quiz-progress-fill"></div>
-        </div>
-
-        <!-- Tarjeta de Pregunta Activa -->
-        <div class="quiz-question-card" id="quiz-question-card">
-          <div class="quiz-q-num" id="quiz-q-num">PREGUNTA 1 DE 10</div>
-          <div class="quiz-q-text" id="quiz-q-text">Cargando reactivo conceptual...</div>
-          
-          <div class="quiz-answers-list" id="quiz-options-container">
-            <!-- Renderizado dinámico vía JavaScript -->
+        <div class="paper quiz-question-card" id="quiz-question-card">
+          <div class="quiz-header-bar">
+            <span>Progreso: <strong id="quiz-progress-text">1 / 10</strong></span>
+            <span>TGS · 2026-2</span>
           </div>
+          <div class="quiz-progress-bar-bg"><div class="quiz-progress-fill" id="quiz-progress-fill"></div></div>
+
+          <div class="quiz-q-num" id="quiz-q-num">PREGUNTA 1 DE 10</div>
+          <div class="quiz-q-text" id="quiz-q-text">Cargando pregunta...</div>
+          <div class="quiz-answers-list" id="quiz-options-container" role="radiogroup" aria-labelledby="quiz-q-text"></div>
 
           <div class="quiz-nav-btns">
-            <button class="btn btn-outline" id="btn-quiz-prev" disabled>⬅ Pregunta Anterior</button>
-            <button class="btn btn-primary" id="btn-quiz-next">Siguiente Pregunta ➔</button>
+            <button type="button" class="btn btn-ghost" id="btn-quiz-prev" disabled>← Anterior</button>
+            <button type="button" class="btn btn-teal" id="btn-quiz-next">Siguiente →</button>
           </div>
         </div>
 
-        <!-- Tarjeta de Resultados Finales -->
-        <div class="quiz-results-card" id="quiz-results-card">
-          <div style="font-size: 3rem; margin-bottom: 1rem;">🎓</div>
-          <h3 style="font-size: 1.8rem; margin-bottom: 0.5rem; color: var(--accent-bio-light);">¡Evaluación Concluida!</h3>
-          <p style="color: var(--text-secondary); margin-bottom: 2rem;">Tu desempeño ha sido calificado en escala de 0.0 a 5.0:</p>
-          
-          <div class="quiz-score-circle">
-            <div class="quiz-score-val" id="quiz-score-val">5.0</div>
-          </div>
+        <div class="paper quiz-results-card" id="quiz-results-card">
+          <span class="slide-word slide-word-ink" aria-hidden="true">Resultado</span>
+          <h3 class="results-title">¡Evaluación concluida!</h3>
+          <p class="results-sub">Tu desempeño en escala de 0.0 a 5.0:</p>
+          <div class="quiz-score-circle"><div class="quiz-score-val" id="quiz-score-val">5.0</div></div>
+          <div id="quiz-score-scale" class="quiz-score-scale">10/10 correctas (100%)</div>
 
-          <div id="quiz-score-scale" style="font-family: var(--font-mono); font-size: 1.1rem; margin-bottom: 2rem; color: var(--accent-cyan);">
-            10/10 correctas (100%)
-          </div>
-
-          <div style="max-width: 520px; margin: 0 auto 2.5rem; background: var(--bg-tertiary); padding: 1.5rem; border-radius: var(--radius-md); border: 1px solid var(--border-color);">
-            <label for="cert-student-input" style="display: block; font-size: 0.85rem; color: var(--text-muted); margin-bottom: 0.5rem; text-align: left;">
-              Nombre del Estudiante para el Constancia:
-            </label>
-            <input type="text" id="cert-student-input" value="JULIAN ESTEBAN ROMERO HERRERA" style="width: 100%; padding: 0.75rem 1rem; border-radius: var(--radius-sm); border: 1px solid var(--border-color); background: var(--bg-secondary); color: var(--text-primary); font-family: var(--font-sans); font-size: 1rem; font-weight: 700; margin-bottom: 1rem;">
-            
-            <div style="display: flex; gap: 0.75rem; justify-content: center; flex-wrap: wrap;">
-              <button class="btn btn-primary" id="btn-generate-cert">📜 Ver y Descargar Constancia</button>
-              <button class="btn btn-outline" id="btn-restart-quiz">🔄 Repetir Evaluación</button>
+          <div class="cert-form">
+            <label for="cert-student-input">Nombre del estudiante para la constancia:</label>
+            <input type="text" id="cert-student-input" value="JULIÁN ESTEBAN ROMERO HERRERA">
+            <div class="cert-form-actions">
+              <button type="button" class="btn btn-teal" id="btn-generate-cert">Ver y descargar constancia</button>
+              <button type="button" class="btn btn-ghost" id="btn-restart-quiz">Repetir evaluación</button>
             </div>
           </div>
-
-          <!-- Desglose Pedagógico de Respuestas -->
           <div id="quiz-summary-feedback"></div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- =========================================================================
-       09. FICHA TÉCNICA OFICIAL (MODAL E IMPRESIÓN PDF)
-       ========================================================================= -->
-  <div class="modal-overlay" id="modal-ficha-tecnica">
-    <div class="modal-content">
-      <button class="modal-close-btn" title="Cerrar Ficha">✕</button>
-      
-      <div style="border-bottom: 2px solid var(--accent-bio); padding-bottom: 1rem; margin-bottom: 1.5rem; display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 1rem;">
-        <div>
-          <h2 style="font-size: 1.5rem; font-weight: 800; color: var(--accent-bio-light);">FICHA TÉCNICA OFICIAL DEL PROYECTO OVA</h2>
-          <div style="font-family: var(--font-mono); font-size: 0.85rem; color: var(--text-muted);">Teoría General de Sistemas (TGS) · Ingeniería de Sistemas · Periodo 2026-2</div>
-        </div>
-        <button class="btn btn-primary" id="btn-print-ficha" style="padding: 0.5rem 1rem; font-size: 0.85rem;">🖨️ Descargar en PDF / Imprimir</button>
-      </div>
-
-      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem; margin-bottom: 1.5rem;">
-        <div style="background: var(--bg-tertiary); padding: 1rem; border-radius: 8px;">
-          <strong style="color: var(--accent-bio-light); display: block; font-size: 0.8rem; text-transform: uppercase;">Proyecto & Tema</strong>
-          <span>Tema 22: Autopoiesis y sistemas vivos (Maturana y Varela)</span>
-        </div>
-        <div style="background: var(--bg-tertiary); padding: 1rem; border-radius: 8px;">
-          <strong style="color: var(--accent-bio-light); display: block; font-size: 0.8rem; text-transform: uppercase;">Estudiante Asignado</strong>
-          <span>ROMERO HERRERA JULIAN ESTEBAN</span>
-        </div>
-        <div style="background: var(--bg-tertiary); padding: 1rem; border-radius: 8px;">
-          <strong style="color: var(--accent-bio-light); display: block; font-size: 0.8rem; text-transform: uppercase;">Asignatura</strong>
-          <span>Teoría General de Sistemas (TGS) · Periodo 2026-2</span>
-        </div>
-        <div style="background: var(--bg-tertiary); padding: 1rem; border-radius: 8px;">
-          <strong style="color: var(--accent-bio-light); display: block; font-size: 0.8rem; text-transform: uppercase;">Modalidad y Formato</strong>
-          <span>Individual · Aplicación Web Interactiva (HTML5 / CSS3 / ES6+)</span>
-        </div>
-      </div>
-
-      <h4 style="color: var(--accent-bio-light); margin: 1.25rem 0 0.5rem;">1. Objetivo General</h4>
-      <p style="color: var(--text-secondary); font-size: 0.92rem; margin-bottom: 1rem;">
-        Diseñar e implementar un Objeto Virtual de Aprendizaje (OVA) funcional, accesible y didáctico que permita comprender, simular y enseñar el modelo de autopoiesis, clausura operacional y acoplamiento estructural formulado por Humberto Maturana y Francisco Varela, vinculándolo con la Teoría General de Sistemas y la Ingeniería de Sistemas.
-      </p>
-
-      <h4 style="color: var(--accent-bio-light); margin: 1.25rem 0 0.5rem;">2. Objetivos Específicos</h4>
-      <ul style="color: var(--text-secondary); font-size: 0.92rem; margin-left: 1.5rem; margin-bottom: 1rem; line-height: 1.7;">
-        <li>Investigar y sintetizar el marco conceptual de la autopoiesis a partir de fuentes académicas canónicas (Maturana, Varela, Luhmann, Von Bertalanffy).</li>
-        <li>Desarrollar un simulador bio-cibernético interactivo (Bio-Lab) en Canvas 2D con modelado matemático de membrana elástica, degradación entrópica y síntesis catalítica.</li>
-        <li>Implementar tres experiencias de gamificación con retroalimentación inmediata: Bio-Lab, Desafío Ontológico y Aventura de Acoplamiento Estructural.</li>
-        <li>Evaluar las competencias cognitivas mediante un quiz parametrizado de 10 reactivos y emisión de certificado institucional de culminación.</li>
-      </ul>
-
-      <h4 style="color: var(--accent-bio-light); margin: 1.25rem 0 0.5rem;">3. Herramientas y Tecnologías Empleadas</h4>
-      <p style="color: var(--text-secondary); font-size: 0.92rem; margin-bottom: 1.5rem;">
-        HTML5 semántico, CSS3 modular (Glassmorphism & Responsive Design), JavaScript ES6+ sin dependencias externas pesadas, HTML5 Canvas API para dinámica de fluidos y resortes de membrana, Web Audio API para síntesis sonora procedural, Web Speech API para accesibilidad auditiva, Google Fonts y Google Antigravity para optimización de código.
-      </p>
-    </div>
-  </div>
-
-  <!-- MODAL DE CERTIFICADO DE CULMINACIÓN -->
-  <div class="modal-overlay" id="modal-certificate">
-    <div class="modal-content" style="max-width: 820px; background: transparent; border: none; padding: 0;">
-      <button class="modal-close-btn" style="z-index: 10;" title="Cerrar Certificado">✕</button>
-      
-      <div class="certificate-preview-box">
-        <div style="font-size: 2.5rem; margin-bottom: 0.5rem;">🏛️</div>
-        <div class="cert-university">TEORÍA GENERAL DE SISTEMAS</div>
-        <div class="cert-faculty">INGENIERÍA DE SISTEMAS · PERIODO 2026-2 · OVA TEMA 22</div>
-        
-        <div style="margin: 1.5rem 0 0.5rem; font-family: var(--font-mono); font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.1em; color: #64748b;">
-          Constancia de culminación del OVA
-        </div>
-        <div class="cert-title">AUTOPOIESIS Y SISTEMAS VIVOS</div>
-        <div style="font-size: 0.95rem; color: #475569;">Teoría General de Sistemas (TGS) · Modelo de Maturana y Varela</div>
-
-        <div style="margin-top: 2rem; font-size: 1rem; color: #334155;">Se certifica que:</div>
-        <div class="cert-student-name" id="cert-name-target">JULIAN ESTEBAN ROMERO HERRERA</div>
-        <div style="max-width: 580px; margin: 0 auto; font-size: 0.92rem; color: #475569; line-height: 1.6;">
-          Ha completado satisfactoriamente los módulos teóricos, el simulador Bio-Lab de clausura operacional y la evaluación formativa con una calificación meritoria de:
-        </div>
-
-        <div style="margin: 1.25rem 0; font-family: var(--font-mono); font-size: 1.4rem; font-weight: 800; color: #059669;" id="cert-grade-display">
-          5.0 / 5.0 (100%)
-        </div>
-
-        <div style="display: flex; justify-content: space-around; margin-top: 3rem; padding-top: 2rem; border-top: 1px dashed #cbd5e1; font-size: 0.85rem; color: #64748b;">
-          <div>
-            <div style="font-weight: 700; color: #0f172a;">Autor del OVA</div>
-            <div>Julián Esteban Romero Herrera</div>
-          </div>
-          <div>
-            <div style="font-weight: 700; color: #0f172a;">Fecha de Expedición</div>
-            <div id="cert-date-display">Noviembre 2026</div>
-          </div>
-          <div>
-            <div style="font-weight: 700; color: #0f172a;">Código del OVA</div>
-            <div style="font-family: var(--font-mono);">TGS-2026-2-TEMA-22</div>
-          </div>
-        </div>
-      </div>
-
-      <div style="text-align: center; margin-top: 1rem;">
-        <button class="btn btn-primary" id="btn-print-certificate">🖨️ Imprimir / Guardar en PDF</button>
-      </div>
-    </div>
-  </div>
-
-  <!-- =========================================================================
-       10. CRÉDITOS Y REFERENCIAS BIBLIOGRÁFICAS (APA 7)
-       ========================================================================= -->
-  <footer class="footer" id="creditos">
+  <!-- ===================== CRÉDITOS Y REFERENCIAS ===================== -->
+  <section class="section credits" id="creditos">
+    <div class="blob-deco blob-right blob-corner-pos" aria-hidden="true"><svg><use href="#blob-corner"/></svg></div>
     <div class="container">
-      <div class="footer-grid">
-        <!-- Columna 1: Información Académica -->
-        <div class="footer-col">
-          <h5>Teoría General de Sistemas</h5>
-          <p style="font-size: 0.9rem; color: var(--text-secondary); margin-bottom: 1rem;">
-            Programa de Ingeniería de Sistemas<br>
-            Asignatura: Teoría General de Sistemas (TGS)<br>
-            Periodo Académico: 2026-2 · Proyecto final OVA (modalidad individual).
-          </p>
-          <div style="font-size: 0.85rem; color: var(--text-muted);">
-            <strong>Tema 22 Asignado:</strong> Autopoiesis y sistemas vivos (Maturana y Varela)
-          </div>
+      <header class="slide-head">
+        <span class="slide-word" aria-hidden="true">Créditos</span>
+        <div class="paper slide-card">
+          <span class="section-tag">09 · Autoría y fuentes</span>
+          <h2 class="section-title">Créditos y referencias</h2>
+          <p class="section-description">Autoría, declaración de uso de inteligencia artificial y referencias bibliográficas en formato APA 7.ª edición.</p>
         </div>
+      </header>
 
-        <!-- Columna 2: Autoría y Declaración de IA -->
-        <div class="footer-col">
-          <h5>Autoría y Declaración Ética</h5>
-          <p style="font-size: 0.9rem; color: var(--text-secondary); margin-bottom: 0.5rem;">
-            <strong>Estudiante:</strong> ROMERO HERRERA JULIAN ESTEBAN
-          </p>
-          <div style="background: var(--bg-tertiary); padding: 0.75rem; border-radius: var(--radius-sm); border: 1px solid var(--border-color); font-size: 0.82rem; color: var(--text-muted); line-height: 1.5;">
-            <strong>Declaración de uso de IA:</strong> Se declara el uso asistido de herramientas de Inteligencia Artificial (Google Antigravity) para la co-generación del código estructural web, simulador de partículas y maquetación de reactivos, bajo revisión, diseño y sustentación del estudiante autor.
-          </div>
-        </div>
-
-        <!-- Columna 3: Referencias Académicas APA 7ma Edición -->
-        <div class="footer-col" style="grid-column: span 2;">
-          <h5>Referencias Bibliográficas (APA 7ma Edición)</h5>
-          <ul class="footer-links" style="font-size: 0.82rem; color: var(--text-secondary); line-height: 1.6;">
-            <li>• Maturana, H. R., & Varela, F. J. (1973/1980). <em>Autopoiesis and Cognition: The Realization of the Living</em>. Boston Studies in the Philosophy of Science, Vol. 42. D. Reidel Publishing Company.</li>
-            <li>• Maturana, H. R., & Varela, F. J. (1984). <em>El Árbol del Conocimiento: Las bases biológicas del entendimiento humano</em>. Editorial Universitaria. Santiago de Chile.</li>
-            <li>• Maturana, H. R. (1997). <em>La objetividad: Un argumento para obligar</em>. Dolmen Ediciones.</li>
-            <li>• Varela, F. J. (1979). <em>Principles of Biological Autonomy</em>. North Holland, New York.</li>
-            <li>• Luhmann, N. (1998). <em>Sistemas sociales: Lineamientos para una teoría general</em>. Editorial Anthropos / Universidad Iberoamericana.</li>
-            <li>• Von Bertalanffy, L. (1968). <em>General System Theory: Foundations, Development, Applications</em>. George Braziller, New York.</li>
-            <li>• Videos curados: Warnken, C. (Conductor). <em>La belleza de pensar</em> [Programa de televisión, entrevistas a H. Maturana y F. Varela]. Canal 13C, Chile. · Letelier, J. C. <em>Living beings as machines: Maturana, Varela and the impact of autopoiesis</em> [Conferencia]. Puerto de Ideas. Disponibles en YouTube.</li>
+      <div class="credits-grid">
+        <article class="paper credit-card">
+          <h3>Proyecto</h3>
+          <ul class="dot-list">
+            <li><strong>OVA</strong><span>Autopoiesis y sistemas vivos (Maturana y Varela) — Tema 22</span></li>
+            <li><strong>Asignatura</strong><span>Teoría General de Sistemas (TGS) · Ingeniería de Sistemas</span></li>
+            <li><strong>Periodo</strong><span>2026-2 · Proyecto final, modalidad individual</span></li>
+            <li><strong>Autor</strong><span>Romero Herrera Julián Esteban</span></li>
           </ul>
-        </div>
-      </div>
+        </article>
 
-      <div class="footer-bottom">
-        <p>© 2026 Objeto Virtual de Aprendizaje (OVA) · Julian Esteban Romero Herrera · TGS 2026-2 · Licencia Educativa Creative Commons (CC BY-NC-SA 4.0)</p>
+        <article class="paper credit-card">
+          <h3>Declaración de uso de IA</h3>
+          <p>
+            Se declara el uso de la herramienta de inteligencia artificial <strong>Google Antigravity</strong> como asistente en la generación y depuración del código web (estructura, estilos, simulador y juegos) y en la revisión de redacción. El diseño visual parte de una propuesta propia del autor elaborada en Canva; los contenidos fueron revisados, ajustados y validados por el estudiante, quien asume su autoría y sustentación.
+          </p>
+          <p class="small-note">Tecnologías: HTML5, CSS3, JavaScript, Canvas API, Web Audio API, Web Speech API. Tipografías Montserrat y Outfit (Google Fonts, SIL Open Font License).</p>
+        </article>
+
+        <article class="paper credit-card references-card" id="referencias">
+          <h3>Referencias (APA 7)</h3>
+          <ul class="apa-list">
+            <li>Luhmann, N. (1998). <em>Sistemas sociales: Lineamientos para una teoría general</em>. Anthropos; Universidad Iberoamericana.</li>
+            <li>Maturana, H. R. (1997). <em>La objetividad: Un argumento para obligar</em>. Dolmen.</li>
+            <li>Maturana, H. R. y Varela, F. J. (1973). <em>De máquinas y seres vivos</em>. Editorial Universitaria.</li>
+            <li>Maturana, H. R. y Varela, F. J. (1980). <em>Autopoiesis and cognition: The realization of the living</em>. D. Reidel.</li>
+            <li>Maturana, H. R. y Varela, F. J. (1984). <em>El árbol del conocimiento: Las bases biológicas del entendimiento humano</em>. Editorial Universitaria.</li>
+            <li>Varela, F. J. (1979). <em>Principles of biological autonomy</em>. North Holland.</li>
+            <li>von Bertalanffy, L. (1968). <em>General system theory: Foundations, development, applications</em>. George Braziller.</li>
+          </ul>
+        </article>
       </div>
+    </div>
+  </section>
+
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <p>© 2026 · Autopoiesis y sistemas vivos (Maturana y Varela) · Julián Esteban Romero Herrera · TGS 2026-2 · Licencia CC BY-NC-SA 4.0</p>
     </div>
   </footer>
 
-  <!-- Scripts Modulares -->
+  <!-- MODAL: CONSTANCIA DE CULMINACIÓN -->
+  <div class="modal-overlay" id="modal-certificate" role="dialog" aria-modal="true" aria-label="Constancia de culminación">
+    <div class="modal-content modal-cert">
+      <button type="button" class="modal-close-btn" title="Cerrar" aria-label="Cerrar constancia">✕</button>
+      <div class="certificate-preview-box">
+        <div class="cert-university">Teoría General de Sistemas</div>
+        <div class="cert-faculty">Ingeniería de Sistemas · Periodo 2026-2 · OVA Tema 22</div>
+        <div class="cert-kicker">Constancia de culminación del OVA</div>
+        <div class="cert-title">Autopoiesis y sistemas vivos (Maturana y Varela)</div>
+        <div class="cert-line">Se certifica que:</div>
+        <div class="cert-student-name" id="cert-name-target">JULIÁN ESTEBAN ROMERO HERRERA</div>
+        <div class="cert-text">Completó los módulos teóricos, el simulador Bio-Lab y la evaluación formativa con una calificación de:</div>
+        <div class="cert-grade" id="cert-grade-display">5.0 / 5.0 (100%)</div>
+        <div class="cert-signs">
+          <div><strong>Autor del OVA</strong><span>Julián Esteban Romero Herrera</span></div>
+          <div><strong>Fecha de expedición</strong><span id="cert-date-display">Noviembre 2026</span></div>
+          <div><strong>Código del OVA</strong><span>TGS-2026-2-TEMA-22</span></div>
+        </div>
+      </div>
+      <div class="cert-print-row">
+        <button type="button" class="btn btn-teal" id="btn-print-certificate">Imprimir / guardar en PDF</button>
+      </div>
+    </div>
+  </div>
+
   <script src="js/simulator.js"></script>
   <script src="js/games.js"></script>
   <script src="js/quiz.js"></script>
+  <script src="js/external.js"></script>
   <script src="js/app.js"></script>
 </body>
 </html>

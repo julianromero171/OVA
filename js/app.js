@@ -1,186 +1,157 @@
 /**
- * OVA: AUTOPOIESIS Y SISTEMAS VIVOS
- * Controlador Principal de la Aplicación Web
- * Autor: Romero Herrera Julian Esteban - TGS 2026-2
+ * Autopoiesis y sistemas vivos (Maturana y Varela)
+ * Controlador principal de la interfaz
+ * Autor: Romero Herrera Julián Esteban - TGS 2026-2
  */
 
 document.addEventListener('DOMContentLoaded', () => {
-  // 1. Barra de Progreso de Lectura
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // 1. Barra de progreso de lectura
   const progressBar = document.getElementById('scroll-progress');
-  window.addEventListener('scroll', () => {
-    const totalHeight = document.documentElement.scrollHeight - window.innerHeight;
-    const progress = totalHeight > 0 ? (window.scrollY / totalHeight) * 100 : 0;
-    if (progressBar) progressBar.style.width = `${progress}%`;
-  });
+  const updateProgress = () => {
+    const total = document.documentElement.scrollHeight - window.innerHeight;
+    const pct = total > 0 ? (window.scrollY / total) * 100 : 0;
+    if (progressBar) {
+      progressBar.style.width = `${pct}%`;
+      progressBar.setAttribute('aria-valuenow', Math.round(pct));
+    }
+  };
 
-  // 2. Alternador de Tema Oscuro / Claro
-  const themeToggleBtn = document.getElementById('theme-toggle-btn');
-  const currentTheme = localStorage.getItem('ova-theme') || 'dark';
-  document.documentElement.setAttribute('data-theme', currentTheme);
-  updateThemeIcon(currentTheme);
-
-  if (themeToggleBtn) {
-    themeToggleBtn.addEventListener('click', () => {
-      const activeTheme = document.documentElement.getAttribute('data-theme');
-      const newTheme = activeTheme === 'dark' ? 'light' : 'dark';
-      document.documentElement.setAttribute('data-theme', newTheme);
-      localStorage.setItem('ova-theme', newTheme);
-      updateThemeIcon(newTheme);
-    });
-  }
-
-  function updateThemeIcon(theme) {
-    if (!themeToggleBtn) return;
-    themeToggleBtn.innerHTML = theme === 'dark' ? '🌙' : '☀️';
-    themeToggleBtn.setAttribute('title', theme === 'dark' ? 'Cambiar a Modo Claro' : 'Cambiar a Modo Oscuro');
-  }
-
-  // 3. Menú Móvil
+  // 2. Menú móvil (hamburguesa < 1180px)
   const btnMobileMenu = document.getElementById('btn-mobile-menu');
   const navLinks = document.getElementById('nav-links');
   if (btnMobileMenu && navLinks) {
-    btnMobileMenu.addEventListener('click', () => {
-      navLinks.classList.toggle('show');
-    });
-
-    // Cerrar menú al hacer clic en un enlace
-    navLinks.querySelectorAll('a').forEach(link => {
-      link.addEventListener('click', () => navLinks.classList.remove('show'));
-    });
+    const setMenu = (open) => {
+      navLinks.classList.toggle('show', open);
+      btnMobileMenu.setAttribute('aria-expanded', String(open));
+      btnMobileMenu.setAttribute('aria-label', open ? 'Cerrar menú de navegación' : 'Abrir menú de navegación');
+    };
+    btnMobileMenu.addEventListener('click', () => setMenu(!navLinks.classList.contains('show')));
+    navLinks.querySelectorAll('a').forEach(link => link.addEventListener('click', () => setMenu(false)));
+    document.addEventListener('keydown', (e) => { if (e.key === 'Escape') setMenu(false); });
   }
 
-  // 4. Navegación Activa según Scroll (Intersection Observer)
-  const sections = document.querySelectorAll('section[id]');
+  // 3. Enlace activo según la sección visible
+  const sections = document.querySelectorAll('main section[id]');
   const navItems = document.querySelectorAll('.nav-link');
-
-  window.addEventListener('scroll', () => {
+  const updateActive = () => {
     let currentId = '';
-    const scrollPos = window.scrollY + 200;
-
+    const pos = window.scrollY + 160;
     sections.forEach(sec => {
-      const top = sec.offsetTop;
-      const height = sec.offsetHeight;
-      if (scrollPos >= top && scrollPos < top + height) {
-        currentId = sec.getAttribute('id');
-      }
+      if (pos >= sec.offsetTop && pos < sec.offsetTop + sec.offsetHeight) currentId = sec.id;
     });
+    navItems.forEach(item => item.classList.toggle('active', item.getAttribute('href') === `#${currentId}`));
+  };
 
-    navItems.forEach(item => {
-      item.classList.remove('active');
-      if (item.getAttribute('href') === `#${currentId}`) {
-        item.classList.add('active');
-      }
-    });
-  });
+  let ticking = false;
+  window.addEventListener('scroll', () => {
+    if (ticking) return;
+    ticking = true;
+    requestAnimationFrame(() => { updateProgress(); updateActive(); ticking = false; });
+  }, { passive: true });
+  updateProgress();
+  updateActive();
 
-  // 5. Herramientas de Accesibilidad (Tamaño de fuente & Síntesis de voz)
-  let currentFontSize = 16;
-  const btnFontIncrease = document.getElementById('btn-font-increase');
-  const btnFontDecrease = document.getElementById('btn-font-decrease');
-  const btnTextToSpeech = document.getElementById('btn-tts-toggle');
-
-  if (btnFontIncrease) {
-    btnFontIncrease.addEventListener('click', () => {
-      if (currentFontSize < 22) {
-        currentFontSize += 1.5;
-        document.documentElement.style.fontSize = `${currentFontSize}px`;
-      }
-    });
-  }
-
-  if (btnFontDecrease) {
-    btnFontDecrease.addEventListener('click', () => {
-      if (currentFontSize > 13) {
-        currentFontSize -= 1.5;
-        document.documentElement.style.fontSize = `${currentFontSize}px`;
-      }
+  // 4. Animaciones de aparición al hacer scroll
+  const revealTargets = document.querySelectorAll(
+    '.slide-word, .slide-card, .paper:not(.hero-card):not(.slide-card), .stack-word, .sub-heading'
+  );
+  if (!reduceMotion && 'IntersectionObserver' in window) {
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          io.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+    revealTargets.forEach((el, i) => {
+      // No ocultar elementos dentro de paneles de juego ocultos ni del modal
+      if (el.closest('.game-panel:not(.active)') || el.closest('.modal-overlay') || el.closest('.quiz-container')) return;
+      el.classList.add('reveal');
+      el.style.transitionDelay = `${(i % 3) * 80}ms`;
+      io.observe(el);
     });
   }
 
-  // Lectura en voz alta mediante Web Speech API
-  let isSpeaking = false;
-  if (btnTextToSpeech && 'speechSynthesis' in window) {
-    btnTextToSpeech.addEventListener('click', () => {
-      if (isSpeaking) {
+  // 5. Accesibilidad: tamaño de fuente y lectura en voz alta
+  let fontSize = 16;
+  const setFont = (size) => {
+    fontSize = Math.min(22, Math.max(13, size));
+    document.documentElement.style.fontSize = `${fontSize}px`;
+  };
+  const btnInc = document.getElementById('btn-font-increase');
+  const btnDec = document.getElementById('btn-font-decrease');
+  if (btnInc) btnInc.addEventListener('click', () => setFont(fontSize + 1.5));
+  if (btnDec) btnDec.addEventListener('click', () => setFont(fontSize - 1.5));
+
+  const btnTTS = document.getElementById('btn-tts-toggle');
+  if (btnTTS) {
+    if (!('speechSynthesis' in window)) {
+      btnTTS.disabled = true;
+      btnTTS.title = 'Tu navegador no admite lectura en voz alta';
+    } else {
+      let speaking = false;
+      const stop = () => {
         window.speechSynthesis.cancel();
-        isSpeaking = false;
-        btnTextToSpeech.innerHTML = '🗣️ Voz: OFF';
-      } else {
-        const textToRead = "Bienvenido al Objeto Virtual de Aprendizaje sobre Autopoiesis y sistemas vivos, basado en las investigaciones de Humberto Maturana y Francisco Varela, tema veintidós del curso de Teoría General de Sistemas. Esta OVA explora la clausura operacional, el acoplamiento estructural y su aplicación en la teoría general de sistemas.";
-        const utterance = new SpeechSynthesisUtterance(textToRead);
-        utterance.lang = 'es-ES';
-        utterance.rate = 1.0;
-        utterance.onend = () => {
-          isSpeaking = false;
-          btnTextToSpeech.innerHTML = '🗣️ Voz: OFF';
-        };
-        window.speechSynthesis.speak(utterance);
-        isSpeaking = true;
-        btnTextToSpeech.innerHTML = '⏹️ Detener Voz';
-      }
-    });
+        speaking = false;
+        btnTTS.setAttribute('aria-pressed', 'false');
+        btnTTS.title = 'Lectura en voz alta';
+      };
+      btnTTS.addEventListener('click', () => {
+        if (speaking) { stop(); return; }
+        // Lee la sección visible actualmente (o la portada)
+        const current = [...sections].find(sec => {
+          const r = sec.getBoundingClientRect();
+          return r.top < window.innerHeight * 0.5 && r.bottom > window.innerHeight * 0.3;
+        }) || document.getElementById('inicio');
+        const clone = current.cloneNode(true);
+        clone.querySelectorAll('[aria-hidden="true"], script, svg, iframe, canvas, button').forEach(n => n.remove());
+        const text = clone.innerText.replace(/\s+/g, ' ').trim().slice(0, 3800) ||
+          'Autopoiesis y sistemas vivos, de Maturana y Varela.';
+        const utter = new SpeechSynthesisUtterance(text);
+        utter.lang = 'es-ES';
+        utter.rate = 1;
+        utter.onend = stop;
+        utter.onerror = stop;
+        window.speechSynthesis.speak(utter);
+        speaking = true;
+        btnTTS.setAttribute('aria-pressed', 'true');
+        btnTTS.title = 'Detener lectura';
+      });
+    }
   }
 
-  // 6. Ejercicios Planteados con Retroalimentación Inmediata (Sección 4)
-  const exerciseContainers = document.querySelectorAll('.exercise-card');
-  exerciseContainers.forEach(card => {
+  // 6. Ejercicios con retroalimentación inmediata
+  document.querySelectorAll('.exercise-card').forEach(card => {
     const options = card.querySelectorAll('.option-btn');
     const feedbackBox = card.querySelector('.exercise-feedback');
-
     options.forEach(btn => {
       btn.addEventListener('click', () => {
-        // Limpiar selecciones previas
         options.forEach(b => b.classList.remove('correct', 'incorrect'));
-        const isCorrect = btn.getAttribute('data-correct') === 'true';
-        const feedbackMsg = btn.getAttribute('data-feedback');
-
-        if (isCorrect) {
-          btn.classList.add('correct');
-          if (feedbackBox) {
-            feedbackBox.className = 'exercise-feedback feedback-success show';
-            feedbackBox.innerHTML = `<strong>✨ ¡Excelente análisis sistémico!</strong> ${feedbackMsg}`;
-          }
-        } else {
-          btn.classList.add('incorrect');
-          if (feedbackBox) {
-            feedbackBox.className = 'exercise-feedback feedback-error show';
-            feedbackBox.innerHTML = `<strong>⚠️ Revisa el concepto:</strong> ${feedbackMsg}`;
-          }
+        const ok = btn.getAttribute('data-correct') === 'true';
+        const msg = btn.getAttribute('data-feedback');
+        btn.classList.add(ok ? 'correct' : 'incorrect');
+        if (feedbackBox) {
+          feedbackBox.className = `exercise-feedback ${ok ? 'feedback-success' : 'feedback-error'} show`;
+          feedbackBox.innerHTML = `<strong>${ok ? '¡Buen análisis sistémico!' : 'Revisa el concepto:'}</strong> ${msg}`;
         }
       });
     });
   });
 
-  // 7. Modales: Ficha Técnica Oficial y Certificado
-  const btnOpenFicha = document.getElementById('btn-open-ficha');
-  const modalFicha = document.getElementById('modal-ficha-tecnica');
-  const closeBtns = document.querySelectorAll('.modal-close-btn');
-
-  if (btnOpenFicha && modalFicha) {
-    btnOpenFicha.addEventListener('click', () => {
-      modalFicha.classList.add('active');
-    });
-  }
-
-  closeBtns.forEach(btn => {
+  // 7. Modal de constancia: cierre
+  document.querySelectorAll('.modal-close-btn').forEach(btn => {
     btn.addEventListener('click', () => {
       const modal = btn.closest('.modal-overlay');
       if (modal) modal.classList.remove('active');
     });
   });
-
-  // Cerrar al hacer clic fuera del contenido
   window.addEventListener('click', (e) => {
-    if (e.target.classList.contains('modal-overlay')) {
-      e.target.classList.remove('active');
-    }
+    if (e.target.classList && e.target.classList.contains('modal-overlay')) e.target.classList.remove('active');
   });
-
-  // Botón para Imprimir Ficha Técnica en PDF
-  const btnPrintFicha = document.getElementById('btn-print-ficha');
-  if (btnPrintFicha) {
-    btnPrintFicha.addEventListener('click', () => {
-      window.print();
-    });
-  }
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') document.querySelectorAll('.modal-overlay.active').forEach(m => m.classList.remove('active'));
+  });
 });

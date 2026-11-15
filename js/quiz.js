@@ -1,4 +1,4 @@
-/**
+﻿/**
  * SISTEMA DE EVALUACIÓN Y CERTIFICACIÓN ACADÉMICA INTERACTIVA
  * Asignatura: Teoría General de Sistemas (TGS) - TGS 2026-2
  * Autor: Romero Herrera Julian Esteban
@@ -120,6 +120,7 @@ const quizQuestions = [
 class QuizManager {
   constructor() {
     this.currentQ = 0;
+    this.questions = QuizManager.shuffleQuestions(quizQuestions);
     this.userAnswers = new Array(quizQuestions.length).fill(null);
     this.score = 0;
     this.startTime = Date.now();
@@ -136,6 +137,19 @@ class QuizManager {
 
     this.renderQuestion();
     this.setupEvents();
+  }
+
+  // Baraja el orden de las opciones de cada pregunta para que la posición
+  // de la respuesta correcta no sea predecible.
+  static shuffleQuestions(source) {
+    return source.map(q => {
+      const order = q.options.map((_, i) => i);
+      for (let i = order.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [order[i], order[j]] = [order[j], order[i]];
+      }
+      return { ...q, options: order.map(i => q.options[i]), correct: order.indexOf(q.correct) };
+    });
   }
 
   setupEvents() {
@@ -166,7 +180,7 @@ class QuizManager {
   }
 
   renderQuestion() {
-    const qData = quizQuestions[this.currentQ];
+    const qData = this.questions[this.currentQ];
     if (this.qNumEl) this.qNumEl.innerText = `PREGUNTA ${this.currentQ + 1} DE ${quizQuestions.length}`;
     if (this.qTextEl) this.qTextEl.innerText = qData.q;
     if (this.progressText) this.progressText.innerText = `${this.currentQ + 1} / ${quizQuestions.length}`;
@@ -179,16 +193,24 @@ class QuizManager {
       this.qOptionsEl.innerHTML = '';
       qData.options.forEach((optText, idx) => {
         const optDiv = document.createElement('div');
-        optDiv.className = `quiz-answer-opt ${this.userAnswers[this.currentQ] === idx ? 'selected' : ''}`;
+        const isSel = this.userAnswers[this.currentQ] === idx;
+        optDiv.className = `quiz-answer-opt ${isSel ? 'selected' : ''}`;
+        optDiv.setAttribute('role', 'radio');
+        optDiv.setAttribute('aria-checked', String(isSel));
+        optDiv.tabIndex = 0;
         optDiv.innerHTML = `
-          <div style="width: 26px; height: 26px; border-radius: 50%; border: 2px solid var(--accent-bio-light); display: flex; align-items: center; justify-content: center; font-size: 0.8rem; font-weight: 800; color: var(--accent-bio-light);">
-            ${String.fromCharCode(65 + idx)}
-          </div>
-          <div style="flex-grow: 1;">${optText}</div>
+          <span class="quiz-letter">${String.fromCharCode(65 + idx)}</span>
+          <span class="quiz-opt-text">${optText}</span>
         `;
-        optDiv.addEventListener('click', () => {
+        const choose = () => {
           this.userAnswers[this.currentQ] = idx;
           this.renderQuestion();
+          const sel = this.qOptionsEl.querySelector('.selected');
+          if (sel) sel.focus();
+        };
+        optDiv.addEventListener('click', choose);
+        optDiv.addEventListener('keydown', (e) => {
+          if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); choose(); }
         });
         this.qOptionsEl.appendChild(optDiv);
       });
@@ -197,13 +219,13 @@ class QuizManager {
     // Botones
     if (this.btnPrev) this.btnPrev.disabled = (this.currentQ === 0);
     if (this.btnNext) {
-      this.btnNext.innerText = (this.currentQ === quizQuestions.length - 1) ? 'Finalizar Evaluación ➔' : 'Siguiente Pregunta ➔';
+      this.btnNext.innerText = (this.currentQ === quizQuestions.length - 1) ? 'Finalizar evaluación →' : 'Siguiente →';
     }
   }
 
   finishQuiz() {
     let correctCount = 0;
-    quizQuestions.forEach((q, idx) => {
+    this.questions.forEach((q, idx) => {
       if (this.userAnswers[idx] === q.correct) {
         correctCount++;
       }
@@ -220,26 +242,21 @@ class QuizManager {
       const summaryList = document.getElementById('quiz-summary-feedback');
 
       if (scoreVal) scoreVal.innerText = `${grade5}`;
+      const circle = document.querySelector('.quiz-score-circle');
+      if (circle) circle.style.background = `conic-gradient(var(--teal-deep) ${grade100 * 3.6}deg, var(--paper-tint) 0deg)`;
       if (scoreScale) scoreScale.innerText = `${correctCount}/${quizQuestions.length} correctas (${grade100}%)`;
 
       // Detalle pedagógico
       if (summaryList) {
-        let summaryHtml = '<div style="margin-top: 2rem; text-align: left;">';
-        summaryHtml += '<h4 style="margin-bottom: 1rem; color: var(--accent-bio-light);">Desglose de Respuestas y Justificación Epistemológica:</h4>';
-        
-        quizQuestions.forEach((q, idx) => {
+        let summaryHtml = '<div class="quiz-summary">';
+        summaryHtml += '<h4>Desglose de respuestas y justificación</h4>';
+        this.questions.forEach((q, idx) => {
           const isRight = (this.userAnswers[idx] === q.correct);
           summaryHtml += `
-            <div style="background: var(--bg-tertiary); padding: 1rem; border-radius: 8px; margin-bottom: 0.75rem; border-left: 4px solid ${isRight ? 'var(--accent-bio)' : 'var(--accent-danger)'};">
-              <div style="font-weight: 700; font-size: 0.95rem; margin-bottom: 0.35rem;">
-                ${idx + 1}. ${q.q}
-              </div>
-              <div style="font-size: 0.85rem; color: ${isRight ? '#34d399' : '#f87171'};">
-                ${isRight ? '✅ Respuesta correcta' : '❌ Respuesta incorrecta'}
-              </div>
-              <div style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.25rem;">
-                <em>Justificación:</em> ${q.justification}
-              </div>
+            <div class="summary-item ${isRight ? '' : 'wrong'}">
+              <div class="summary-q">${idx + 1}. ${q.q}</div>
+              <div class="summary-status">${isRight ? '✔ Respuesta correcta' : '✘ Respuesta incorrecta'}</div>
+              <div class="summary-just"><em>Justificación:</em> ${q.justification}</div>
             </div>
           `;
         });
@@ -260,6 +277,7 @@ class QuizManager {
 
   restart() {
     this.currentQ = 0;
+    this.questions = QuizManager.shuffleQuestions(quizQuestions);
     this.userAnswers = new Array(quizQuestions.length).fill(null);
     if (this.questionCard) this.questionCard.style.display = 'block';
     if (this.resultsCard) this.resultsCard.style.display = 'none';
@@ -271,7 +289,7 @@ class QuizManager {
 function generateCertificate() {
   const studentNameInput = document.getElementById('cert-student-input');
   const certNameDisplay = document.getElementById('cert-name-target');
-  const name = (studentNameInput && studentNameInput.value.trim()) ? studentNameInput.value.trim() : 'JULIAN ESTEBAN ROMERO HERRERA';
+  const name = (studentNameInput && studentNameInput.value.trim()) ? studentNameInput.value.trim() : 'JULIÁN ESTEBAN ROMERO HERRERA';
   
   if (certNameDisplay) {
     certNameDisplay.innerText = name.toUpperCase();
