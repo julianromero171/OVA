@@ -1,119 +1,119 @@
 ﻿/**
- * SISTEMA DE EVALUACIÓN Y CERTIFICACIÓN ACADÉMICA INTERACTIVA
+ * Evaluación interactiva y constancia formativa · Autopoiesis y sistemas vivos (Maturana y Varela)
  * Asignatura: Teoría General de Sistemas (TGS) - TGS 2026-2
- * Autor: Romero Herrera Julian Esteban
+ * Autor: Romero Herrera Julián Esteban · Preguntas revisadas en docs/contenido_revisado.md
  */
 
 const quizQuestions = [
   {
-    q: "¿Cuál es la tesis central postulada por Humberto Maturana y Francisco Varela respecto a la definición de los seres vivos?",
+    q: "¿Cuál es la tesis central de Maturana y Varela sobre qué define a un ser vivo?",
     options: [
-      "La vida se define por la capacidad de replicar ADN y moverse en el espacio físico.",
-      "Los seres vivos son redes de producciones moleculares que se producen continuamente a sí mismas (autopoiesis).",
-      "Los seres vivos son máquinas lineales que transforman entradas en salidas sin retroalimentación interna.",
-      "La vida es una propiedad exclusiva de los sistemas que poseen conciencia reflexiva y lenguaje."
+      "La capacidad de replicar ADN y desplazarse en el espacio.",
+      "Ser una máquina lineal que transforma entradas en salidas sin retroalimentación.",
+      "Ser una red de procesos moleculares que se produce continuamente a sí misma (autopoiesis).",
+      "Poseer conciencia reflexiva y lenguaje."
     ],
-    correct: 1,
-    justification: "Maturana y Varela definieron la autopoiesis como la condición necesaria y suficiente de la vida: una red de procesos de producción de componentes que regenera la propia red y define sus bordes espaciales."
+    correct: 2,
+    justification: "Para Maturana y Varela, la autopoiesis basta para caracterizar la organización de lo vivo: una red de procesos que produce los componentes que la regeneran y que define su propio límite (Maturana y Varela, 1973)."
   },
   {
-    q: "¿Qué significa el concepto de 'Clausura Operacional' en un sistema autopoiético?",
+    q: "¿Qué significa \"clausura operacional\" en un sistema autopoiético?",
     options: [
-      "Que el sistema no intercambia energía ni materia con el medio exterior, siendo térmicamente aislado.",
-      "Que los resultados de sus procesos internos son las mismas operaciones y componentes que mantienen la red activa.",
-      "Que el sistema no puede interactuar con ningún otro sistema del entorno.",
-      "Que las decisiones del sistema son programadas por un agente inteligente externo."
-    ],
-    correct: 1,
-    justification: "La clausura operacional se refiere a la circularidad recursiva de su organización interna: las operaciones del sistema generan los componentes que posibilitan esas mismas operaciones, aunque sea termodinámicamente abierto al flujo de energía."
-  },
-  {
-    q: "¿Cuál es la diferencia fundamental entre un sistema autopoiético y un sistema alopoiético?",
-    options: [
-      "El sistema autopoiético produce componentes distintos de sí mismo, mientras el alopoiético se produce a sí mismo.",
-      "El sistema autopoiético produce su propia organización y existencia como fin en sí mismo; el alopoiético produce algo externo a él.",
-      "Los sistemas alopoiéticos son exclusivamente biológicos y los autopoiéticos son mecánicos.",
-      "No existe ninguna diferencia; ambos términos son sinónimos acuñados por Ludwig von Bertalanffy."
-    ],
-    correct: 1,
-    justification: "Alopoiesis (del griego 'allo' = otro) implica que el producto del sistema es diferente de sí mismo (ej. una fábrica produciendo autos). La autopoiesis tiene como producto su propia realización continua."
-  },
-  {
-    q: "Según el principio de 'Determinismo Estructural', ¿cómo reacciona un sistema vivo ante una perturbación ambiental?",
-    options: [
-      "El medio ambiente determina e instruye exactamente el cambio interno que el sistema debe ejecutar.",
-      "El medio ambiente sólo gatilla o desencadena un cambio, pero es la propia estructura interna del sistema la que especifica dicho cambio.",
-      "El sistema ignora por completo cualquier fenómeno externo gracias a su membrana rígida.",
-      "El sistema altera aleatoriamente su genética sin ninguna correlación con su estructura previa."
-    ],
-    correct: 1,
-    justification: "Para Maturana y Varela no existe la 'instrucción' desde el medio. El entorno gatilla perturbaciones, pero las transiciones de estado están totalmente especificadas por la estructura del sistema en ese instante."
-  },
-  {
-    q: "¿Cuál es el rol de la membrana celular en la autopoiesis de primer orden?",
-    options: [
-      "Es una pared inerte externa añadida al final del ciclo vital por fuerzas físicas externas.",
-      "Es al mismo tiempo el producto de las reacciones químicas internas y la condición espacial que posibilita esas mismas reacciones.",
-      "Es una barrera impermeable que impide por completo el intercambio de sustratos con el entorno.",
-      "Es únicamente un sensor pasivo sin participación metabólica."
-    ],
-    correct: 1,
-    justification: "La membrana no es solo un contenedor; es sintetizada activamente por la red molecular interna y, a la vez, retiene los componentes para que la red no se disipe. Esta paradoja productiva es la esencia de la autopoiesis."
-  },
-  {
-    q: "¿Qué ocurre cuando dos o más sistemas autopoiéticos interactúan de manera recurrente a lo largo del tiempo?",
-    options: [
-      "Se produce una fusión celular inmediata donde desaparecen las identidades previas.",
-      "Se establece un proceso de 'Acoplamiento Estructural', donde sufren cambios estructurales congruentes sin perder su organización.",
-      "Uno de los sistemas destruye obligatoriamente la clausura operacional del otro.",
-      "Se detiene el metabolismo de ambos debido a interferencias cibernéticas."
-    ],
-    correct: 1,
-    justification: "El acoplamiento estructural describe la historia de perturbaciones mutuas congruentes entre sistemas o entre un sistema y su medio, permitiendo la adaptación evolutiva u ontogénica sin desintegración."
-  },
-  {
-    q: "¿Cómo clasifica Niklas Luhmann los sistemas sociales bajo el prisma de la autopoiesis?",
-    options: [
-      "Como agregaciones mecánicas de personas de carne y hueso unidas por contratos legales.",
-      "Como sistemas autopoiéticos de tercer orden cuyo elemento autorreproductivo básico son las comunicaciones.",
-      "Como sistemas puramente alopoiéticos creados por computadoras centrales.",
-      "Como redes energéticas basadas exclusivamente en el intercambio monetario físico."
-    ],
-    correct: 1,
-    justification: "El sociólogo Niklas Luhmann extendió la teoría proponiendo que las sociedades son sistemas autopoiéticos donde las comunicaciones (y no los seres biológicos individuales) producen recursivamente nuevas comunicaciones."
-  },
-  {
-    q: "En el contexto de la Ingeniería de Sistemas y la Computación, ¿cómo se aplica la autopoiesis?",
-    options: [
-      "En sistemas de computación autocurativos (Self-healing systems) que detectan anomalías y regeneran automáticamente sus servicios para preservar su identidad operativa.",
-      "En el uso de cables de fibra óptica más resistentes a perturbaciones climáticas.",
-      "En la instalación de antivirus convencionales basados en firmas estáticas de malware.",
-      "En la programación secuencial estructurada sin bucles ni recursividad."
+      "Que los resultados de sus procesos son los mismos componentes y operaciones que mantienen activa la red.",
+      "Que el sistema no intercambia materia ni energía con el exterior.",
+      "Que el sistema no puede interactuar con ningún otro sistema.",
+      "Que un agente externo programa las decisiones del sistema."
     ],
     correct: 0,
-    justification: "Arquitecturas como Kubernetes, microservicios resilientes y agentes autónomos implementan bucles de reconciliación homeostática y autogeneración de componentes inspirados en la autopoiesis biológica."
+    justification: "La clausura se refiere a la circularidad de la organización: las operaciones producen los componentes que hacen posibles esas mismas operaciones, aunque el sistema siga abierto a la materia y la energía (Varela, 1979)."
   },
   {
-    q: "¿Por qué un modelo de Inteligencia Artificial generativa actual (como GPT o Claude) NO es considerado un sistema autopoiético por la TGS estricta?",
+    q: "¿Cuál es la diferencia fundamental entre un sistema autopoiético y uno alopoiético?",
     options: [
-      "Porque no tiene una pantalla física para mostrar sus salidas.",
-      "Porque no regenera por sí mismo el hardware, la infraestructura energética ni el código que sustenta su proceso.",
-      "Porque procesa números en lugar de palabras poéticas.",
-      "Porque las IAs ya superaron a los sistemas vivos en todos los órdenes cibernéticos."
+      "El autopoiético produce cosas distintas de sí; el alopoiético se produce a sí mismo.",
+      "Los alopoiéticos son solo biológicos y los autopoiéticos solo mecánicos.",
+      "No hay diferencia: son sinónimos acuñados por Ludwig von Bertalanffy.",
+      "El autopoiético produce sus propios componentes y su continuidad; el alopoiético produce algo distinto de sí mismo."
+    ],
+    correct: 3,
+    justification: "Állos significa \"otro\": un sistema alopoiético (como una fábrica de autos) produce algo diferente de sí; el autopoiético se produce a sí mismo (Maturana y Varela, 1973)."
+  },
+  {
+    q: "Según el determinismo estructural, ¿cómo responde un ser vivo a una perturbación del medio?",
+    options: [
+      "El medio especifica exactamente el cambio que el sistema debe realizar.",
+      "El medio solo desencadena el cambio; la estructura del sistema determina cuál será.",
+      "El sistema ignora todo lo externo gracias a una membrana rígida.",
+      "El sistema cambia al azar, sin relación con su estructura previa."
     ],
     correct: 1,
-    justification: "Los modelos de IA dependen completamente de servidores, ingenieros, electricidad y hardware fabricados externamente. Son sistemas computacionales altamente sofisticados pero funcionalmente alopoiéticos."
+    justification: "Para Maturana y Varela no hay \"instrucción\" desde el medio: el entorno perturba, pero los cambios posibles los especifica la estructura del sistema en ese momento (Maturana y Varela, 1984)."
   },
   {
-    q: "¿Qué implica la muerte o destrucción de un sistema vivo en términos de la teoría de Maturana y Varela?",
+    q: "¿Qué papel cumple la membrana en una célula, según la autopoiesis?",
     options: [
-      "La pérdida irreversible de la clausura operacional y la consiguiente desintegración de su organización autopoiética.",
-      "La detención momentánea del pulso eléctrico por menos de cinco segundos.",
-      "Un cambio leve en el medio ambiente que el sistema no quiso observar.",
+      "Es una pared inerte añadida desde afuera por fuerzas físicas.",
+      "Es una barrera impermeable que impide todo intercambio con el entorno.",
+      "Es a la vez producto de la red metabólica interna y condición para que esa red no se disperse.",
+      "Es solo un sensor pasivo sin participación en el metabolismo."
+    ],
+    correct: 2,
+    justification: "La red interna fabrica la membrana y la membrana mantiene unida a la red: esa circularidad caracteriza a la unidad autopoiética (Varela et al., 1974)."
+  },
+  {
+    q: "¿Qué ocurre cuando dos sistemas (o un sistema y su medio) interactúan de forma recurrente durante mucho tiempo?",
+    options: [
+      "Se da un acoplamiento estructural: ambos cambian de manera congruente sin perder su organización.",
+      "Se fusionan de inmediato y desaparecen sus identidades.",
+      "Uno destruye obligatoriamente la clausura del otro.",
+      "El metabolismo de ambos se detiene por interferencia."
+    ],
+    correct: 0,
+    justification: "El acoplamiento estructural es la historia de perturbaciones mutuas que produce cambios congruentes, sin que los sistemas se desintegren (Maturana y Varela, 1984)."
+  },
+  {
+    q: "¿Cómo entiende Niklas Luhmann a los sistemas sociales?",
+    options: [
+      "Como sumas de personas unidas por contratos.",
+      "Como sistemas alopoiéticos creados por computadoras.",
+      "Como redes de intercambio monetario exclusivamente.",
+      "Como sistemas autopoiéticos cuyos elementos son comunicaciones, no personas."
+    ],
+    correct: 3,
+    justification: "Luhmann (1984/1998) trasladó la autopoiesis a la sociología: las comunicaciones producen nuevas comunicaciones. Es una extensión debatida que Maturana y Varela no adoptaron (Mingers, 2002)."
+  },
+  {
+    q: "En Ingeniería de Sistemas, ¿cuál es un uso legítimo del concepto de autopoiesis?",
+    options: [
+      "Elegir cables de fibra óptica más resistentes al clima.",
+      "Servir como analogía para diseñar sistemas autorreparables que detectan fallas y restituyen sus servicios.",
+      "Instalar antivirus basados en firmas estáticas.",
+      "Programar de forma secuencial, sin bucles ni recursividad."
+    ],
+    correct: 1,
+    justification: "Los sistemas autorreparables (por ejemplo, los controladores de Kubernetes) usan bucles de control que recuerdan la autoconservación de lo vivo. Es una analogía: esos sistemas no producen sus propios componentes y siguen siendo alopoiéticos (Kubernetes Authors, s. f.; Maturana y Varela, 1973)."
+  },
+  {
+    q: "¿Por qué un modelo de IA generativa actual no es autopoiético en sentido estricto?",
+    options: [
+      "Porque no tiene una pantalla propia para mostrar sus respuestas.",
+      "Porque procesa números en lugar de palabras.",
+      "Porque no produce por sí mismo el hardware, la energía ni el código que lo sostienen.",
+      "Porque ya superó a los sistemas vivos en todos los aspectos."
+    ],
+    correct: 2,
+    justification: "Un modelo de IA depende de servidores, electricidad, datos y personas externas. Es un sistema muy sofisticado, pero alopoiético (Maturana y Varela, 1973)."
+  },
+  {
+    q: "¿Qué es la muerte de un ser vivo según la teoría de la autopoiesis?",
+    options: [
+      "La pérdida irreversible de la organización autopoiética: la red deja de producirse a sí misma y el sistema se desintegra.",
+      "Una pausa de menos de cinco segundos en la actividad eléctrica.",
+      "Un cambio leve del medio que el sistema no percibió.",
       "El paso obligatorio a un sistema alopoiético de reciclaje."
     ],
     correct: 0,
-    justification: "Para la teoría de la autopoiesis, la vida y la organización autopoiética son la misma cosa. Cuando se pierde la clausura de la red de producción de componentes, el sistema vivo se desintegra ontológicamente: sobreviene la muerte."
+    justification: "Para Maturana y Varela, estar vivo es realizar la autopoiesis; cuando se pierde esa organización, el sistema deja de ser una unidad viva (Maturana y Varela, 1984)."
   }
 ];
 

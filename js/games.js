@@ -1,69 +1,70 @@
 /**
- * JUEGOS DIDÁCTICOS INTERACTIVOS DE AUTOPOIESIS (TGS)
- * Juego 2: Desafío Ontológico (Autopoiético vs Alopoiético)
- * Juego 3: Simulador de Decisiones de Acoplamiento Estructural
- * TGS 2026-2 - Romero Herrera Julian Esteban
+ * Juegos didácticos propios del OVA
+ * Juego 2: Desafío ontológico (autopoiético vs. no autopoiético)
+ * Juego 3: Aventura de acoplamiento estructural
+ * Autopoiesis y sistemas vivos (Maturana y Varela) · TGS 2026-2 · Romero Herrera Julián Esteban
+ * Textos revisados en docs/contenido_revisado.md
  */
 
 // ==========================================
-// JUEGO 2: DESAFÍO ONTO-SISTÉMICO
+// JUEGO 2: DESAFÍO ONTOLÓGICO
 // ==========================================
 const ontologyCards = [
   {
     title: "Bacteria Escherichia coli",
     icon: "🦠",
-    desc: "Un organismo unicelular procariota que metaboliza glucosa y sintetiza sus propios ácidos grasos, ribosomas y pared celular continua.",
+    desc: "Organismo unicelular que toma glucosa del medio y con ella fabrica sus propios lípidos, proteínas, ribosomas y pared celular.",
     type: "autopoietic",
-    explanation: "¡Correcto! Es un sistema autopoiético por excelencia (de 1er orden). La red de transformaciones químicas produce los mismos componentes que regeneran la membrana que delimita la red."
+    explanation: "Es autopoiética (unidad de primer orden): su red metabólica produce los componentes que renuevan la membrana que la delimita."
   },
   {
-    title: "Fábrica Gigafactory de Tesla",
+    title: "Gigafábrica automatizada de vehículos eléctricos",
     icon: "🏭",
-    desc: "Una megafábrica automatizada con robots que transforman aluminio, baterías y chips en automóviles eléctricos terminados.",
+    desc: "Planta con robots que transforman aluminio, baterías y chips en automóviles terminados.",
     type: "allopoietic",
-    explanation: "¡Correcto! Es un sistema ALOPOIÉTICO. El producto de sus procesos (automóviles) es diferente de sí misma. No regenera sus propios robots ni su estructura física a partir de su producción."
+    explanation: "Es alopoiética: su producto (los autos) es distinto de ella misma y no fabrica sus propios robots ni su edificio."
   },
   {
-    title: "Modelo de Lenguaje LLM (IA)",
+    title: "Modelo de lenguaje (IA generativa)",
     icon: "🤖",
-    desc: "Red neuronal artificial que procesa tokens y genera respuestas de texto basándose en pesos sinápticos estáticos calculados externamente.",
+    desc: "Red neuronal artificial que genera texto a partir de parámetros obtenidos en un entrenamiento hecho por personas y servidores externos.",
     type: "allopoietic",
-    explanation: "¡Correcto! Es un sistema ALOPOIÉTICO. Aunque genera código o texto, no produce los servidores, ni la electricidad, ni la arquitectura física que sostiene su existencia."
+    explanation: "Es alopoiético: produce texto, pero no produce el hardware, la energía ni el código que lo sostienen."
   },
   {
-    title: "Enjambre de Hormigas",
+    title: "Hormiga obrera (un individuo de la colonia)",
     icon: "🐜",
-    desc: "Superorganismo compuesto por miles de individuos biológicos que cooperan para recolectar hojas, cultivar hongos y sostener la colonia.",
+    desc: "Insecto pluricelular que se alimenta, renueva sus tejidos y coopera con otras hormigas para sostener la colonia.",
     type: "autopoietic",
-    explanation: "¡Correcto! Es un sistema autopoiético de orden superior (2do/3er orden). Los individuos vivos se reproducen y mantienen dinámicamente la identidad y viabilidad ontológica de la colonia."
+    explanation: "Es un ser vivo: sus células son autopoiéticas y el organismo depende de ellas (unidad de segundo orden). La colonia completa es una unidad de tercer orden; Maturana y Varela no afirman que sea autopoiética en sí misma."
   },
   {
-    title: "Reloj Mecánico de Péndulo",
+    title: "Reloj mecánico de péndulo",
     icon: "⏱️",
-    desc: "Mecanismo de engranajes y resortes que transforma la energía potencial del péndulo en un movimiento regular para marcar horas.",
+    desc: "Mecanismo de engranajes y resortes que usa la oscilación de un péndulo para marcar intervalos regulares.",
     type: "allopoietic",
-    explanation: "¡Correcto! Es ALOPOIÉTICO. No produce sus propios engranajes ni su aceite; su propósito es externo: medir el tiempo para un observador humano."
+    explanation: "Es alopoiético: no fabrica sus engranajes ni su lubricante, y su función (marcar la hora) tiene sentido para un observador externo."
   },
   {
-    title: "Célula Neuronal Humana",
+    title: "Neurona humana",
     icon: "🧠",
-    desc: "Célula con prolongaciones axónicas y dendríticas que transporta impulsos eléctricos y sintetiza neurotransmisores y lípidos de membrana.",
+    desc: "Célula con axón y dendritas que conduce impulsos eléctricos y sintetiza neurotransmisores y lípidos de membrana.",
     type: "autopoietic",
-    explanation: "¡Correcto! Es AUTOPOIÉTICA. Mantiene su homeostasis metabólica y sintetiza continuamente las proteínas de sus canales iónicos y su membrana celular."
+    explanation: "Es autopoiética: como toda célula, renueva continuamente sus proteínas, canales iónicos y membrana."
   },
   {
-    title: "Cristal de Sal Marina en Crecimiento",
+    title: "Cristal de sal en crecimiento",
     icon: "💎",
-    desc: "Estructura mineral repetitiva que incorpora nuevos iones de sodio y cloro en su red cristalina a medida que el agua se evapora.",
+    desc: "Estructura mineral que añade iones de sodio y cloro a su red cristalina a medida que el agua se evapora.",
     type: "allopoietic",
-    explanation: "¡Correcto! No es autopoiético (es un sistema físico inerte). Crece por simple agregación externa regida por termodinámica, no por una red metabólica cerrada con clausura operacional."
+    explanation: "No es autopoiético: crece por acumulación de material desde afuera, sin una red de procesos que produzca sus propios componentes. (Un cristal tampoco es una máquina diseñada; en este juego se agrupa como \"no autopoiético\".)"
   },
   {
-    title: "Virus Biológico (Ej. SARS-CoV-2)",
+    title: "Virus (p. ej., SARS-CoV-2)",
     icon: "🧬",
-    desc: "Material genético encapsulado en una cápside proteica que no tiene metabolismo propio y requiere infectar una célula viva para multiplicarse.",
+    desc: "Material genético dentro de una cápside de proteínas; no tiene metabolismo propio y solo se multiplica dentro de una célula viva.",
     type: "allopoietic",
-    explanation: "¡Correcto! Para Maturana y Varela, los virus NO son autopoiéticos de manera independiente: carecen de metabolismo propio y clausura operacional; son 'parásitos moleculares' alopoiéticos en sí mismos."
+    explanation: "No es autopoiético por sí mismo: no tiene metabolismo ni produce sus componentes; es la célula infectada la que fabrica nuevos virus."
   }
 ];
 
@@ -72,43 +73,44 @@ class OntologyGame {
     this.currentIndex = 0;
     this.score = 0;
     this.streak = 0;
+    this.locked = false;
     this.streakEl = document.getElementById('onto-streak');
     this.scoreEl = document.getElementById('onto-score');
     this.cardContainer = document.getElementById('onto-card-target');
     this.feedbackEl = document.getElementById('onto-feedback');
-    this.renderCard();
+    if (this.cardContainer) this.renderCard();
   }
 
   renderCard() {
+    this.locked = false;
     if (this.currentIndex >= ontologyCards.length) {
       this.cardContainer.innerHTML = `
-        <div style="text-align: center; padding: 2rem;">
-          <div style="font-size: 3.5rem; margin-bottom: 1rem;">🏆</div>
-          <h3 style="font-size: 1.5rem; margin-bottom: 0.5rem; color: var(--accent-bio-light);">¡Desafío Ontológico Completado!</h3>
-          <p style="margin-bottom: 1.5rem; color: var(--text-secondary);">Puntaje final: <strong>${this.score} / ${ontologyCards.length * 10}</strong></p>
-          <button class="btn btn-primary" onclick="window.ontologyGame.restart()">Reiniciar Desafío</button>
+        <div class="swipe-card">
+          <div class="swipe-card-icon">🏆</div>
+          <div class="swipe-card-title">¡Desafío completado!</div>
+          <p class="swipe-card-desc">Puntaje final: <strong>${this.score} / ${ontologyCards.length * 10}</strong></p>
+          <button type="button" class="btn btn-teal" style="margin-top:1.2rem" onclick="window.ontologyGame.restart()">Reiniciar desafío</button>
         </div>
       `;
-      this.feedbackEl.style.display = 'none';
+      this.feedbackEl.className = 'exercise-feedback';
       return;
     }
 
     const card = ontologyCards[this.currentIndex];
     this.cardContainer.innerHTML = `
       <div class="swipe-card">
-        <div class="swipe-card-icon">${card.icon}</div>
+        <div class="swipe-card-icon" aria-hidden="true">${card.icon}</div>
         <div class="swipe-card-title">${card.title}</div>
         <div class="swipe-card-desc">${card.desc}</div>
-        <div style="margin-top: 1rem; font-size: 0.8rem; color: var(--text-muted); font-family: var(--font-mono);">
-          Caso ${this.currentIndex + 1} de ${ontologyCards.length}
-        </div>
+        <div class="swipe-card-count">Caso ${this.currentIndex + 1} de ${ontologyCards.length}</div>
       </div>
     `;
-    this.feedbackEl.style.display = 'none';
+    this.feedbackEl.className = 'exercise-feedback';
   }
 
   checkAnswer(choice) {
-    if (this.currentIndex >= ontologyCards.length) return;
+    if (this.locked || this.currentIndex >= ontologyCards.length) return;
+    this.locked = true;
     const current = ontologyCards[this.currentIndex];
     const isCorrect = (choice === current.type);
 
@@ -116,11 +118,11 @@ class OntologyGame {
       this.score += 10;
       this.streak += 1;
       this.feedbackEl.className = 'exercise-feedback feedback-success show';
-      this.feedbackEl.innerHTML = `<strong>✨ ¡Exacto!</strong> ${current.explanation}`;
+      this.feedbackEl.innerHTML = `<strong>¡Exacto!</strong> ${current.explanation}`;
     } else {
       this.streak = 0;
       this.feedbackEl.className = 'exercise-feedback feedback-error show';
-      this.feedbackEl.innerHTML = `<strong>⚠️ Incorrecto.</strong> ${current.explanation}`;
+      this.feedbackEl.innerHTML = `<strong>Incorrecto.</strong> ${current.explanation}`;
     }
 
     if (this.scoreEl) this.scoreEl.innerText = this.score;
@@ -129,7 +131,7 @@ class OntologyGame {
     setTimeout(() => {
       this.currentIndex++;
       this.renderCard();
-    }, 2800);
+    }, 3200);
   }
 
   restart() {
@@ -143,69 +145,69 @@ class OntologyGame {
 }
 
 // ==========================================
-// JUEGO 3: SIMULADOR DE ACOPLAMIENTO ESTRUCTURAL
+// JUEGO 3: AVENTURA DE ACOPLAMIENTO ESTRUCTURAL
 // ==========================================
 const couplingScenarios = [
   {
-    perturbation: "Alza Térmica Severa en el Entorno",
-    context: "La temperatura del medio acuoso circundante asciende bruscamente 12°C por radiación solar, acelerando la agitación cinética y amenazando con desnaturalizar enzimas.",
+    perturbation: "Aumento brusco de temperatura",
+    context: "La temperatura del agua donde vive una célula sube de golpe 12 °C; las proteínas corren riesgo de desnaturalizarse.",
     options: [
       {
-        text: "Obedecer pasivamente la instrucción térmica exterior y cambiar de forma sin regulación.",
+        text: "Obedecer la \"orden\" del calor y cambiar de forma sin ninguna regulación.",
         correct: false,
-        feedback: "Falso paradigma mecanicista. Para Maturana, el medio NO instruye al sistema vivo; solo lo perturba."
+        feedback: "Visión mecanicista. Para Maturana y Varela, el medio no instruye al ser vivo: solo lo perturba."
       },
       {
-        text: "Gatillar la expresión de proteínas de choque térmico (Hsp) según la estructura interna de la célula, estabilizando la membrana sin perder la clausura operacional.",
+        text: "Producir proteínas de choque térmico según su propia estructura, protegiendo sus proteínas sin perder su organización.",
         correct: true,
-        feedback: "¡Brillante! El cambio es determinado por la estructura propia del sistema frente a la perturbación (Determinismo Estructural y Acoplamiento)."
+        feedback: "¡Bien! La perturbación desencadena el cambio, pero lo especifica la estructura de la célula (determinismo estructural)."
       },
       {
-        text: "Cerrar completamente el intercambio de materia y energía con el entorno indefinidamente.",
+        text: "Cerrar por completo el intercambio de materia y energía con el entorno.",
         correct: false,
-        feedback: "Error letal. Un sistema vivo es termodinámicamente abierto; cerrarse al flujo de nutrientes provoca muerte por entropía."
+        feedback: "Error fatal: un ser vivo es abierto a materia y energía; si se aísla, no puede sostener su metabolismo."
       }
     ]
   },
   {
-    perturbation: "Ataque Masivo de Denegación de Servicio (DDoS) en un Sistema de Software Autónomo",
-    context: "En un clúster de microservicios con diseño autopoiético (Kubernetes con control loops), una avalancha de 100,000 solicitudes por segundo satura los gateways de red.",
+    perturbation: "Ataque de denegación de servicio (DDoS)",
+    context: "Un clúster de microservicios orquestado con Kubernetes (que usa bucles de control) recibe de repente 100 000 solicitudes por segundo que saturan la entrada de red.",
     options: [
       {
-        text: "El firewall deja pasar todo el tráfico porque 'la red externa manda'.",
+        text: "Dejar pasar todo el tráfico porque \"lo externo manda\".",
         correct: false,
-        feedback: "Incorrecto. Se perdería la integridad y propósito del sistema de información."
+        feedback: "Incorrecto: el sistema perdería su función. El entorno perturba, no dicta."
       },
       {
-        text: "Los pods activan réplicas automáticas y filtros de descarte basados en sus reglas internas de autocuración (self-healing), adaptando su estructura para mantener el servicio activo.",
+        text: "Apagar los servidores de forma permanente para proteger la base de datos.",
+        correct: false,
+        feedback: "Eso equivale a la \"muerte\" del servicio: se destruye la función en lugar de compensar la perturbación."
+      },
+      {
+        text: "Escalar réplicas y aplicar filtros de tráfico según reglas internas ya configuradas, para mantener el servicio.",
         correct: true,
-        feedback: "¡Excelente! Los bucles de reconciliación interna reconfiguran el estado del sistema preservando su identidad operativa ante la perturbación."
-      },
-      {
-        text: "Apagar los servidores permanentemente para proteger la base de datos.",
-        correct: false,
-        feedback: "Eso equivale a la muerte del sistema. Se destruye la función operativa en lugar de acoplarse dinámicamente."
+        feedback: "¡Correcto! Los bucles de control reconfiguran el sistema según reglas propias. Recuerda: es una analogía; el clúster no es autopoiético porque no produce sus propios componentes."
       }
     ]
   },
   {
-    perturbation: "Escasez Súbita de Nutrientes Glucídicos en el Medio",
-    context: "La fuente principal de carbono se agota en el caldo de cultivo donde vive una colonia bacteriana.",
+    perturbation: "Escasez de glucosa",
+    context: "Se agota la principal fuente de carbono en el medio de cultivo de una colonia de bacterias.",
     options: [
       {
-        text: "Modificar sus rutas metabólicas internas para activar enzimas lipolíticas y catabolismo secundario, manteniendo la producción continua de ATP y pared celular.",
+        text: "Cambiar sus rutas metabólicas para usar otras fuentes de carbono y seguir produciendo energía y componentes.",
         correct: true,
-        feedback: "¡Correcto! El sistema mantiene su clausura operacional reorganizando su metabolismo interno sin desintegrarse."
+        feedback: "¡Correcto! Reorganiza su metabolismo sin perder su organización autopoiética."
       },
       {
-        text: "Transformarse instantáneamente en un mineral inerte.",
+        text: "Convertirse instantáneamente en un mineral inerte.",
         correct: false,
-        feedback: "Imposible ontológicamente: la vida no puede simplemente convertirse en roca y revertir cuando quiera."
+        feedback: "Imposible: un ser vivo no puede transformarse en roca y luego volver a vivir."
       },
       {
-        text: "Esperar a que el medio ambiente le inyecte un manual de instrucciones genéticas.",
+        text: "Esperar a que el medio le envíe un \"manual de instrucciones\" genético.",
         correct: false,
-        feedback: "Concepto erróneo: la información biológica no entra empaquetada como órdenes del medio; la estructura celular responde desde su propia ontología."
+        feedback: "Concepto erróneo: el medio no envía instrucciones; la respuesta depende de la estructura de la bacteria."
       }
     ]
   }
@@ -214,69 +216,68 @@ const couplingScenarios = [
 class CouplingGame {
   constructor() {
     this.stageIndex = 0;
+    this.locked = false;
     this.container = document.getElementById('coupling-game-target');
     this.render();
   }
 
   render() {
     if (!this.container) return;
+    this.locked = false;
     if (this.stageIndex >= couplingScenarios.length) {
       this.container.innerHTML = `
         <div class="scenario-box" style="text-align: center;">
-          <div style="font-size: 3rem; margin-bottom: 1rem;">🧬</div>
-          <h3 style="color: var(--accent-bio-light); margin-bottom: 0.5rem;">¡Dominio de Acoplamiento Estructural Logrado!</h3>
-          <p style="color: var(--text-secondary); margin-bottom: 1.5rem;">
-            Has comprendido con éxito que los sistemas vivos determinan sus cambios desde su propia estructura interna y nunca son gobernados pasivamente por el entorno.
-          </p>
-          <button class="btn btn-primary" onclick="window.couplingGame.restart()">Reiniciar Aventura</button>
+          <div class="swipe-card-icon" aria-hidden="true">🧬</div>
+          <h3 class="scenario-title">¡Lo lograste!</h3>
+          <p class="scenario-context">Comprendiste que un sistema vivo responde a su entorno según su propia estructura: el medio desencadena, pero no determina.</p>
+          <button type="button" class="btn btn-teal" onclick="window.couplingGame.restart()">Reiniciar aventura</button>
         </div>
       `;
       return;
     }
 
     const item = couplingScenarios[this.stageIndex];
-    let optionsHtml = '';
-    item.options.forEach((opt, idx) => {
-      optionsHtml += `
-        <button class="decision-btn" onclick="window.couplingGame.chooseOption(${idx})">
-          <span style="font-weight: 700; color: var(--accent-bio-light); margin-right: 0.5rem;">Opción ${String.fromCharCode(65 + idx)}:</span>
-          ${opt.text}
-        </button>
-      `;
-    });
+    const optionsHtml = item.options.map((opt, idx) => `
+        <button type="button" class="decision-btn" onclick="window.couplingGame.chooseOption(${idx})">
+          <span><strong class="decision-letter">${String.fromCharCode(65 + idx)})</strong> ${opt.text}</span>
+        </button>`).join('');
 
     this.container.innerHTML = `
       <div class="scenario-box">
         <div class="scenario-header">
-          <span class="badge badge-purple">Desafío ${this.stageIndex + 1} de ${couplingScenarios.length}</span>
-          <span style="font-family: var(--font-mono); font-size: 0.85rem; color: var(--text-muted);">Acoplamiento y Deriva Ontogénica</span>
+          <span class="badge badge-violet">Desafío ${this.stageIndex + 1} de ${couplingScenarios.length}</span>
+          <span class="scenario-tagline">Acoplamiento estructural y ontogenia</span>
         </div>
-        <h4 class="scenario-title" style="color: var(--accent-bio-light);">${item.perturbation}</h4>
-        <p style="color: var(--text-secondary); margin: 0.75rem 0 1.25rem;">${item.context}</p>
-        <div class="decision-options">
-          ${optionsHtml}
-        </div>
-        <div id="coupling-feedback-${this.stageIndex}" class="exercise-feedback"></div>
+        <h3 class="scenario-title">${item.perturbation}</h3>
+        <p class="scenario-context">${item.context}</p>
+        <div class="decision-options">${optionsHtml}</div>
+        <div id="coupling-feedback-${this.stageIndex}" class="exercise-feedback" aria-live="polite"></div>
       </div>
     `;
   }
 
   chooseOption(optIndex) {
+    if (this.locked) return;
     const item = couplingScenarios[this.stageIndex];
     const opt = item.options[optIndex];
     const fbEl = document.getElementById(`coupling-feedback-${this.stageIndex}`);
     if (!fbEl) return;
 
+    const buttons = this.container.querySelectorAll('.decision-btn');
+    buttons.forEach(b => b.classList.remove('correct', 'incorrect'));
+    buttons[optIndex].classList.add(opt.correct ? 'correct' : 'incorrect');
+
     if (opt.correct) {
+      this.locked = true;
       fbEl.className = 'exercise-feedback feedback-success show';
-      fbEl.innerHTML = `<strong>✨ ¡Acoplamiento Exitoso!</strong> ${opt.feedback}`;
+      fbEl.innerHTML = `<strong>¡Acoplamiento logrado!</strong> ${opt.feedback}`;
       setTimeout(() => {
         this.stageIndex++;
         this.render();
-      }, 2500);
+      }, 3000);
     } else {
       fbEl.className = 'exercise-feedback feedback-error show';
-      fbEl.innerHTML = `<strong>⚠️ Desacoplamiento / Riesgo Ontológico:</strong> ${opt.feedback}`;
+      fbEl.innerHTML = `<strong>Revisa tu elección:</strong> ${opt.feedback}`;
     }
   }
 
@@ -286,28 +287,26 @@ class CouplingGame {
   }
 }
 
-// Inicialización de Juegos
+// Inicialización de juegos y pestañas
 document.addEventListener('DOMContentLoaded', () => {
   window.ontologyGame = new OntologyGame();
   window.couplingGame = new CouplingGame();
 
-  // Cambio de pestañas entre juegos
   const tabBtns = document.querySelectorAll('.games-tab-nav .tab-btn');
   const gamePanels = document.querySelectorAll('.game-panel');
 
   tabBtns.forEach(btn => {
+    btn.setAttribute('aria-selected', btn.classList.contains('active') ? 'true' : 'false');
     btn.addEventListener('click', () => {
       const targetId = btn.getAttribute('data-target');
-      tabBtns.forEach(b => b.classList.remove('active'));
+      tabBtns.forEach(b => { b.classList.remove('active'); b.setAttribute('aria-selected', 'false'); });
       gamePanels.forEach(p => p.classList.remove('active'));
 
       btn.classList.add('active');
+      btn.setAttribute('aria-selected', 'true');
       const targetPanel = document.getElementById(targetId);
-      if (targetPanel) {
-        targetPanel.classList.add('active');
-      }
+      if (targetPanel) targetPanel.classList.add('active');
 
-      // Si se activa el canvas, reajustar tamaño
       if (targetId === 'game-biolab' && window.bioLabSimulator) {
         window.bioLabSimulator.resizeCanvas();
       }
