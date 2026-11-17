@@ -10,8 +10,14 @@
  * Si se deja vacío, se muestra el aviso "Actividad en preparación".
  */
 const EXTERNAL_ACTIVITIES = {
-  wordwall: { embed: '', url: '' },
-  educaplay: { embed: '', url: '' }
+  wordwall: {
+    embed: 'https://wordwall.net/es/embed/0ea438de1fe840b689833db1460568e7?themeId=1&ref=oembed',
+    url: 'https://wordwall.net/es/resource/124172775/relaciona-los-conceptos-de-la-autopoiesis'
+  },
+  educaplay: {
+    embed: 'https://es.educaplay.com/juego/31567839-desafio_de_la_autopoiesis_descubre_los_sistemas_vivos.html',
+    url: 'https://es.educaplay.com/recursos-educativos/31567839-desafio_de_la_autopoiesis_descubre_los_sistemas_vivos.html'
+  }
 };
 
 (function () {
